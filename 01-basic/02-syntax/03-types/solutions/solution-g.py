@@ -1,0 +1,2 @@
+
+result = isinstance(DATA, int)

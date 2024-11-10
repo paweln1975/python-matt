@@ -1,0 +1,9 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class User
+class Admin
+
+User <|-- Admin
+
+@enduml

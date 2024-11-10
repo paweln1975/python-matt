@@ -1,0 +1,2 @@
+
+result = np.empty(shape=(3,3), dtype='int64')

@@ -1,0 +1,2 @@
+
+result = pickle.dumps(DATA)

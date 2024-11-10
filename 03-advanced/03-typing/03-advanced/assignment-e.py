@@ -1,0 +1,40 @@
+"""
+* Assignment: Typing Annotations Final
+* Complexity: easy
+* Lines of code: 1 lines
+* Time: 2 min
+
+English:
+    1. Declare type for `data` variable
+    2. Type must match values defined below
+    3. Use `Final` type with proper subtype
+    4. Run doctests - all must succeed
+
+Polish:
+    1. Zadeklaruj typ dla zmiennej `data`
+    2. Typ musi pasować do wartości zdefiniowanych poniżej
+    3. Użyj typu `Final` z odpowiednim subtypem
+    4. Uruchom doctesty - wszystkie muszą się powieść
+
+Tests:
+    >>> import sys; sys.tracebacklimit = 0
+    >>> assert sys.version_info >= (3, 5), \
+    'Python 3.5+ required'
+
+    >>> import importlib
+    >>> from typing import get_type_hints
+    >>> module = importlib.import_module(__name__)
+    >>> annotations = get_type_hints(module)
+
+    >>> assert annotations['data'] == Final[int]
+"""
+from typing import Final
+
+
+# Declare type for `data` variable
+# Use `Final` type with proper subtype
+data: ...
+
+# Do not modify lines below
+data = 1
+
