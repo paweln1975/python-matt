@@ -65,5 +65,4 @@ DATA = [
 
 
 result = [tuple(value for value in row.values()) for row in DATA]
-result.insert(0, tuple(key for key in DATA[0].keys()))
-
+result.insert(0, tuple(key for key in DATA[0]))

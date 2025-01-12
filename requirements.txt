@@ -1,6 +1,7 @@
 ## All trainings
 pip
 tzdata
+pylint
 
 ## Python/MID
 # tzdata

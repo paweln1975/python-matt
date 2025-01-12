@@ -65,6 +65,3 @@ DOMAINS = ('esa.int', 'nasa.gov')
 # with domain names mentioned in `DOMAINS`
 # type: list[str]
 result = [item.get('email') for item in DATA['crew'] if item.get('email').split('@')[1] in DOMAINS]
-
-
-

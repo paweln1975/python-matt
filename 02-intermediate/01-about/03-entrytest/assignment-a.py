@@ -92,7 +92,7 @@ DATA = [
 def assigment_a_solution_for() -> list[dict[str,float|str]]:
     output = []
     for data in DATA[1:]:
-        d = dict()
+        d = {}
         for key, value in zip(DATA[0], data):
             d.update({key: value})
         output.append(d)
@@ -100,9 +100,7 @@ def assigment_a_solution_for() -> list[dict[str,float|str]]:
 
 # then converted into comprehension
 def assigment_a_solution_comph() -> list[dict[str,float|str]]:
-    return [{key: value for key, value in zip(DATA[0], data)}
-          for data in DATA[1:]
-          ]
+    return [dict(zip(DATA[0], data)) for data in DATA[1:]]
 
 # other option
 def assigment_a_solution_comph_with_keys() -> list[dict[str,float|str]]:
