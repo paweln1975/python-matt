@@ -62,5 +62,8 @@ DATA = [
 # type: header = tuple[str,...]
 # type: row = tuple[float,float,float,float,str]
 # type: list[tuple[header|row,...]]
-result = ...
+
+
+result = [tuple(value for value in row.values()) for row in DATA]
+result.insert(0, tuple(key for key in DATA[0].keys()))
 

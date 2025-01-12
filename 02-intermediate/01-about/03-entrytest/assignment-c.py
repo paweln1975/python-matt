@@ -64,6 +64,7 @@ DOMAINS = ('esa.int', 'nasa.gov')
 # Collect in `result` all email addresses from `DATA` -> `crew`
 # with domain names mentioned in `DOMAINS`
 # type: list[str]
-result = ...
+result = [item.get('email') for item in DATA['crew'] if item.get('email').split('@')[1] in DOMAINS]
+
 
 

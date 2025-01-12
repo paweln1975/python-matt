@@ -22,6 +22,8 @@ Why:
 
 Tests:
     >>> import sys; sys.tracebacklimit = 0
+    >>> assert sys.version_info >= (3, 9), \
+    'Python 3.9+ required'
     >>> from pprint import pprint
 
     >>> assert result is not Ellipsis, \
@@ -35,6 +37,6 @@ Tests:
 
 # Define variable `result` with value 1
 # type: int
-result = ...
+result = 1
 
 
