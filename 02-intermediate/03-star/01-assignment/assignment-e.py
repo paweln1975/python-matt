@@ -55,5 +55,10 @@ SUFFIXES = ('ca', 'osa')
 
 # species names with suffix in `SUFFIXES`
 # type: list[str]
-result = ...
+# result = []
+# for item in DATA[1:]:
+#     *_, name = item
+#     if name.endswith(SUFFIXES):
+#         result.append(name)
 
+result = [name for *_, name in DATA[1:] if str(name).endswith(SUFFIXES)]

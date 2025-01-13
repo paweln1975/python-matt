@@ -43,10 +43,12 @@ DATA = ['10.13.37.1', 'nasa.gov', 'esa.int', 'polsa.gov.pl']
 # String with IP address
 # example: '10.13.37.1'
 # type: str
-ip = ...
+# ip, *_ = DATA
 
 # List of hosts
 # example: ['nasa.gov', 'esa.int', 'polsa.gov.pl']
 # type: list[str]
-hosts = ...
+# _, *hosts = DATA
 
+# or faster
+ip, *hosts = DATA

@@ -60,10 +60,9 @@ DATA = [
 # first line from DATA
 # example: ('sepal_length', 'sepal_width', ...)
 # type: tuple[str]
-header = ...
+header, *_ = DATA
 
 # all the other lines from DATA, beside first line
 # example: [(5.8, 2.7, 5.1, 1.9, 'virginica'),  ...]
 # type: list[tuple]
-rows = ...
-
+_, *rows = DATA

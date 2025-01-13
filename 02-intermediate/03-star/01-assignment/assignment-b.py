@@ -45,9 +45,8 @@ DATA = '10.13.37.1 nasa.gov esa.int polsa.gov.pl'
 
 # String with IP address: '10.13.37.1'
 # type: str
-ip = ...
+ip, *_ = DATA.split()
 
 # List of host names: ['nasa.gov', 'esa.int', 'polsa.gov.pl']
 # type: list[str]
-hosts = ...
-
+_, *hosts = DATA.split()

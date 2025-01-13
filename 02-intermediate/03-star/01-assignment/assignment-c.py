@@ -44,9 +44,8 @@ DATA = (5.1, 3.5, 1.4, 0.2, 'setosa')
 
 # All numeric values from DATA
 # type: list[float]
-values = ...
+*values, _ = DATA
 
 # species name from DATA (last element)
 # type: str
-species = ...
-
+*_, species = DATA

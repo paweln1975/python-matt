@@ -1,2 +1,0 @@
-
-ip, *hosts = DATA.split()
