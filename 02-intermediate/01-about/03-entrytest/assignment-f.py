@@ -82,4 +82,10 @@ DATA = [
 # type: header = tuple[str,...]
 # type: row = tuple[float,float,float,float,str]
 # type: list[tuple[header|row,...]]
-result = ...
+result = [(firstname, lastname, age) for item in DATA for firstname, lastname, age in [item.values()]]
+result.insert(0, ('firstname', 'lastname', 'age'))
+
+# result = []
+# result.append(('firstname', 'lastname', 'age'))
+# for item in DATA:
+#     result.append((item.get('firstname'), item.get('lastname'), item.get('age')))

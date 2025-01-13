@@ -83,4 +83,5 @@ DATA = [
 # - key - name from the header
 # - value - numerical value or species name
 # type: list[dict[str,str|int]]
-result = ...
+result = [{'firstname': firstname, 'lastname': lastname, 'age': age}
+          for firstname, lastname, age in DATA[1:]]

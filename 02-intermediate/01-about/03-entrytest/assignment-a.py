@@ -89,23 +89,18 @@ DATA = [
 
 
 # first solution
-def assigment_a_solution_for() -> list[dict[str,float|str]]:
-    output = []
-    for data in DATA[1:]:
-        d = {}
-        for key, value in zip(DATA[0], data):
-            d.update({key: value})
-        output.append(d)
-    return output
+
+# result = []
+# for data in DATA[1:]:
+#     d = {}
+#     for key, value in zip(DATA[0], data):
+#         d.update({key: value})
+#     result.append(d)
 
 # then converted into comprehension
-def assigment_a_solution_comph() -> list[dict[str,float|str]]:
-    return [dict(zip(DATA[0], data)) for data in DATA[1:]]
+result = [dict(zip(DATA[0], data)) for data in DATA[1:]]
 
 # other option
-def assigment_a_solution_comph_with_keys() -> list[dict[str,float|str]]:
-    return [{'sepal_length': sl, 'sepal_width': sw, 'petal_length': pl, 'petal_width': pw, 'species': species}
-          for sl, sw, pl, pw, species in DATA[1:]]
-
-
-result = assigment_a_solution_comph()
+# result = [
+#     {'sepal_length': sl, 'sepal_width': sw, 'petal_length': pl, 'petal_width': pw, 'species': species}
+#           for sl, sw, pl, pw, species in DATA[1:]]

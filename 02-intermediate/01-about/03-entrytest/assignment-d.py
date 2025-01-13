@@ -75,6 +75,13 @@ DATA = """##
 # Each line must be a separate dict
 # Mind, that for 127.0.0.1 there will be two separate entries
 # type: list[dict]
-result = ...
 
+result = [{'ip': ip, 'hosts': hosts} for line in DATA.splitlines()
+          if not (line.strip().startswith('#') or line.strip() == '')
+          for ip, *hosts in [line.split()]]
 
+# for line in DATA.splitlines():
+#     if line.strip().startswith('#') or line.strip() == '':
+#         continue
+#     ip, *hosts = line.split()
+#     result.append()
