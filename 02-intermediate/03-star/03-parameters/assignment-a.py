@@ -37,4 +37,13 @@ Tests:
     ValueError: At least one argument is required
 """
 
+def mean(*args) -> float:
+    """
+    Calulates mean from values
+    :param args: parameters as numbers
+    :return: arithmetic mean value
+    """
+    if not args:
+        raise ValueError('At least one argument is required')
 
+    return sum(args) / len(args)
