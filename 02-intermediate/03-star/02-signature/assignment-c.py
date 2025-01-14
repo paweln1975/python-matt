@@ -50,7 +50,5 @@ Tests:
 
 # Argument a,b,c must be passed only as positional, func as keyword
 # type: Callable[[int,int,int,Callable],None]
-def compute(a, b, c, func=lambda: ...):
+def compute(a, b, c, /, *, func=lambda: ...):
     return None
-
-

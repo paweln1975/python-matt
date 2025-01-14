@@ -51,7 +51,5 @@ Tests:
 
 # Arguments must be passed only as keywords
 # type: Callable[[int,int],None]
-def set_position(x, y):
+def set_position(*, x, y):
     return None
-
-

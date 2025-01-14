@@ -43,7 +43,5 @@ Tests:
 
 # Argument must be passed only as positional
 # type: Callable[[int],None]
-def take_damage(dmg):
+def take_damage(dmg, /):
     return None
-
-
