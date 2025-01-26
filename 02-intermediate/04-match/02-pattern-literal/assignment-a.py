@@ -26,11 +26,11 @@ color = 'r'
 
 # Refactor `if` statement to `match` statement
 # Use a literal pattern
-if color == 'r':
-    result = 'red'
-elif color == 'g':
-    result = 'green'
-elif color == 'b':
-    result = 'blue'
+match color:
+    case 'r': result = 'red'
+    case 'g': result = 'green'
+    case 'b': result = 'blue'
+
+
 
 

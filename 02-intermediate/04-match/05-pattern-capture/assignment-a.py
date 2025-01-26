@@ -61,6 +61,7 @@ Tests:
     Traceback (most recent call last):
     TypeError: myrange() takes no keyword arguments
 """
+from unittest import case
 
 
 # myrange(start=0, stop=???, step=1)
@@ -70,9 +71,17 @@ def myrange(*args, **kwargs):
     if kwargs:
         raise TypeError('myrange() takes no keyword arguments')
 
-    start = ...
-    stop = ...
-    step = ...
+    match args:
+        case (start, stop, step):
+            pass
+        case (start, stop):
+            step = 1
+        case (stop, ):
+            start, step = 0, 1
+        case (start, stop, step, *values):
+            raise TypeError(f'myrange expected at most 3 arguments, got {len(args)}')
+        case _:
+            raise TypeError('myrange expected at least 1 argument, got 0')
 
     current = start
     result = []
