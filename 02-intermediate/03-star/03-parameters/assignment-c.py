@@ -69,20 +69,13 @@ Tests:
     False
 """
 
+
 # Return True if all arguments are int or float, otherwise False
 # type: Callable[[int|float],bool]
 def isnumeric(*args, **kwargs):
-    """
-    Checks if all args and kwargs are numeric values
-    :param args:
-    :param kwargs:
-    :return:
-    """
-    args += tuple(kwargs.values())
-    if not args:
+    t = args + tuple(kwargs.values())
+
+    if not t:
         raise TypeError('At least one argument is required')
 
-    for arg in args:
-        if type(arg) not in (int, float):
-            return False
-    return True
+    return all(type(x) in (int, float) for x in t)

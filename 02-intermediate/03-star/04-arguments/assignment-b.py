@@ -37,6 +37,9 @@ Tests:
     >>> myrange(0, 5)
     [0, 1, 2, 3, 4]
 
+    >>> myrange(10, 20, 3)
+    [10, 13, 16, 19]
+
     >>> myrange(5)
     [0, 1, 2, 3, 4]
 
@@ -67,6 +70,24 @@ Tests:
 # note: function does not take keyword arguments
 # type: Callable[[int,int,int], list[int]]
 def myrange(*args, **kwargs):
+    if kwargs:
+        raise TypeError('myrange() takes no keyword arguments')
+
+    if not args:
+        raise TypeError('myrange expected at least 1 argument, got 0')
+
+    if len(args) > 3:
+        raise TypeError(f'myrange expected at most 3 arguments, got {len(args)}')
+
+    start = 0
+    step = 1
+    if len(args) == 3:
+        start, stop, step = args
+    elif len(args) == 2:
+        start, stop = args
+    else:
+        stop = args[0]
+
     current = start
     result = []
 
@@ -75,5 +96,3 @@ def myrange(*args, **kwargs):
         current += step
 
     return result
-
-
