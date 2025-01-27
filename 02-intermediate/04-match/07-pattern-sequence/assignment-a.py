@@ -53,6 +53,10 @@ Tests:
     Traceback (most recent call last):
     TypeError: myrange expected at most 3 arguments, got 4
 
+    >>> myrange(1,2,3,4,5,6,7,8)
+    Traceback (most recent call last):
+    TypeError: myrange expected at most 3 arguments, got 8
+
     >>> myrange(stop=2)
     Traceback (most recent call last):
     TypeError: myrange() takes no keyword arguments
@@ -90,5 +94,3 @@ def myrange(*args, **kwargs):
         current += step
 
     return result
-
-

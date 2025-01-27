@@ -139,11 +139,10 @@ Columbia."""
 # Example: 'a', 'A', 'b', 'B', 'c', 'C', ...
 # Note: define only regex pattern (str), not re.findall(..., DATA)
 # type: str
-result_a = r''
+result_a = r'[A-Za-z]'
 
 # Find all lowercase and uppercase letters and digits
 # Example: 'a', 'A', 'b', 'B', 'c', 'C', '1', '2', '3', ...
 # Note: define only regex pattern (str), not re.findall(..., DATA)
 # type: str
-result_b = r''
-
+result_b = r'[0-9A-z]'
