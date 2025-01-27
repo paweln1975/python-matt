@@ -59,11 +59,10 @@ Columbia."""
 # Example: '\n', ' ', "'", '(', ')', ',', '.', ':'
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result_a = r''
+result_a = r'[^A-z]'
 
 # Find all non-digits and non-letters
 # Example: '\n', ' ', "'", '(', ')', ',', '.', ':'
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result_b = r''
-
+result_b = r'[^A-z0-9]'

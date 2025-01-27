@@ -110,11 +110,10 @@ Columbia."""
 # Example: 'A', 'A', 'M', 'C', 'C', 'D', 'R', ...
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result_a = r''
+result_a = r'\w'
 
 # Find all non-word characters in text
 # Example: '\n', ' ', "'", '(', ')', ',', '.', ':'
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result_b = r''
-
+result_b = r'\W'

@@ -70,11 +70,10 @@ Columbia."""
 # Example: 'spa', 'tha', 'fir', 'lan', 'hum', 'lun', ...
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result_a = r''
+result_a = r'\b[a-z]{3}\B'
 
 # Find all last three lowercase letters from each word
 # Example: 'llo', 'can', 'ght', 'hat', 'rst', 'ded', ...
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result_b = r''
-
+result_b = r'\B[a-z]{3}\b'

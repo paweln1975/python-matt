@@ -97,5 +97,4 @@ Columbia."""
 # Example: ['A', 'p', 'o', 'l', 'l', 'o', ' ', '1', '1', ...]
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result = r''
-
+result = r'.'

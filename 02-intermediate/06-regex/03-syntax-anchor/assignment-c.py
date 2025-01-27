@@ -56,11 +56,10 @@ Columbia."""
 # Example: 'A'
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result_a = r''
+result_a = r'.\Z'
 
 # Find character at the end of each line
 # Example: 'A', 'J', 'T', 'B', 'M', 'C'
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result_b = r''
-
+result_b = r'.$'

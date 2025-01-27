@@ -50,5 +50,4 @@ Columbia."""
 # Example: 'CDR', 'LMP', 'UTC', 'EVA', 'EVA', 'UTC', 'CMP'
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result = r''
-
+result = r'[A-Z]{3}'

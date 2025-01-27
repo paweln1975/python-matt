@@ -70,11 +70,10 @@ Columbia."""
 # Example: 'on', 'on', 'at', 'to', ...
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result_a = r''
+result_a = r'\b[a-z]{2}\b'
 
 # Find all two-letter pairs embedded in the words
 # Example: 'po', 'll', 'me', 'ri', 'ca', 'pa', 'ce', ...
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result_b = r''
-
+result_b = r'\B[a-z]{2}\B'

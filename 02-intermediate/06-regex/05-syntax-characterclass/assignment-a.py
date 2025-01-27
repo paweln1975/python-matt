@@ -62,11 +62,10 @@ Columbia."""
 # Example: '1', '1', '2', '0', '1', '9', '6', ...
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result_a = r''
+result_a = r'\d'
 
 # Find all non-digits in text
 # Example: '0', '1', '2', '3', '4', '5', '6', '7', '9'
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result_b = r''
-
+result_b = r'\D'

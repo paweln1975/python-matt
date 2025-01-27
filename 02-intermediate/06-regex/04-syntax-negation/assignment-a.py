@@ -72,17 +72,17 @@ Columbia."""
 # Example: '\n', ' ', "'", '(', ')', ',', '.', ':'
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result_a = r''
+result_a = r'[^0-9]'
 
 # Find all non-lowercase-letters
 # Example: '\n', ' ', "'", '(', ')', ',', '.', '0', '1', '2', '3', ...
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result_b = r''
+result_b = r'[^a-z]'
 
 # Find all non-uppercase-letters
 # Example: '\n', ' ', "'", '(', ')', ',', '.', '0', '1', '2', '3', ...
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result_c = r''
+result_c = r'[^A-Z]'
 

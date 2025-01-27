@@ -110,11 +110,10 @@ Columbia."""
 # Example: '\n', ' '
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result_a = r''
+result_a = r'\s'
 
 # Find all non-whitespace characters in text
 # Example: "'", '(', ')', ',', '.', '0', '1', '2', '3', '4', '5', '6', ...
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result_b = r''
-
+result_b = r'\S'
