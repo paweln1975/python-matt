@@ -74,6 +74,12 @@ PATTERN = r'<p>(.*?)</p>'
 
 # use finditer() and non-greedy qualifier to get paragraph "We choose..."
 # type: str
-result = ...
+
+iter = re.finditer(PATTERN, DATA)
+result = ''
+for text in iter:
+    result = text.group(1)
+    if result.startswith("We choose"):
+        break
 
 

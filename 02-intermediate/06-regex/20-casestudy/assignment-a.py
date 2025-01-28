@@ -25,6 +25,8 @@ Tests:
     True
     >>> is_pesel_valid('18220812345')
     True
+    >>> is_pesel_valid('182208123453')
+    False
 """
 
 import re
@@ -33,6 +35,10 @@ PATTERN = r'^\d{11}$'
 
 
 def is_pesel_valid(pesel):
-    ...
+    match = re.search(PATTERN, pesel)
+    if match:
+        return True
+    else:
+        return False
 
 

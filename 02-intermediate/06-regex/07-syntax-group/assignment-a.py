@@ -74,5 +74,4 @@ Columbia."""
 # Example: 'July 21, 1969', 'July 21, 1969'
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result = r''
-
+result = r'([A-Z]\w+) (\d{1,2}), (\d{4})'

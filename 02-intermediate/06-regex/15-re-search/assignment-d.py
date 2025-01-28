@@ -61,11 +61,14 @@ Columbia."""
 # Pattern for searching time with timezone in 24 format, i.e. '23:59 UTC'
 # Text contains invalid date `24:56 UTC`
 # type: str
-pattern = ...
+pattern = r'([01][0-9]|2[0-3]):[0-5][0-9] UTC'
 
 # use re.search() to find pattern in DATA, get result text
 # use .group() to get the value from re.Match object
 # type: str
-result = ...
+result = ''
+match = re.search(pattern, DATA)
+if match:
+    result = match.group()
 
 

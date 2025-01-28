@@ -10,7 +10,7 @@ pylint
 # mypy
 
 ## Python/TDD
-# pytest
+pytest
 # coverage
 # behave
 

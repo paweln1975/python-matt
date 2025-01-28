@@ -70,6 +70,8 @@ and as long as two lengths of this field.</p>
 
 # use re.split() to get paragraph "We choose to go to the moon"
 # type: str
-result = ...
-
-
+pattern = r'</p><p>'
+paragraphs = re.split(pattern, DATA, re.MULTILINE)
+for text in paragraphs:
+    if text.startswith("We choose to go to the moon"):
+        result = text

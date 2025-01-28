@@ -78,6 +78,10 @@ and as long as two lengths of this field.</p>
 # use re.search() to get paragraph starting with "We choose..."
 # use .group(1) to get the value from re.Match object
 # type: str
-result = ...
+PATTERN = r'<p>(We choose.*?)</p>'
+match = re.search(PATTERN, DATA, flags=re.DOTALL)
+if match:
+    result = match.group(1)
+
 
 

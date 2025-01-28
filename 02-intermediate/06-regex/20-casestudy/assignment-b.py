@@ -24,11 +24,17 @@ Tests:
     >>> is_pesel_woman(18220812345)
     True
 """
-
+import re
 PATTERN = r'^\d{11}$'
 WOMAN = {0,2,4,6,8}
 MAN = {1,3,5,7,9}
 
+def is_pesel_valid(pesel):
+    match = re.search(PATTERN, pesel)
+    if match:
+        return True
+    else:
+        return False
 
 # type: Callable[[int], bool]
 def is_pesel_woman(pesel):
@@ -37,6 +43,11 @@ def is_pesel_woman(pesel):
     If the second to last number is even,
     then PESEL is woman's, in other case PESEL is man's.
     """
-    ...
+    if not is_pesel_valid(str(pesel)):
+        raise ValueError('Invalid pesel')
+    if int(str(pesel)[-2]) in WOMAN:
+        return True
+    else:
+        return False
 
 

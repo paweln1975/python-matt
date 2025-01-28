@@ -57,11 +57,11 @@ Columbia."""
 # Example: '1969', '1969'
 # Define only regex pattern (str), not re.findall(..., DATA)
 # type: str
-result_a = r''
+result_a = r'\d{4}'
 
 # Find all three letter acronyms (standalone word with three uppercase letters)
 # Example: 'CDR', 'LMP', 'UTC', 'EVA', 'EVA', 'UTC', 'CMP'
 # Define only regex pattern (str), not re.findall(..., DATA)
 # type: str
-result_b = r''
+result_b = r'[A-Z]{3}'
 

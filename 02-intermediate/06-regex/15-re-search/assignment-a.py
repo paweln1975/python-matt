@@ -98,21 +98,23 @@ DATA = (
     "off to rejoin Columbia in lunar orbit. "
 )
 
+def search(string):
+    search_result = re.search(string, DATA)
+    if search_result:
+        return search_result.span()
 
 # use re.search() to get 'Neil Armstrong' a (start, end) position or None
 # type: tuple[int,int] | None
-result_a = ...
+result_a = search('Neil Armstrong')
 
 # use re.search() to get 'Buzz Aldrin' a (start, end) position or None
 # type: tuple[int,int] | None
-result_b = ...
+result_b = search('Buzz Aldrin')
 
 # use re.search() to get 'Michael Collins' a (start, end) position or None
 # type: tuple[int,int] | None
-result_c = ...
+result_c = search('Michael Collins')
 
 # use re.search() to get 'Mark Watney' a (start, end) position or None
 # type: tuple[int,int] | None
-result_d = ...
-
-
+result_d = search('Mark Watney')

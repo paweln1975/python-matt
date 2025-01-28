@@ -67,12 +67,11 @@ Columbia."""
 # Example: [('6', '39'), ('2', '31'), ('21', '36')]
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result_a = r''
+result_a = r'(\d+) hours (\d+) minutes'
 
 # Find all duration values, use named groups
 # SKIP durations without hours (only with minutes)
 # Example: [{'hours': '6', 'minutes': '39'}, {'hours': '2', 'minutes': '31'}]
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result_b = r''
-
+result_b = r'(?P<hours>\d+) hours (?P<minutes>\d+) minutes'

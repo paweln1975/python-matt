@@ -53,5 +53,5 @@ Columbia."""
 # Example: 'July 20', 'July 21'
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result = r''
+result = r'([A-Z]\w+ \d+)(?:st|nd|rd|th)'
 

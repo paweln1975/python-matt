@@ -63,17 +63,17 @@ Columbia."""
 # Example: '20:17', '02:56'
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result_a = r''
+result_a = r'\d+:\d+'
 
 # Find all dates in US long format
 # Example: 'July 20, 1969', 'July 21, 1969'
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result_b = r''
+result_b = r'[A-Z]\w+ \d+, \d{4}'
 
 # Find all durations in text
 # Example: '6 hours 39 minutes', '2 hours 31 minutes', '21 hours 36 minutes'
 # Note: define only regex pattern (str), not re.findall(...)
 # type: str
-result_c = r''
+result_c = r'\d+ hours \d+ minutes'
 

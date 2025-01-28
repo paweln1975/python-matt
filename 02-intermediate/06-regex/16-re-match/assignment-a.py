@@ -65,14 +65,12 @@ import re
 
 # pattern matching `+## ### ### ###`
 # type: str
-cell = ...
+cell = r'\+\d{2} \d{3} \d{3} \d{3}'
 
 # pattern matching `+## ## ### ####`
 # type: str
-work = ...
+work = r'\+\d{2} \d{2} \d{3} \d{4}'
 
 # combination of `+## ### ### ###` and `+## ## ### ####`
 # type: str
-result = ...
-
-
+result = f'^({cell}|{work})$'
