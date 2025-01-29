@@ -47,10 +47,10 @@ DATA = datetime(1961, 4, 12, 6, 7)
 
 # date of the launch
 # type: date
-result_a = ...
+result_a = DATA.date()
 
 # time of the launch
 # type: time
-result_b = ...
+result_b = DATA.time()
 
 

@@ -181,5 +181,12 @@ DATA = """1969-07-14, 21:00:00, INFO, Terminal countdown started
 # - level: Literal['CRITICAL', 'ERROR', 'WARNING', 'INFO', 'DEBUG']
 # - message: str
 # type: list[dict]
-result = ...
+result = []
 
+for line in DATA.splitlines():
+    d, t, lvl, msg = line.split(', ')
+    result.append({
+        'datetime': datetime.combine(date.fromisoformat(d), time.fromisoformat(t)),
+        'level': lvl,
+        'message': msg
+    })

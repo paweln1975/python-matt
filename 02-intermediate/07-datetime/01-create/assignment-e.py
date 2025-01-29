@@ -43,13 +43,13 @@ from datetime import date, datetime, time
 
 # variable representing current date and time
 # type: datetime
-dt = ...
+dt = datetime.now()
 
 # variable representing current date
 # type: date
-d = ...
+d = dt.date()
 
 # variable representing current time
 # type: time
-t = ...
+t = dt.time()
 

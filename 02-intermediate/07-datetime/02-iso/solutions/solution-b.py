@@ -1,2 +1,0 @@
-
-result = datetime.fromisoformat(DATA)

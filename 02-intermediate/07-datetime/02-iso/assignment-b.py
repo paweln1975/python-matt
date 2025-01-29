@@ -29,5 +29,5 @@ DATA = '1969-07-21T02:56:15.123'
 
 # DATA from ISO-8601 format
 # type: datetime
-result = ...
+result = datetime.fromisoformat(DATA)
 

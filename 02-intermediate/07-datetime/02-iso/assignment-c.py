@@ -42,5 +42,5 @@ DATA = [
 
 # parsed DATA
 # type: list[datetime]
-result = ...
+result = [datetime.fromisoformat(data) for data in DATA]
 

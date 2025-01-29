@@ -89,29 +89,29 @@ DATA = datetime(1969, 7, 21, 2, 56, 15)
 
 # year from `DATA`
 # type: int
-result_a = ...
+result_a = DATA.year
 
 # month from `DATA`
 # type: int
-result_b = ...
+result_b = DATA.month
 
 # day from `DATA`
 # type: int
-result_c = ...
+result_c = DATA.day
 
 # hour from `DATA`
 # type: int
-result_d = ...
+result_d = DATA.hour
 
 # minute from `DATA`
 # type: int
-result_e = ...
+result_e = DATA.minute
 
 # second from `DATA`
 # type: int
-result_f = ...
+result_f = DATA.second
 
 # microsecond from `DATA`
 # type: int
-result_g = ...
+result_g = DATA.microsecond
 

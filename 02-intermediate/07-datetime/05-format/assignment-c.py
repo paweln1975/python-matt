@@ -48,5 +48,5 @@ DATA = datetime(1969, 7, 21, 2, 56, 15)
 
 # DATA in short US format: '7/21/69 2:56 AM'
 # type: str
-result = ...
+result = DATA.strftime('%#m/%#d/%y %#I:%M %p')
 

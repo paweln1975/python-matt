@@ -53,13 +53,12 @@ from datetime import date, datetime, time
 
 # Represent date and time of the Gagarin's launch: April 12th, 1961 6:07 a.m.
 # type: datetime
-dt = ...
+dt = datetime(year=1961, month=4, day=12, hour=6, minute=7)
 
 # Represent date of the Gagarin's launch: April 12th, 1961 6:07 a.m.
 # type: date
-d = ...
+d = date(year=1961, month=4, day=12)
 
 # Represent time of the Gagarin's launch: April 12th, 1961 6:07 a.m.
 # type: time
-t = ...
-
+t = time(hour=6, minute=7)
