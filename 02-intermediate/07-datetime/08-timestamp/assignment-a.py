@@ -45,13 +45,12 @@ C = '2038-01-19T03:14:07+00:00'
 
 # timestamp of A
 # type: float
-a = ...
+a = datetime.strptime(A, '%Y-%m-%dT%H:%M:%S%z').timestamp()
 
 # timestamp of B
 # type: float
-b = ...
+b = datetime.fromisoformat(B).timestamp()
 
 # timestamp of C
 # type: float
-c = ...
-
+c = datetime.fromisoformat(C).timestamp()
