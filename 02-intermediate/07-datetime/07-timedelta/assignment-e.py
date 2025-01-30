@@ -43,5 +43,6 @@ ARMSTRONG = datetime(1969, 7, 21, 2, 56, 15)
 
 # Number of years rounded to 2 decimal place
 # type: float
-result = ...
+delta = ARMSTRONG.date() - GAGARIN.date()
+result = round(delta.days / YEAR, 2)
 

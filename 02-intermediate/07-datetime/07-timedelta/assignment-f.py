@@ -61,6 +61,9 @@ YEAR = 365.25 * DAY
 # - 19 minutes
 # - 15 seconds
 # type: timedelta
-result = ...
+
+sec = int(8*YEAR+3*MONTH+8*DAY+13*HOUR+19*MINUTE+15*SECOND)
+
+result = timedelta(seconds=sec)
 
 

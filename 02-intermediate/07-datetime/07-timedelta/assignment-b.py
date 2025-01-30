@@ -19,7 +19,7 @@ Tests:
     'Variable `result` has invalid type, must be a int'
 
     >>> result
-    24
+    25
 """
 
 from datetime import date
@@ -32,5 +32,5 @@ DATE = date(2000, 1, 1)
 
 # age of a person born on `DATE`
 # type: int
-result = ...
-
+delta = date.today() - DATE
+result = int(delta.days / YEAR)

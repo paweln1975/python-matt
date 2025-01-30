@@ -31,5 +31,4 @@ DATA = 'July 21, 1969'
 
 # DATA from US long format
 # type: datetime
-result = ...
-
+result = datetime.strptime(DATA, '%B %d, %Y')

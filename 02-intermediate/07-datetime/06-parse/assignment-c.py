@@ -45,6 +45,14 @@ DATA = [
 
 # parsed DATA
 # type: list[date]
-result = ...
+def parse(str_date: str, suffix: str = 'st') -> datetime:
+    fmt = '%B %d' + suffix + ', %Y'
+    try:
+        return datetime.strptime(str_date, fmt)
+    except ValueError:
+        suffix = 'nd'
+        fmt = '%B %d' + suffix + ', %Y'
+        return datetime.strptime(str_date, fmt)
 
 
+result = map(parse, DATA)

@@ -37,6 +37,5 @@ FIRST_STEP = datetime(1969, 7, 21, 2, 56, 15)
 
 # Armstrong's age when he made a first step on the Moon
 # type: int
-result = ...
-
-
+delta = FIRST_STEP.date() - BIRTHDATE
+result = int(delta.days / YEAR)

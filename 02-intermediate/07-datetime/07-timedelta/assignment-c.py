@@ -35,6 +35,5 @@ LAUNCH_DATE = date(1961, 4, 12)
 
 # Gagarin's age when he was launched to space
 # type: int
-result = ...
-
-
+delta = LAUNCH_DATE - BIRTHDATE
+result = int(delta.days / YEAR)

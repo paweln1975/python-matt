@@ -30,5 +30,5 @@ DATE = date(2000, 1, 1)
 
 # Add 4 days to DATE
 # type: date
-result = ...
+result = DATE + timedelta(days=4)
 

@@ -57,6 +57,13 @@ FORMATS = [
 
 # DATA elements in datetime format
 # type: list[date]
-result = ...
+def parse(str_date: str, fmt) -> datetime:
+    try:
+        return datetime.strptime(str_date, fmt)
+    except Exception:
+        return None
+
+
+result = [parse(data, fmt) for data, fmt in zip(DATA, FORMATS)]
 
 
