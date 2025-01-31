@@ -101,40 +101,42 @@ Tests:
     >>> assert utcoffset(new_york) == -18000.0, \
     'Invalid time zone, check IANA Time Zone Database'
 """
-
+import zoneinfo
 from zoneinfo import ZoneInfo
 
 
 # Timezone in UTC
 # type: ZoneInfo
-utc = ...
+utc = ZoneInfo('UTC')
+
+for tz in zoneinfo.available_timezones():
+    print(tz)
+
 
 # Timezone in London, United Kingdom
 # type: ZoneInfo
-london = ...
+london = ZoneInfo('Europe/London')
 
 # Timezone in Buenos Aires, Argentina
 # type: ZoneInfo
-buenos_aires = ...
+buenos_aires = ZoneInfo('America/Argentina/Buenos_Aires')
 
 # Timezone in Warsaw, Poland
 # type: ZoneInfo
-warsaw = ...
+warsaw = ZoneInfo('Europe/Warsaw')
 
 # Timezone in Tokyo, Japan
 # type: ZoneInfo
-tokyo = ...
+tokyo = ZoneInfo('Asia/Tokyo')
 
 # Timezone in Sydney, Australia
 # type: ZoneInfo
-sydney = ...
+sydney =ZoneInfo('Australia/Sydney')
 
 # Timezone in Auckland, New Zealand
 # type: ZoneInfo
-auckland = ...
+auckland = ZoneInfo('Pacific/Auckland')
 
 # Timezone in New York, USA
 # type: ZoneInfo
-new_york = ...
-
-
+new_york = ZoneInfo('America/New_York')

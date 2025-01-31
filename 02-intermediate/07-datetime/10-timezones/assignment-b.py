@@ -67,13 +67,13 @@ from zoneinfo import ZoneInfo
 
 # Timezone in Cape Canaveral, FL, USA
 # type: ZoneInfo
-cape_canaveral = ...
+cape_canaveral = ZoneInfo('America/New_York')
 
 # Timezone in Houston, TX, USA= ...
 # type: ZoneInfo
-houston = ...
+houston = ZoneInfo('America/Chicago')
 
 # Timezone in Bajkonur Cosmodrome, Kazachstan
 # type: ZoneInfo
-bajkonur = ...
+bajkonur = ZoneInfo('Asia/Almaty')
 

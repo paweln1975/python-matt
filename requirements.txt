@@ -4,7 +4,7 @@ tzdata
 pylint
 
 ## Python/MID
-# tzdata
+tzdata
 
 ## Python/ADV
 # mypy

@@ -67,9 +67,8 @@ from zoneinfo import ZoneInfo
 
 # Timezone in North Pole
 # type: ZoneInfo
-north_pole = ...
+north_pole = ZoneInfo('Arctic/Longyearbyen')
 
-# Timezone in South Pole
 # type: ZoneInfo
-south_pole = ...
+south_pole = ZoneInfo('Europe/Warsaw')
 
