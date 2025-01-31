@@ -45,5 +45,8 @@ USERS = [
 # Define `result: bool` with the result of checking
 # if all users has admin role
 # type: bool
-result = ...
 
+def check_admin(user: User) -> bool:
+    return user.is_admin()
+
+result = all(check_admin(user) for user in USERS)
