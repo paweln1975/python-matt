@@ -60,5 +60,5 @@ MONTHS = ['January', 'February', 'March', 'April',
 
 # number and month name
 # type: dict[str,str]
-result = ...
+result = {str(value):name for value, name in enumerate(MONTHS, start=1)}
 

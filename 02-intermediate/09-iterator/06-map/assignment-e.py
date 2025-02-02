@@ -49,5 +49,5 @@ DATA = [
 
 # Define `result: map` with parsed `DATA` dates
 # type: map
-result = ...
+result = map(datetime.fromisoformat, DATA)
 

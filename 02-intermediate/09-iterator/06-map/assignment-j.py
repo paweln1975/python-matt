@@ -63,7 +63,8 @@ DATA = """127.0.0.1       localhost
 ::1             localhost"""
 
 def convert(line):
-    ...
+    ip, *addresses = line.split()
+    return {'ip': ip, 'hosts': addresses}
 
-result = ...
+result = map(convert, DATA.splitlines())
 

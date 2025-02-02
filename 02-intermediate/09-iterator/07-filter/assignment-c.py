@@ -45,5 +45,7 @@ DATA = [0, True, 2.0, 'three', 4, 5.0, ['six']]
 
 # Filter-out non-numeric (int or float) values from `DATA`
 # type: filter
-result = ...
+def is_numeric(value):
+    return type(value) in (int, float)
+result = filter(is_numeric, DATA)
 

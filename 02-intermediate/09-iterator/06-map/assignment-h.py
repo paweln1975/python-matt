@@ -55,10 +55,11 @@ DATA = """5.8,2.7,5.1,1.9,virginica
 # values from file (note the tuple format!)
 # type: Callable[[str], [tuple]]
 def parse(line):
-    ...
+    *values, sp = line.split(',')
+    return tuple(map(float, values)) + (sp,)
 
 # Define `result: map` with function `parse()` applied to `DATA`
 # type: map
-result = ...
+result = map(parse, DATA.splitlines())
 
 

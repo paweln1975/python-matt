@@ -54,10 +54,10 @@ DATA = ['a', 'b', 'c']
 # - takes one argument (str)
 # - returns argument uppercased
 # type: Callable[[str], [str]]
-def upper():
-    ...
+def upper(s: str):
+    return s.upper()
 
 # Use `map()` to apply function `upper()` to DATA
 # type: map
-result = ...
+result = map(upper, DATA)
 

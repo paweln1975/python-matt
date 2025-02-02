@@ -64,5 +64,8 @@ DATA = """3,4,setosa,virginica,versicolor
 
 # values from a file (note the list[tuple] format!)
 # type: dict[int,str]
-result = ...
+header, *rows = DATA.splitlines()
+nrows, ncols, *names = header.split(',')
+
+result = dict(enumerate(names))
 

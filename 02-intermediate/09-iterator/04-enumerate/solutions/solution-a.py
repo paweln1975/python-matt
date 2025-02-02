@@ -1,2 +1,0 @@
-
-result = dict(enumerate(MONTHS))

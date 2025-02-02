@@ -43,5 +43,5 @@ DATA = ['January', 'February', 'March', 'April']
 # Recreate `enumerate()` behavior
 # Use only: `len()`, `range()`, `zip()`
 # type: zip
-result = ...
+result = zip(range(len(DATA)), DATA)
 

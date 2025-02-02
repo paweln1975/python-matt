@@ -49,11 +49,11 @@ DATA = [
 
 
 result = {}
-i = 0
+gen = count()
 
 for *_, species in DATA[1:]:
     if species not in result:
-        result[species] = i
-        i += 1
+        result[species] = next(gen)
+
 
 

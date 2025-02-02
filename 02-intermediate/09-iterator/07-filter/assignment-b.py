@@ -74,10 +74,15 @@ DATA = """##
 # - line has only spaces
 # - starts with # (comment)
 # type: Callable[[str], bool]
-def valid(line):
-    ...
+def valid(line: str):
+    if line.strip().startswith('#'):
+        return False
+    if line.strip() == '':
+        return False
+    return True
+
 
 # Use `filter()` to apply function `valid()` to DATA
 # type: filter
-result = ...
+result = filter(valid, DATA.splitlines())
 

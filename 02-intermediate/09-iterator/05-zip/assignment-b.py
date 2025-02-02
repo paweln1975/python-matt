@@ -83,6 +83,7 @@ DATA = [
 
 # Convert DATA from list[tuple] to list[dict]
 # type: list[dict[str,float|str]]
-result = ...
+keys, *values = DATA
+result = [dict(zip(keys, value)) for value in values]
 
 

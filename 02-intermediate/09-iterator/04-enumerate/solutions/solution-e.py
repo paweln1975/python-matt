@@ -1,3 +1,0 @@
-
-result = dict(enumerate(DATA))
-

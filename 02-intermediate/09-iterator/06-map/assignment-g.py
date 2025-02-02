@@ -168,11 +168,28 @@ DATA = """1969-07-14, 21:00:00, INFO, Terminal countdown started
 
 # Define `parse()` to extract date, time, level and message
 # type: Callable[[str], [Log]]
+from dataclasses import dataclass
+
+@dataclass
+class Log:
+    d: date
+    t: time
+    level: str
+    message: str
+
+    def get_log_dict(self):
+        return {
+            'datetime': datetime.combine(date.fromisoformat(str(self.d)), time.fromisoformat(str(self.t))),
+            'level': self.level,
+            'message': self.message
+        }
+
 def parse(line):
-    ...
+    data = line.strip().split(', ')
+    return Log(*data).get_log_dict()
 
 # Define `result: map` with `parse()` function applied to `DATA`
 # type: map
-result = ...
+result = map(parse, DATA.splitlines())
 
 

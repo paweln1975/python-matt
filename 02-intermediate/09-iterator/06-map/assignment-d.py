@@ -46,5 +46,5 @@ DATA = ['a', 'b', 'c']
 
 # Use `map()` to apply function `str.upper()` to DATA
 # type: map
-result = ...
+result = map(str.upper, DATA)
 

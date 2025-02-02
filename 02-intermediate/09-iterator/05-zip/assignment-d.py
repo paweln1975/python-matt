@@ -56,12 +56,19 @@ Tests:
     >>> dict(myzip(['a', 'b', 'c'], [1, 2, 3, 4], strict=True))
     Traceback (most recent call last):
     ValueError: zip() argument 2 is longer than argument 1
+
 """
 
 # Write own implementation of a built-in `zip()` function
 # Define function `myrange` with parameters: `a`, `b`, `strict`
 # type: Callable[[Iterable, Iterable, bool], list[tuple]]
 def myzip(a, b, strict=False):
-    ...
+    result = []
+    if len(a) < len(b) and strict:
+        raise ValueError('zip() argument 2 is longer than argument 1')
+    else:
+        for i in range(len(a)):
+            result.append((a[i], b[i]))
+    return result
 
 

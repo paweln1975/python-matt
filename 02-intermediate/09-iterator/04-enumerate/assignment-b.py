@@ -59,5 +59,5 @@ MONTHS = ['January', 'February', 'March', 'April',
 
 # number and month name
 # type: dict[int,str]
-result = ...
+result = dict(enumerate(MONTHS, start=1))
 

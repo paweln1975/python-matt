@@ -65,10 +65,14 @@ header, *lines = DATA.splitlines()
 nrows, nfeatures, *class_labels = header.strip().split(',')
 label_encoder = dict(enumerate(class_labels))
 
+print(label_encoder)
+
 # type: Callable[[str], [tuple]]
 def parse(line):
-    ...
+    *values, class_nr = line.split(",")
+    return tuple(map(float, values)) + (label_encoder[int(class_nr)],)
 
 # type: map
-result = ...
+result = map(parse, lines)
+
 

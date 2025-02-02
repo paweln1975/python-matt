@@ -53,9 +53,9 @@ DATA = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 # Returns its argument cubed (raised to the power of 3)
 # type: Callable[[int], [int]]
 def cube(x):
-    ...
+    return x**3
 
 # Cube numbers in DATA
 # type: map
-result = ...
+result = map(cube, DATA)
 

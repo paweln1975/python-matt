@@ -41,5 +41,5 @@ DATA = ['setosa', 'versicolor', 'virginica']
 
 # Dict with enumerated DATA
 # type: dict[int,str]
-result = ...
+result = dict(enumerate(DATA))
 
