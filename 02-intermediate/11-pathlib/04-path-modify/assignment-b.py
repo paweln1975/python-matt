@@ -1,8 +1,3 @@
-
-
-
-
-
 """
 * Assignment: File Path Abspath
 * Type: class assignment
@@ -52,15 +47,14 @@ Tests:
 """
 
 from pathlib import Path
-
+import os
 
 FILENAME = 'myfile.txt'
 
 # Absolute path to FILENAME
 # type: Path
-abspath = ...
+abspath = Path(str(Path.cwd()) + '/' + FILENAME)
 
 # File, directory or missing
 # type: str
-result = ...
-
+result = 'missing' if not abspath.exists() else abspath

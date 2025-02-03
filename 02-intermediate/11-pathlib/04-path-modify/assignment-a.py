@@ -38,7 +38,5 @@ a = Path.cwd()
 b = Path.cwd() / 'notexisting.txt'
 
 
-result_a = ...
-result_b = ...
-
-
+result_a = a.exists()
+result_b = b.exists()
