@@ -84,11 +84,13 @@ DATA = [
 # - Do not add quotes to values
 # type: Callable[[list[tuple]], str]
 def dumps(data):
-    ...
+    header, *rows = data
+    header_str = ",".join(header)
+    rows_list = [",".join(map(str, row)) for row in rows]
+    return header_str + '\n' + '\n'.join(rows_list) + '\n'
+
 
 # Define `result: str` with
 # result of `dumps()` function for `DATA`
 # type: str
-result = ...
-
-
+result = dumps(DATA)

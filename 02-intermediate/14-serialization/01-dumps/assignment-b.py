@@ -83,11 +83,16 @@ DATA = [
 # - Function converts `data` to CSV format
 # - Add quotes to values
 # type: Callable[[list[tuple]], str]
-def dumps(data):
-    ...
+def dumps(data, as_strings: bool=True):
+    str_sign = '"' if as_strings else ''
+    str_joiner = '","' if as_strings else ','
+    header, *rows = data
+    header_str = str_joiner.join(header)
+    rows_list = [str_joiner.join(map(str, row)) for row in rows]
+    return str_sign + header_str + str_sign + '\n' + str_sign + (str_sign + '\n' + str_sign).join(rows_list) + str_sign + '\n'
 
 # Define `result: str` with
 # result of `dumps()` function for `DATA`
 # type: str
-result = ...
+result = dumps(DATA)
 
