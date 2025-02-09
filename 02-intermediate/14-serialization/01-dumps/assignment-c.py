@@ -82,11 +82,11 @@ DATA = [
 # - First line is a header
 # type: Callable[[list[tuple]], str]
 def dumps(data):
-    ...
+    header = ','.join(DATA[0].keys()) + '\n'
+    data = [f'{item['firstname']},{item['lastname']}' for item in DATA]
+    return header + '\n'.join(data) + '\n'
 
 # Define `result: str` with
 # result of `dumps()` function for `DATA`
 # type: str
-result = ...
-
-
+result = dumps(DATA)
