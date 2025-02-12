@@ -85,6 +85,18 @@ DATA = [
 # - Add quotes to values
 # type: Callable[[list[tuple]], None]
 def dump(data, file):
-    ...
+    header = tuple(data[0].keys())
+    header_to_file = '"' + '","'.join(header) + '"'
+    with open(file, 'w') as f:
+        f.write(header_to_file + '\n')
+        for row in data:
+            *values, species = row.values()
+            values = map(str, values)
+            values_to_file = '"' + '","'.join(values) + '","' + species + '"'
+            f.write(values_to_file + '\n')
+
+
+
+
 
 
