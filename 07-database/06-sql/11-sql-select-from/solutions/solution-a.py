@@ -1,7 +1,0 @@
-
-result = """
-
-SELECT *
-FROM `users`
-
-"""

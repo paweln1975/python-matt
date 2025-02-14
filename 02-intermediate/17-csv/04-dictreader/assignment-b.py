@@ -1,74 +1,77 @@
+
+# region Show Doctests
 """
-* Assignment: CSV DictReader Iris
-* Complexity: easy
-* Lines of code: 5 lines
-* Time: 5 min
+Doctests:
+>>> import sys; sys.tracebacklimit = 0
+>>> assert sys.version_info >= (3, 9), \
+'Python 3.9+ required'
 
-English:
-    1. Define `result: list[dict]`
-    2. To `result` add data read from `FILE`
-    3. Use `csv.DictReader` to parse file
-    4. Convert values to float
-    5. Run doctests - all must succeed
+>>> assert result is not Ellipsis, \
+'Assign result to variable: `result`'
+>>> assert type(result) is list, \
+'Variable `result` has invalid type, should be list'
+>>> assert all(type(x) is dict for x in result), \
+'All rows in `result` should be dict'
 
-Polish:
-    1. Zdefiniuj `result: list[dict]`
-    2. Do `result` dodaj wczytane dane z pliku `FILE`
-    3. Użyj `csv.DictReader` do sparsowania pliku
-    4. Skonwertuj wartości na floaty
-    5. Uruchom doctesty - wszystkie muszą się powieść
+>>> from os import remove
+>>> remove(FILE)
 
-Tests:
-    >>> import sys; sys.tracebacklimit = 0
-    >>> from pprint import pprint
-    >>> from os import remove
-    >>> remove(FILE)
-
-    >>> assert result is not Ellipsis, \
-    'Assign result to variable: `result`'
-    >>> assert type(result) is list, \
-    'Variable `result` has invalid type, should be list'
-    >>> assert all(type(x) is dict for x in result), \
-    'All rows in `result` should be dict'
-
-    >>> pprint(result, sort_dicts=False)
-    [{'sepal_length': 5.8,
-      'sepal_width': 2.7,
-      'petal_length': 5.1,
-      'petal_width': 1.9,
-      'species': 'virginica'},
-     {'sepal_length': 5.1,
-      'sepal_width': 3.5,
-      'petal_length': 1.4,
-      'petal_width': 0.2,
-      'species': 'setosa'},
-     {'sepal_length': 5.7,
-      'sepal_width': 2.8,
-      'petal_length': 4.1,
-      'petal_width': 1.3,
-      'species': 'versicolor'}]
+>>> from pprint import pprint
+>>> pprint(result, sort_dicts=False)
+[{'firstname': 'Mark', 'lastname': 'Watney', 'age': 42},
+ {'firstname': 'Melissa', 'lastname': 'Lewis', 'age': 41},
+ {'firstname': 'Rick', 'lastname': 'Martinez', 'age': 40},
+ {'firstname': 'Alex', 'lastname': 'Vogel', 'age': 42},
+ {'firstname': 'Beth', 'lastname': 'Johanssen', 'age': 29},
+ {'firstname': 'Chris', 'lastname': 'Beck', 'age': 36}]
 """
+# endregion
 
+# region Show Imports
 import csv
+# endregion
 
-
-DATA = """sepal_length,sepal_width,petal_length,petal_width,species
-5.8,2.7,5.1,1.9,virginica
-5.1,3.5,1.4,0.2,setosa
-5.7,2.8,4.1,1.3,versicolor"""
+# region Show Types
+result: list[dict[str,str,int]]
+# endregion
 
 FILE = r'_temporary.csv'
 
+DATA = """
+firstname,lastname,age
+Mark,Watney,42
+Melissa,Lewis,41
+Rick,Martinez,40
+Alex,Vogel,42
+Beth,Johanssen,29
+Chris,Beck,36
+"""
+
 with open(FILE, mode='wt', encoding='utf-8') as file:
-    file.write(DATA)
+    file.write(DATA.lstrip())
 
-# Define `result: list[dict]`
-# To `result` add data read from `FILE`
-# Use `csv.DictReader` to parse file
-# Convert values to float
-# type: list[dict]
-result = ...
+# English
+# 1. Define `result: list[dict]`
+# 2. To `result` add data read from `FILE`
+# 3. Use `csv.DictReader` to parse file
+# 4. Convert values to `int`
+# 5. Run doctests - all must succeed
 
-with open(FILE, mode='rt', encoding='utf-8') as file:
-    ...
+# Polish
+# 1. Zdefiniuj `result: list[dict]`
+# 2. Do `result` dodaj wczytane dane z pliku `FILE`
+# 3. Użyj `csv.DictReader` do sparsowania pliku
+# 4. Skonwertuj wartości na `int`
+# 5. Uruchom doctesty - wszystkie muszą się powieść
 
+# %% Your code
+result = []
+with (open(FILE, mode='rt', encoding='utf-8') as file):
+    reader = csv.DictReader(file, fieldnames=['firstname', 'lastname', 'age'],
+                            lineterminator='\n', quotechar='"',
+                            quoting=csv.QUOTE_NONE)
+    _ = next(reader)
+    for x in reader:
+        age = int(x['age'])
+        x.update({'age': age})
+        result.append(x)

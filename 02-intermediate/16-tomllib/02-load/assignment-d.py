@@ -1,49 +1,39 @@
+
+# region Show Doctests
 """
-* Assignment: TOML Load Authors
-* Complexity: easy
-* Lines of code: 4 lines
-* Time: 5 min
+Doctests:
+>>> import sys; sys.tracebacklimit = 0
+>>> assert sys.version_info >= (3, 11), \
+'Python 3.11+ required'
 
-English:
-    1. Read configuration from `FILE`
-    2. Define `result: list[str]` with author emails
-    3. Use `tomllib.load()`
-    4. Run doctests - all must succeed
+>>> from pprint import pprint
+>>> from pathlib import Path
 
-Polish:
-    1. Wczytaj konfigurację z `FILE`
-    2. Zdefiniuj `result: list[str]` z adresami email autorów
-    3. Użyj `tomllib.load()`
-    4. Uruchom doctesty - wszystkie muszą się powieść
+>>> assert result is not Ellipsis, \
+'Assign result to variable: `result`'
+>>> assert type(result) is list, \
+'Variable `result` has invalid type, should be list'
 
-Hint:
-    * open(filename, mode='rb')
-    * import tomllib
-    * tomllib.load()
+>>> result = sorted(result)
+>>> pprint(result)
+['avogel@nasa.gov',
+ 'bjohanssen@nasa.gov',
+ 'cbeck@nasa.gov',
+ 'mlewis@nasa.gov',
+ 'mwatney@nasa.gov',
+ 'rmartinez@nasa.gov']
 
-Tests:
-    >>> import sys; sys.tracebacklimit = 0
-    >>> from pprint import pprint
-    >>> from pathlib import Path
-
-    >>> assert result is not Ellipsis, \
-    'Assign result to variable: `result`'
-    >>> assert type(result) is list, \
-    'Variable `result` has invalid type, should be list'
-
-    >>> result = sorted(result)
-    >>> pprint(result)
-    ['avogel@nasa.gov',
-     'bjohanssen@nasa.gov',
-     'cbeck@nasa.gov',
-     'mlewis@nasa.gov',
-     'mwatney@nasa.gov',
-     'rmartinez@nasa.gov']
-
-    >>> Path(FILE).unlink(missing_ok=True)
+>>> Path(FILE).unlink(missing_ok=True)
 """
+# endregion
+
+# region Show Imports
 import tomllib
+# endregion
 
+# region Show Types
+result: list[str]
+# endregion
 
 FILE = '_temporary.toml'
 
@@ -71,10 +61,27 @@ authors = [
 ]
 """)
 
+# English
+# 1. Read configuration from `FILE`
+# 2. Define `result: list[str]` with author emails
+# 3. Use `tomllib.load()`
+# 4. Run doctests - all must succeed
 
-# Read configuration from `FILE`
-# Define `result: list[str]` with author emails
-# type: list[str]
-result = ...
+# Polish
+# 1. Wczytaj konfigurację z `FILE`
+# 2. Zdefiniuj `result: list[str]` z adresami email autorów
+# 3. Użyj `tomllib.load()`
+# 4. Uruchom doctesty - wszystkie muszą się powieść
 
+# region Show Hints
+# - `open(filename, mode='rb')`
+# - `import tomllib`
+# - `tomllib.load()`
+# endregion
 
+# %% Your code
+with open(FILE, mode='rb') as file:
+    config = tomllib.load(file)
+
+authors = config['metadata']['authors']
+result = [author['email'] for author in authors]

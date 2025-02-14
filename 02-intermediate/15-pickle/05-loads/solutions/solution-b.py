@@ -1,2 +1,0 @@
-
-result = pickle.loads(DATA)

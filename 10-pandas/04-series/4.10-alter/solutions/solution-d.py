@@ -1,0 +1,1 @@
+result = DATA.reset_index(drop=True)

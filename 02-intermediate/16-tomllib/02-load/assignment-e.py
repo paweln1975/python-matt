@@ -1,86 +1,70 @@
 
+# region Show Doctests
 """
-* Assignment: TOML Load Stats
-* Complexity: easy
-* Lines of code: 3 lines
-* Time: 3 min
+Doctests:
+>>> import sys; sys.tracebacklimit = 0
+>>> assert sys.version_info >= (3, 11), \
+'Python 3.11+ required'
 
-English:
-    1. File `FILE` contains game characters stats
-    2. Define function `get_stats()`
-        a. Parameter `character_name: str`, example: 'Sarevok'
-        b. Returns `dict` with character stats
-    3. Use `tomllib.load()`
-    4. Run doctests - all must succeed
+>>> imoen = get_stats('Imoen')
+>>> assert imoen['character_class'] == 'Thief'
+>>> assert imoen['race'] == 'Human'
+>>> assert imoen['alignment'] == 'Neutral Good'
+>>> assert imoen['strength'] == 9
+>>> assert imoen['dexterity'] == 18
+>>> assert imoen['constitution'] == 16
+>>> assert imoen['intelligence'] == 17
+>>> assert imoen['wisdom'] == 11
+>>> assert imoen['charisma'] == 16
 
-Polish:
-    1. Plik `FILE` zawiera statystyki postaci z gry
-    2. Zdefiniuj funkcję `get_stats()`
-        a. Parametr `character_name: str`, przykład: 'Sarevok'
-        b. Zwraca `dict` ze statystykami postaci
-    3. Użyj `tomllib.load()`
-    4. Uruchom doctesty - wszystkie muszą się powieść
+>>> minsc = get_stats('Minsc')
+>>> assert minsc['character_class'] == 'Ranger'
+>>> assert minsc['race'] == 'Human'
+>>> assert minsc['alignment'] == 'Neutral Good'
+>>> assert minsc['strength'] == 18
+>>> assert minsc['dexterity'] == 15
+>>> assert minsc['constitution'] == 15
+>>> assert minsc['intelligence'] == 8
+>>> assert minsc['wisdom'] == 6
+>>> assert minsc['charisma'] == 9
 
-Hint:
-    * open(filename, mode='rb')
-    * import tomllib
-    * tomllib.load()
+>>> neera = get_stats('Neera')
+>>> assert neera['character_class'] == 'Wild Mage'
+>>> assert neera['race'] == 'Half-elf'
+>>> assert neera['alignment'] == 'Chaotic Neutral'
+>>> assert neera['strength'] == 11
+>>> assert neera['dexterity'] == 17
+>>> assert neera['constitution'] == 14
+>>> assert neera['intelligence'] == 17
+>>> assert neera['wisdom'] == 10
+>>> assert neera['charisma'] == 11
 
-Tests:
-    >>> import sys; sys.tracebacklimit = 0
-    >>> from pathlib import Path
+>>> sarevok = get_stats('Sarevok')
+>>> assert sarevok['character_class'] == 'Fighter'
+>>> assert sarevok['race'] == 'Human'
+>>> assert sarevok['alignment'] == 'Chaotic Evil'
+>>> assert sarevok['strength'] == 18
+>>> assert sarevok['dexterity'] == 17
+>>> assert sarevok['constitution'] == 18
+>>> assert sarevok['intelligence'] == 17
+>>> assert sarevok['wisdom'] == 10
+>>> assert sarevok['charisma'] == 15
 
-    >>> imoen = get_stats('Imoen')
-    >>> assert imoen['character_class'] == 'Thief'
-    >>> assert imoen['race'] == 'Human'
-    >>> assert imoen['alignment'] == 'Neutral Good'
-    >>> assert imoen['strength'] == 9
-    >>> assert imoen['dexterity'] == 18
-    >>> assert imoen['constitution'] == 16
-    >>> assert imoen['intelligence'] == 17
-    >>> assert imoen['wisdom'] == 11
-    >>> assert imoen['charisma'] == 16
-
-    >>> minsc = get_stats('Minsc')
-    >>> assert minsc['character_class'] == 'Ranger'
-    >>> assert minsc['race'] == 'Human'
-    >>> assert minsc['alignment'] == 'Neutral Good'
-    >>> assert minsc['strength'] == 18
-    >>> assert minsc['dexterity'] == 15
-    >>> assert minsc['constitution'] == 15
-    >>> assert minsc['intelligence'] == 8
-    >>> assert minsc['wisdom'] == 6
-    >>> assert minsc['charisma'] == 9
-
-    >>> neera = get_stats('Neera')
-    >>> assert neera['character_class'] == 'Wild Mage'
-    >>> assert neera['race'] == 'Half-elf'
-    >>> assert neera['alignment'] == 'Chaotic Neutral'
-    >>> assert neera['strength'] == 11
-    >>> assert neera['dexterity'] == 17
-    >>> assert neera['constitution'] == 14
-    >>> assert neera['intelligence'] == 17
-    >>> assert neera['wisdom'] == 10
-    >>> assert neera['charisma'] == 11
-
-    >>> sarevok = get_stats('Sarevok')
-    >>> assert sarevok['character_class'] == 'Fighter'
-    >>> assert sarevok['race'] == 'Human'
-    >>> assert sarevok['alignment'] == 'Chaotic Evil'
-    >>> assert sarevok['strength'] == 18
-    >>> assert sarevok['dexterity'] == 17
-    >>> assert sarevok['constitution'] == 18
-    >>> assert sarevok['intelligence'] == 17
-    >>> assert sarevok['wisdom'] == 10
-    >>> assert sarevok['charisma'] == 15
-
-    >>> Path(FILE).unlink(missing_ok=True)
+>>> from pathlib import Path
+>>> Path(FILE).unlink(missing_ok=True)
 """
+# endregion
+
+# region Show Imports
 import tomllib
+# endregion
 
+# region Show Types
+from typing import Callable
+get_stats: Callable[[bytes], dict]
+# endregion
 
 FILE = '_temporary.toml'
-
 
 with open(FILE, mode='wb') as file:
     file.write(b"""
@@ -129,13 +113,30 @@ wisdom = 10
 charisma = 15
 """)
 
+# English
+# 1. File `FILE` contains game characters stats
+# 2. Define function `get_stats()`
+#    - Parameter `character_name: str`, example: 'Sarevok'
+#    - Returns `dict` with character stats
+# 3. Use `tomllib.load()`
+# 4. Run doctests - all must succeed
 
-# File `FILE` contains game characters stats
-# Define function `get_stats()`
-# - Parameter `character_name: str`, example: 'Sarevok'
-# - Returns `dict` with character stats
-# type: Callable[[str], dict]
+# Polish
+# 1. Plik `FILE` zawiera statystyki postaci z gry
+# 2. Zdefiniuj funkcję `get_stats()`
+#    - Parametr `character_name: str`, przykład: 'Sarevok'
+#    - Zwraca `dict` ze statystykami postaci
+# 3. Użyj `tomllib.load()`
+# 4. Uruchom doctesty - wszystkie muszą się powieść
+
+# region Show Hints
+# - `open(filename, mode='rb')`
+# - `import tomllib`
+# - `tomllib.load()`
+# endregion
+
+# %% Your code
 def get_stats(character_name):
-    ...
-
-
+    with open(FILE, mode='rb') as file:
+        config = tomllib.load(file)
+    return config[character_name]

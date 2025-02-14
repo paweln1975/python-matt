@@ -1,0 +1,1 @@
+result = dict(Customer.objects.all().values_list('firstname', 'lastname'))

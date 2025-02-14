@@ -1,46 +1,33 @@
+
+# region Show Doctests
 """
-* Assignment: JSON Object Factory
-* Complexity: medium
-* Lines of code: 5 lines
-* Time: 5 min
+Doctests:
+>>> import sys; sys.tracebacklimit = 0
+>>> assert sys.version_info >= (3, 9), \
+'Python 3.9+ required'
 
-English:
-    1. Convert from JSON format to Python using decoder function
-    2. Create instances of `Setosa`, `Virginica`, `Versicolor`
-       classes based on value in field "species"
-    3. Add instances to `result: list[Setosa|Virginica|Versicolor]`
-    4. Run doctests - all must succeed
+>>> assert type(result)
+>>> assert len(result) == 9
 
-Polish:
-    1. Przekonwertuj dane z JSON do Python używając dekodera funkcyjnego
-    2. Twórz obiekty klas `Setosa`, `Virginica`, `Versicolor`
-       w zależności od wartości pola "species"
-    3. Dodawaj instancje do `result: list[Setosa|Virginica|Versicolor]`
-    4. Uruchom doctesty - wszystkie muszą się powieść
+>>> classes = (Setosa, Virginica, Versicolor)
+>>> assert all(type(row) in classes for row in result)
 
-Hint:
-    * dict.pop()
-    * globals()
-    * cls(**obj)
+>>> result[0]
+Virginica(sepal_length=5.8, sepal_width=2.7, petal_length=5.1, petal_width=1.9)
 
-Tests:
-    >>> import sys; sys.tracebacklimit = 0
-
-    >>> assert type(result)
-    >>> assert len(result) == 9
-
-    >>> classes = (Setosa, Virginica, Versicolor)
-    >>> assert all(type(row) in classes for row in result)
-
-    >>> result[0]
-    Virginica(sepal_length=5.8, sepal_width=2.7, petal_length=5.1, petal_width=1.9)
-
-    >>> result[1]
-    Setosa(sepal_length=5.1, sepal_width=3.5, petal_length=1.4, petal_width=0.2)
+>>> result[1]
+Setosa(sepal_length=5.1, sepal_width=3.5, petal_length=1.4, petal_width=0.2)
 """
+# endregion
 
+# region Show Imports
 import json
 from dataclasses import dataclass
+# endregion
+
+# region Show Types
+result: list[object]
+# endregion
 
 FILE = r'_temporary.json'
 
@@ -67,21 +54,46 @@ class Iris:
     petal_length: float
     petal_width: float
 
-
 class Setosa(Iris):
     pass
-
 
 class Virginica(Iris):
     pass
 
-
 class Versicolor(Iris):
     pass
 
+# English
+# 1. Convert from JSON format to Python using decoder function
+# 2. Create instances of `Setosa`, `Virginica`, `Versicolor`
+#    classes based on value in field "species"
+# 3. Add instances to `result: list[Setosa|Virginica|Versicolor]`
+# 4. Run doctests - all must succeed
+
+# Polish
+# 1. Przekonwertuj dane z JSON do Python używając dekodera funkcyjnego
+# 2. Twórz obiekty klas `Setosa`, `Virginica`, `Versicolor`
+#    w zależności od wartości pola "species"
+# 3. Dodawaj instancje do `result: list[Setosa|Virginica|Versicolor]`
+# 4. Uruchom doctesty - wszystkie muszą się powieść
+
+# region Show Hints
+# - `dict.pop()`
+# - `globals()`
+# - `cls(**obj)`
+# endregion
+
+# %% Your code
+def decoder(obj):
+    species = obj.pop('species')
+    match species:
+        case 'setosa':
+            cls = globals()['Setosa']
+        case 'virginica':
+            cls = globals()['Virginica']
+        case 'versicolor':
+            cls = globals()['Versicolor']
+    return cls(**obj)
 
 
-# JSON decoded DATA
-result = ...
-
-
+result = json.loads(DATA, object_hook=decoder)

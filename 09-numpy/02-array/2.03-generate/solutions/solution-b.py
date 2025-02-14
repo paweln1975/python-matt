@@ -1,0 +1,1 @@
+result = np.zeros_like(DATA, shape=(3,3))

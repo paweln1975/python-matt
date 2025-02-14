@@ -1,2 +1,0 @@
-
-result = np.ones(shape=(3,3), dtype='int64')

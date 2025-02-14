@@ -1,0 +1,2 @@
+class Person(models.Model):
+    salary = models.DecimalField(verbose_name=_('Salary'), help_text=_('USD per year'), validators=[MinValueValidator(0.0), MaxValueValidator(999_999.99)], max_digits=12, decimal_places=2, null=True, blank=True, default=None)

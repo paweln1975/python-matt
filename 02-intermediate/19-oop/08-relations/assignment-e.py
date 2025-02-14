@@ -1,42 +1,31 @@
+
+# region Show Doctests
 """
-* Assignment: OOP Relations Model
-* Complexity: easy
-* Lines of code: 21 lines
-* Time: 13 min
+Doctests:
+>>> import sys; sys.tracebacklimit = 0
+>>> assert sys.version_info >= (3, 9), \
+'Python 3.9+ required'
 
-English:
-    1. In `DATA` we have two classes
-    2. Model data using classes and relations
-    3. Create instances dynamically based on `DATA`
-    4. Run doctests - all must succeed
+>>> result = list(result)
+>>> assert type(result) is list
+>>> assert all(type(user) is User for user in result)
 
-Polish:
-    1. W `DATA` mamy dwie klasy
-    2. Zamodeluj problem wykorzystując klasy i relacje między nimi
-    3. Twórz instancje dynamicznie na podstawie `DATA`
-    4. Uruchom doctesty - wszystkie muszą się powieść
+>>> assert all(type(addr) is Address
+...            for user in result
+...            for addr in user.addresses)
 
-Tests:
-    >>> import sys; sys.tracebacklimit = 0
-    >>> from pprint import pprint
-
-    >>> result = list(result)
-    >>> assert type(result) is list
-    >>> assert all(type(user) is User for user in result)
-
-    >>> assert all(type(addr) is Address
-    ...            for user in result
-    ...            for addr in user.addresses)
-
-    >>> pprint(result, sort_dicts=False)  # doctest: +NORMALIZE_WHITESPACE
-    [User('Mark', 'Watney', addresses=[Address('Houston', 'USA'), Address('Kennedy Space Center', 'USA')]),
-     User('Melissa', 'Lewis', addresses=[Address('Pasadena', 'USA'), Address('Palmdale', 'USA')]),
-     User('Rick', 'Martinez', addresses=[]),
-     User('Alex', 'Vogel', addresses=[Address('Cologne', 'Germany')])]
+>>> from pprint import pprint
+>>> pprint(result, sort_dicts=False)  # doctest: +NORMALIZE_WHITESPACE
+[User('Mark', 'Watney', addresses=[Address('Houston', 'USA'), Address('Kennedy Space Center', 'USA')]),
+ User('Melissa', 'Lewis', addresses=[Address('Pasadena', 'USA'), Address('Palmdale', 'USA')]),
+ User('Rick', 'Martinez', addresses=[]),
+ User('Alex', 'Vogel', addresses=[Address('Cologne', 'Germany')])]
 """
+# endregion
 
-from dataclasses import dataclass
-
+# region Show Types
+result: list[type]
+# endregion
 
 DATA = [
     {"firstname": "Mark", "lastname": "Watney", "addresses": [
@@ -73,24 +62,48 @@ DATA = [
          "country": "Germany"}]}
 ]
 
+# English
+# 1. In `DATA` we have two classes
+# 2. Model data using classes and relations
+# 3. Create instances dynamically based on `DATA`
+# 4. Run doctests - all must succeed
 
-# Model `DATA`
-# type: type
+# Polish
+# 1. W `DATA` mamy dwie klasy
+# 2. Zamodeluj problem wykorzystując klasy i relacje między nimi
+# 3. Twórz instancje dynamicznie na podstawie `DATA`
+# 4. Uruchom doctesty - wszystkie muszą się powieść
+
+# %% Your code
 class Address:
+    def __init__(self, street, city, postcode, region, country):
+        self.street = street
+        self.city = city
+        self.postcode = postcode
+        self.region = region
+        self.country = country
+
     def __repr__(self):
-        return f"Address('...', '...')"
+        city = self.city
+        country = self.country
+        return f"Address('{city}', '{country}')"
 
 
-# Model `DATA`
-# type: type
 class User:
+    def __init__(self, firstname, lastname, addresses):
+        self.firstname = firstname
+        self.lastname = lastname
+        self.addresses = addresses
+
     def __repr__(self):
-        return f"User('...', '...', addresses=...)"
+        firstname = self.firstname
+        lastname = self.lastname
+        addresses = self.addresses
+        return f"User('{firstname}', '{lastname}', addresses={addresses})"
 
+def convert(user):
+    addresses = user.pop('addresses')
+    addresses = [Address(**adress) for adress in addresses]
+    return User(**user, addresses=addresses)
 
-
-# Iterate over `DATA` and create instances
-# type: list[User]
-result = ...
-
-
+result = map(convert, DATA)

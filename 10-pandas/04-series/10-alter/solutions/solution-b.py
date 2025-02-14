@@ -1,2 +1,0 @@
-
-result = DATA.drop([1, 3, 5])

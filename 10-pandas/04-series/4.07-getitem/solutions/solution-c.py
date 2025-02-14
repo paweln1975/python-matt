@@ -1,0 +1,1 @@
+result = DATA.iloc[-1]

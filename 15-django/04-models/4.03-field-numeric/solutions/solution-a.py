@@ -1,0 +1,2 @@
+class Person(models.Model):
+    height = models.IntegerField(verbose_name=_('Height'), help_text=_('cm'), validators=[MinValueValidator(150), MaxValueValidator(220)], null=True, blank=True, default=None)

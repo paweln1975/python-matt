@@ -1,0 +1,1 @@
+result = Customer.objects.all().order_by('-lastname', 'firstname')

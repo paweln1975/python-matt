@@ -1,0 +1,1 @@
+result = Customer.objects.get(pk=1)

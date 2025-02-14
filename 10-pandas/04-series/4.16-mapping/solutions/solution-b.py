@@ -1,0 +1,1 @@
+result = DATA.apply(pd.to_datetime)

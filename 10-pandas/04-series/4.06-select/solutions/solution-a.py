@@ -1,0 +1,1 @@
+result = s.head(n=1)

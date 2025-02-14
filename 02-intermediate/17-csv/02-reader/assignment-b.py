@@ -1,63 +1,73 @@
+
+# region Show Doctests
 """
-* Assignment: CSV Reader Substitute
-* Complexity: easy
-* Lines of code: 6 lines
-* Time: 5 min
+Doctests:
+>>> import sys; sys.tracebacklimit = 0
+>>> assert sys.version_info >= (3, 9), \
+'Python 3.9+ required'
 
-English:
-    1. Using `csv.reader()` read data from `FILE`
-    2. Define `result: list[tuple]` with converted data
-    3. Lookup species name in `LABEL_ENCODER` dictionary
-    4. Use Unix `\n` line terminator
-    5. Run doctests - all must succeed
+>>> assert result is not Ellipsis, \
+'Assign result to variable: `result`'
+>>> assert type(result) is list, \
+'Variable `result` has invalid type, should be list'
+>>> assert all(type(x) is tuple for x in result), \
+'All rows in `result` should be tuple'
 
-Polish:
-    1. Za pomocą `csv.reader()` wczytaj dane z `FILE`
-    2. Zdefiniuj `result: list[tuple]` z przekonwerowanymi danymi
-    3. Nazwę gatunku wyszukaj w słowniku `LABEL_ENCODER`
-    4. Użyj zakończenia linii Unix `\n`
-    5. Uruchom doctesty - wszystkie muszą się powieść
+>>> from os import remove
+>>> remove(FILE)
 
-Tests:
-    >>> import sys; sys.tracebacklimit = 0
-    >>> from os import remove
-
-    >>> assert result is not Ellipsis, \
-    'Assign result to variable: `result`'
-    >>> assert type(result) is list, \
-    'Variable `result` has invalid type, should be list'
-    >>> assert all(type(x) is tuple for x in result), \
-    'All rows in `result` should be tuple'
-
-    >>> result  # doctest: +NORMALIZE_WHITESPACE
-    [('5.8', '2.7', '5.1', '1.9', 'virginica'),
-     ('5.1', '3.5', '1.4', '0.2', 'setosa'),
-     ('5.7', '2.8', '4.1', '1.3', 'versicolor')]
-
-    >>> remove(FILE)
+>>> from pprint import pprint
+>>> pprint(result)
+[('firstname', 'lastname', 'age'),
+ ('Mark', 'Watney', '42'),
+ ('Melissa', 'Lewis', '41'),
+ ('Rick', 'Martinez', '40'),
+ ('Alex', 'Vogel', '42'),
+ ('Beth', 'Johanssen', '29'),
+ ('Chris', 'Beck', '36')]
 """
+# endregion
 
+# region Show Imports
 import csv
+# endregion
 
+# region Show Types
+result: list[tuple[str,...]]
+# endregion
 
 FILE = r'_temporary.csv'
 
-DATA = """5.8,2.7,5.1,1.9,1
-5.1,3.5,1.4,0.2,0
-5.7,2.8,4.1,1.3,2"""
-
-LABEL_ENCODER = {
-    0: 'setosa',
-    1: 'virginica',
-    2: 'versicolor'}
+DATA = """
+'firstname';'lastname';'age'
+'Mark';'Watney';42
+'Melissa';'Lewis';41
+'Rick';'Martinez';40
+'Alex';'Vogel';42
+'Beth';'Johanssen';29
+'Chris';'Beck';36
+"""
 
 with open(FILE, mode='wt', encoding='utf-8') as file:
-    file.write(DATA)
+    file.write(DATA.lstrip())
 
-# data from file (note the list[tuple] format!)
-# type: list[tuple]
-result = ...
+# English
+# 1. Using `csv.reader()` read data from `FILE`
+# 2. Define `result: list[tuple]` with converted data
+# 3. Use Unix `\n` line terminator
+# 4. Use delimiter `;`
+# 5. Use quotechar `'`
+# 6. Run doctests - all must succeed
 
+# Polish
+# 1. Używając `csv.reader()` wczytaj dane z `FILE`
+# 2. Zdefiniuj `result: list[tuple]` z przekonwertowanymi danymi
+# 3. Użyj zakończenia linii Unix `\n`
+# 4. Użyj delimiter `;`
+# 5. Użyj quotechar `'`
+# 6. Uruchom doctesty - wszystkie muszą się powieść
+
+# %% Your code
 with open(FILE, mode='rt', encoding='utf-8') as file:
-    ...
-
+    reader = csv.reader(file, lineterminator='\n', delimiter=';', quotechar="'")
+    result = [tuple(line) for line in reader]

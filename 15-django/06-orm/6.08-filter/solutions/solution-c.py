@@ -1,0 +1,1 @@
+result = Customer.objects.exclude(firstname='Mark', lastname='Watney')

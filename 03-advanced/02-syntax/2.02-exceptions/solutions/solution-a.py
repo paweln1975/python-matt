@@ -1,0 +1,2 @@
+class NegativeKelvinError(Exception):
+    pass

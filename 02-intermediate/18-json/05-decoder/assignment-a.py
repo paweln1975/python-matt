@@ -1,57 +1,47 @@
+
+# region Show Doctests
 """
-* Assignment: JSON Decoder Function
-* Complexity: easy
-* Lines of code: 8 lines
-* Time: 5 min
+Doctests:
+>>> import sys; sys.tracebacklimit = 0
+>>> assert sys.version_info >= (3, 9), \
+'Python 3.9+ required'
 
-English:
-    1. Define `result: dict` with decoded `DATA` from JSON
-    2. Use decoder function
-    3. Run doctests - all must succeed
+>>> from inspect import isfunction
+>>> assert isfunction(decoder), \
+'Decoder must be a function'
 
-Polish:
-    1. Zdefiniuj `result: dict` z odkodowanym `DATA` z JSON
-    2. Użyj dekodera funkcyjnego
-    3. Uruchom doctesty - wszystkie muszą się powieść
+>>> assert type(result) is dict, \
+'Result must be a dict'
+>>> assert len(result) > 0, \
+'Result cannot be empty'
+>>> assert all(type(key) is str
+...            and type(value) in (str, datetime, list)
+...            for key, value in result.items()), \
+'All keys must be str and all values must be either str, datetime or list'
 
-Hints:
-    * json.loads(object_hook=...)
-    * dict.items()
-    * datetime.fromisoformat()
-    * date.fromisoformat()
-
-Tests:
-    >>> import sys; sys.tracebacklimit = 0
-    >>> from inspect import isfunction
-    >>> assert isfunction(decoder), \
-    'Decoder must be a function'
-    >>> assert type(result) is dict, \
-    'Result must be a dict'
-    >>> assert len(result) > 0, \
-    'Result cannot be empty'
-    >>> assert all(type(key) is str
-    ...            and type(value) in (str, datetime, list)
-    ...            for key, value in result.items()), \
-    'All keys must be str and all values must be either str, datetime or list'
-
-
-    >>> result  # doctest: +NORMALIZE_WHITESPACE
-    {'mission': 'Ares 3',
-     'launch_date': datetime.datetime(2035, 6, 29, 0, 0),
-     'destination': 'Mars',
-     'destination_landing': datetime.datetime(2035, 11, 7, 0, 0),
-     'destination_location': 'Acidalia Planitia',
-     'crew': [{'name': 'Melissa Lewis', 'birthdate': datetime.date(1995, 7, 15)},
-              {'name': 'Rick Martinez', 'birthdate': datetime.date(1996, 1, 21)},
-              {'name': 'Alex Vogel', 'birthdate': datetime.date(1994, 11, 15)},
-              {'name': 'Chris Beck', 'birthdate': datetime.date(1999, 8, 2)},
-              {'name': 'Beth Johanssen', 'birthdate': datetime.date(2006, 5, 9)},
-              {'name': 'Mark Watney', 'birthdate': datetime.date(1994, 10, 12)}]}
+>>> result  # doctest: +NORMALIZE_WHITESPACE
+{'mission': 'Ares 3',
+ 'launch_date': datetime.datetime(2035, 6, 29, 0, 0),
+ 'destination': 'Mars',
+ 'destination_landing': datetime.datetime(2035, 11, 7, 0, 0),
+ 'destination_location': 'Acidalia Planitia',
+ 'crew': [{'name': 'Melissa Lewis', 'birthdate': datetime.date(1995, 7, 15)},
+          {'name': 'Rick Martinez', 'birthdate': datetime.date(1996, 1, 21)},
+          {'name': 'Alex Vogel', 'birthdate': datetime.date(1994, 11, 15)},
+          {'name': 'Chris Beck', 'birthdate': datetime.date(1999, 8, 2)},
+          {'name': 'Beth Johanssen', 'birthdate': datetime.date(2006, 5, 9)},
+          {'name': 'Mark Watney', 'birthdate': datetime.date(1994, 10, 12)}]}
 """
+# endregion
 
+# region Show Imports
 import json
 from datetime import datetime, date
+# endregion
 
+# region Show Types
+result: dict[str, str|list|datetime]
+# endregion
 
 DATA = """
     {"mission": "Ares 3",
@@ -66,14 +56,31 @@ DATA = """
               {"name": "Beth Johanssen", "birthdate": "2006-05-09"},
               {"name": "Mark Watney", "birthdate": "1994-10-12"}]}"""
 
+# English
+# 1. Define `result: dict` with decoded `DATA` from JSON
+# 2. Use decoder function
+# 3. Run doctests - all must succeed
 
-# JSON decoder
-def decoder(obj):
-    ...
+# Polish
+# 1. Zdefiniuj `result: dict` z odkodowanym `DATA` z JSON
+# 2. Użyj dekodera funkcyjnego
+# 3. Uruchom doctesty - wszystkie muszą się powieść
 
+# region Show Hints
+# - `json.loads(object_hook=...)`
+# - `dict.items()`
+# - `datetime.fromisoformat()`
+# - `date.fromisoformat()`
+# endregion
 
-# JSON decoded DATA
-# type: dict[str, str|list|datetime]
-result = ...
+# %% Your code
+def decoder(data):
+    for key, value in data.items():
+        match key:
+            case 'launch_date' | 'destination_landing':
+                data[key] = datetime.fromisoformat(data[key])
+            case 'birthdate':
+                data[key] = datetime.strptime(data[key], "%Y-%m-%d").date()
+    return data
 
-
+result = json.loads(DATA, object_hook=decoder)

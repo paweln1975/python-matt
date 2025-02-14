@@ -1,0 +1,1 @@
+result = Customer.objects.filter(lastname='Doe').delete()

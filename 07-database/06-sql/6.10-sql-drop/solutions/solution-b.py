@@ -1,0 +1,5 @@
+result = """
+
+DROP TABLE `contacts`
+
+"""

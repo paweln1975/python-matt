@@ -1,0 +1,1 @@
+result = Customer.objects.earliest('created_date')

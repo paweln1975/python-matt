@@ -1,6 +1,0 @@
-
-result = """
-
-DELETE FROM `contacts`
-
-"""

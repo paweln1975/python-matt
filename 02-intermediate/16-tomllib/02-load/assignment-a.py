@@ -1,43 +1,32 @@
+
+# region Show Doctests
 """
-* Assignment: TOML Load Version
-* Complexity: easy
-* Lines of code: 2 lines
-* Time: 3 min
+Doctests:
+>>> import sys; sys.tracebacklimit = 0
+>>> assert sys.version_info >= (3, 11), \
+'Python 3.11+ required'
 
-English:
-    1. Read configuration from `FILE`
-    2. Define `result: str` with version read from config
-    3. Use `tomllib.load()`
-    4. Run doctests - all must succeed
+>>> assert result is not Ellipsis, \
+'Assign result to variable: `result`'
+>>> assert type(result) is str, \
+'Variable `result` has invalid type, should be str'
 
-Polish:
-    1. Wczytaj konfigurację z `FILE`
-    2. Zdefiniuj `result: str` z werją wczytaną z konfiguracji
-    3. Użyj `tomllib.load()`
-    4. Uruchom doctesty - wszystkie muszą się powieść
+>>> from pprint import pprint
+>>> pprint(result)
+'1.0.0'
 
-Hint:
-    * open(filename, mode='rb')
-    * import tomllib
-    * tomllib.load()
-
-Tests:
-    >>> import sys; sys.tracebacklimit = 0
-    >>> from pprint import pprint
-    >>> from pathlib import Path
-
-    >>> assert result is not Ellipsis, \
-    'Assign result to variable: `result`'
-    >>> assert type(result) is str, \
-    'Variable `result` has invalid type, should be str'
-
-    >>> pprint(result)
-    '1.0.0'
-
-    >>> Path(FILE).unlink(missing_ok=True)
+>>> from pathlib import Path
+>>> Path(FILE).unlink(missing_ok=True)
 """
+# endregion
+
+# region Show Imports
 import tomllib
+# endregion
 
+# region Show Types
+result: str
+# endregion
 
 FILE = '_temporary.toml'
 
@@ -47,9 +36,26 @@ project = 'My App'
 version = '1.0.0'
 """)
 
+# English
+# 1. Read configuration from `FILE`
+# 2. Define `result: str` with version read from config
+# 3. Use `tomllib.load()`
+# 4. Run doctests - all must succeed
 
-# Read configuration from `FILE`
-# Define `result: str` with version read from config
-# type: str
-result = ...
+# Polish
+# 1. Wczytaj konfigurację z `FILE`
+# 2. Zdefiniuj `result: str` z wersją wczytaną z konfiguracji
+# 3. Użyj `tomllib.load()`
+# 4. Uruchom doctesty - wszystkie muszą się powieść
 
+# region Show Hints
+# - `open(filename, mode='rb')`
+# - `import tomllib`
+# - `tomllib.load()`
+# endregion
+
+# %% Your code
+with open(FILE, mode='rb') as file:
+    config = tomllib.load(file)
+
+result = config['version']

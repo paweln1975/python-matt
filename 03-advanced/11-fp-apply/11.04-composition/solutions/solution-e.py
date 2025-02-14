@@ -1,0 +1,5 @@
+split = tuple(DATA.splitlines())
+stripped = map(str.strip, split)
+valid = filter(is_valid, stripped)
+transformed = map(transform, valid)
+result = tuple(transformed)

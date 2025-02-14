@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+# https://python3.info/pandas/series/attributes.html
+
+
+# %% Series Attributes
+# %%
+
+
+
+# %% Size
+# %%
+
+
+
+# %% NDim
+# - Number of Dimensions
+# %%
+
+
+
+# %% Shape
+# %%
+
+
+
+# %% Index
+# - More information in Pandas Series Index
+# %%
+
+
+
+# %% Values
+# %%
+
+
+

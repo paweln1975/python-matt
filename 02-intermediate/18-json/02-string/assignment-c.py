@@ -1,54 +1,58 @@
+
+# region Show Doctests
 """
-* Assignment: JSON String LoadObject
-* Complexity: easy
-* Lines of code: 1 lines
-* Time: 2 min
+Doctests:
+>>> import sys; sys.tracebacklimit = 0
+>>> assert sys.version_info >= (3, 9), \
+'Python 3.9+ required'
 
-English:
-    1. Load `DATA` from JSON format
-    2. Convert data to `result: dict`
-    3. Run doctests - all must succeed
+>>> assert result is not Ellipsis, \
+'Assign result to variable: `result`'
+>>> assert type(result) is str, \
+'Variable `result` has invalid type, should be str'
+>>> assert len(result) > 0, \
+'Variable `result` should not be empty'
 
-Polish:
-    1. Wczytaj `DATA` z formatu JSON
-    2. Przekonwertuj dane do `result: dict`
-    3. Uruchom doctesty - wszystkie muszą się powieść
-
-Hints:
-    * json.loads()
-
-Tests:
-    >>> import sys; sys.tracebacklimit = 0
-    >>> assert result is not Ellipsis, \
-    'Assign result to variable: `result`'
-    >>> assert type(result) is dict, \
-    'Variable `result` has invalid type, should be dict'
-    >>> assert len(result) > 0, \
-    'Variable `result` should not be empty'
-
-    >>> result  # doctest: +NORMALIZE_WHITESPACE
-    {'sepal_length': 5.1,
-     'sepal_width': 3.5,
-     'petal_length': 1.4,
-     'petal_width': 0.2,
-     'species': 'setosa'}
+>>> print(result)  # doctest: +NORMALIZE_WHITESPACE
+[["firstname", "lastname", "age"],
+ ["Mark", "Watney", 41],
+ ["Melissa", "Lewis", 40],
+ ["Rick", "Martinez", 39],
+ ["Alex", "Vogel", 40],
+ ["Chris", "Beck", 36],
+ ["Beth", "Johanssen", 29]]
 """
+# endregion
 
+# region Show Imports
 import json
+# endregion
 
+# region Show Types
+result: str
+# endregion
 
-DATA = """
-{
-    "sepal_length": 5.1,
-    "sepal_width": 3.5,
-    "petal_length": 1.4,
-    "petal_width": 0.2,
-    "species": "setosa"
-}
-"""
+DATA = [
+    ('firstname', 'lastname', 'age'),
+    ('Mark', 'Watney', 41),
+    ('Melissa', 'Lewis', 40),
+    ('Rick', 'Martinez', 39),
+    ('Alex', 'Vogel', 40),
+    ('Chris', 'Beck', 36),
+    ('Beth', 'Johanssen', 29),
+]
 
+# English
+# 1. Dump `DATA` to JSON format
+# 2. Run doctests - all must succeed
 
-# Load `DATA` from JSON format
-# type: list[dict]
-result = ...
+# Polish
+# 1. Zrzuć `DATA` do formatu JSON
+# 2. Uruchom doctesty - wszystkie muszą się powieść
 
+# region Show Hints
+# - `json.dumps()`
+# endregion
+
+# %% Your code
+result = json.dumps(DATA)

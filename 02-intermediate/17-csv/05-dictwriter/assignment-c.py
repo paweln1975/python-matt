@@ -1,80 +1,77 @@
+
+# region Show Doctests
 """
-* Assignment: CSV DictWriter Objects
-* Complexity: medium
-* Lines of code: 6 lines
-* Time: 8 min
+Doctests:
+>>> import sys; sys.tracebacklimit = 0
+>>> assert sys.version_info >= (3, 9), \
+'Python 3.9+ required'
 
-English:
-    1. Using `csv.DictWriter()` save data to `FILE`
-    2. Non-functional requirements:
-        a. Use `,` to separate columns
-        b. Use `utf-8` encoding
-        c. Use Unix `\n` line terminator
-        d. sort header (fieldnames)
-    3. Run doctests - all must succeed
+>>> result = open(FILE).read()
+>>> assert result is not Ellipsis, \
+'Assign result to variable: `result`'
+>>> assert type(result) is str, \
+'Variable `result` has invalid type, should be str'
 
-Polish:
-    1. Za pomocą `csv.DictWriter()` zapisz dane do `FILE`
-    2. Wymagania niefunkcjonalne:
-        a. Użyj `,` do oddzielenia kolumn
-        b. Użyj kodowania `utf-8`
-        c. Użyj zakończenia linii Unix `\n`
-        d. posortuj nagłówek (fieldnames)
-    3. Uruchom doctesty - wszystkie muszą się powieść
+>>> from os import remove
+>>> remove(FILE)
 
-Hints:
-    * `vars()`
-
-Tests:
-    >>> import sys; sys.tracebacklimit = 0
-    >>> from os import remove
-    >>> result = open(FILE).read()
-    >>> remove(FILE)
-
-    >>> assert result is not Ellipsis, \
-    'Assign result to variable: `result`'
-    >>> assert type(result) is str, \
-    'Variable `result` has invalid type, should be str'
-
-    >>> print(result)
-    petal_length,petal_width,sepal_length,sepal_width,species
-    1.4,0.2,5.1,3.5,setosa
-    5.1,1.9,5.8,2.7,virginica
-    1.4,0.2,5.1,3.5,setosa
-    4.1,1.3,5.7,2.8,versicolor
-    5.6,1.8,6.3,2.9,virginica
-    4.5,1.5,6.4,3.2,versicolor
-    <BLANKLINE>
+>>> print(result)
+age,firstname,lastname
+40,Mark,Watney
+41,Melissa,Lewis
+39,Rick,Martinez
+<BLANKLINE>
 """
+# endregion
 
+# region Show Imports
 import csv
-
-
-class Iris:
-    def __init__(self, sepal_length, sepal_width,
-                 petal_length, petal_width, species):
-        self.sepal_length = sepal_length
-        self.sepal_width = sepal_width
-        self.petal_length = petal_length
-        self.petal_width = petal_width
-        self.species = species
-
-
-DATA = [
-    Iris(5.1, 3.5, 1.4, 0.2, 'setosa'),
-    Iris(5.8, 2.7, 5.1, 1.9, 'virginica'),
-    Iris(5.1, 3.5, 1.4, 0.2, 'setosa'),
-    Iris(5.7, 2.8, 4.1, 1.3, 'versicolor'),
-    Iris(6.3, 2.9, 5.6, 1.8, 'virginica'),
-    Iris(6.4, 3.2, 4.5, 1.5, 'versicolor'),
-]
+# endregion
 
 FILE = r'_temporary.txt'
 
+class User:
+    def __init__(self, firstname, lastname, age):
+        self.firstname = firstname
+        self.lastname = lastname
+        self.age = age
 
-# Write DATA to FILE, generate header from DATA
-# type: ContextManager
+DATA = [
+    User('Mark', 'Watney', age=40),
+    User('Melissa', 'Lewis', age=41),
+    User('Rick', 'Martinez', age=39),
+]
+
+# English
+# 1. Using `csv.DictWriter()` save data to `FILE`
+# 2. Non-functional requirements:
+#    - Use `,` to separate columns
+#    - Use `utf-8` encoding
+#    - Use Unix `\n` line terminator
+#    - sort header (fieldnames)
+# 3. Run doctests - all must succeed
+
+# Polish
+# 1. Za pomocą `csv.DictWriter()` zapisz dane do `FILE`
+# 2. Wymagania niefunkcjonalne:
+#    - Użyj `,` do oddzielenia kolumn
+#    - Użyj kodowania `utf-8`
+#    - Użyj zakończenia linii Unix `\n`
+#    - posortuj nagłówek (fieldnames)
+# 3. Uruchom doctesty - wszystkie muszą się powieść
+
+# region Show Hints
+# - `vars()`
+# - `sorted()`
+# - `dict.keys()`
+# - `csv.DictWriter()`
+# endregion
+
+# %% Your code
+DATA = map(vars, DATA)
 with open(FILE, mode='w', encoding='utf-8') as file:
-    ...
-
-
+    writer = csv.DictWriter(file, fieldnames=['age', 'firstname', 'lastname'],
+                            lineterminator='\n', quotechar='"',
+                            quoting=csv.QUOTE_NONE)
+    writer.writeheader()
+    writer.writerows(DATA)

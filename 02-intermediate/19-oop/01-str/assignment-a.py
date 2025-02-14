@@ -1,40 +1,44 @@
+
+# region Show Doctests
 """
-* Assignment: Operator String Str
-* Type: class assignment
-* Complexity: easy
-* Lines of code: 2 lines
-* Time: 2 min
+Doctests:
+>>> import sys; sys.tracebacklimit = 0
+>>> assert sys.version_info >= (3, 9), \
+'Python 3.9+ required'
 
-English:
-    1. Modify `User` to overwrite `__str__()` method
-    2. Printing object should return firstname and lastname,
-       example: Mark Watney
-    3. Run doctests - all must succeed
+>>> mark = User('Mark', 'Watney')
+>>> print(mark)
+Mark Watney
 
-Polish:
-    1. Zmodyfikuj klasę `User` aby nadpisać metodę `__str__()`
-    2. Wypisanie obiektu powinno zwrówić imię i nazwisko,
-       przykład: Mark Watney
-    3. Uruchom doctesty - wszystkie muszą się powieść
-
-Tests:
-    >>> import sys; sys.tracebacklimit = 0
-
-    >>> mark = User('Mark', 'Watney')
-    >>> print(mark)
-    Mark Watney
-
-    >>> melissa = User('Melissa', 'Lewis')
-    >>> print(melissa)
-    Melissa Lewis
+>>> melissa = User('Melissa', 'Lewis')
+>>> print(melissa)
+Melissa Lewis
 """
+# endregion
 
+# region Show Types
+from typing import Callable
+User: type
+__str__: Callable[[object], str]
+# endregion
+
+# English
+# 1. Modify `User` to overwrite `__str__()` method
+# 2. Printing object should return firstname and lastname,
+#    example: Mark Watney
+# 3. Run doctests - all must succeed
+
+# Polish
+# 1. Zmodyfikuj klasę `User` aby nadpisać metodę `__str__()`
+# 2. Wypisanie obiektu powinno zwrócić imię i nazwisko,
+#    przykład: Mark Watney
+# 3. Uruchom doctesty - wszystkie muszą się powieść
+
+# %% Your code
 class User:
     def __init__(self, firstname, lastname):
         self.firstname = firstname
         self.lastname = lastname
 
-# Modify `User` class to overwrite `str()`
-# Printing object should return firstname and lastname,
-# example: Mark Watney
-
+    def __str__(self):
+        return f'{self.firstname} {self.lastname}'

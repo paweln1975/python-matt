@@ -1,0 +1,1 @@
+result = np.ones_like(DATA, shape=(3,3))

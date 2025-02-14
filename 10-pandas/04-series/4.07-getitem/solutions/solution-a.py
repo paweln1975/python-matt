@@ -1,0 +1,1 @@
+result = DATA.loc['2000-01-05']

@@ -1,0 +1,1 @@
+result = Customer.objects.filter(firstname='Mark', lastname='Watney')

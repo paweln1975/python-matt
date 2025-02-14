@@ -1,0 +1,1 @@
+result = DATA.iloc[DATA.size//2]

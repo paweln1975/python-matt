@@ -1,0 +1,1 @@
+result = str(Customer.objects.all().query)

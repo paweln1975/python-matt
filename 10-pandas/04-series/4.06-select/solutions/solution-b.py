@@ -1,0 +1,1 @@
+result = s.tail(n=5)

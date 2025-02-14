@@ -1,0 +1,1 @@
+result = DATA.add(10, fill_value=0.0)

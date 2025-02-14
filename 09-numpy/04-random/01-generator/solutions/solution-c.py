@@ -1,2 +1,0 @@
-
-result = np.random.choice(DATA, size=6, replace=False)

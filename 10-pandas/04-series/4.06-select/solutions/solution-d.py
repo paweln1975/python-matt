@@ -1,0 +1,1 @@
+result = s.sample(frac=1.00)

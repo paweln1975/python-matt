@@ -1,35 +1,31 @@
+
+# region Show Doctests
 """
-* Assignment: Pickle Dump ListObjects
-* Complexity: easy
-* Lines of code: 2 lines
-* Time: 2 min
+Doctests:
+>>> import sys; sys.tracebacklimit = 0
+>>> assert sys.version_info >= (3, 9), \
+'Python 3.9+ required'
 
-English:
-    1. Save `DATA` to `FILE`
-    2. Use `pickle` module
-    3. Run doctests - all must succeed
+>>> result = pickle.loads(result)
 
-Polish:
-    1. Zapisz `DATA` do `FILE`
-    2. Użyj modułu `pickle`
-    3. Uruchom doctesty - wszystkie muszą się powieść
-
-Tests:
-    >>> import sys; sys.tracebacklimit = 0
-    >>> from pprint import pprint
-
-    >>> result = pickle.loads(result)
-    >>> pprint(result)
-    [User(firstname='Mark', lastname='Watney', age=41, groups='1(users)'),
-     User(firstname='Melissa', lastname='Lewis', age=40, groups='1(users),2(staff),3(admins)'),
-     User(firstname='Rick', lastname='Martinez', age=39, groups='1(users)'),
-     User(firstname='Alex', lastname='Vogel', age=40, groups=''),
-     User(firstname='Beth', lastname='Johanssen', age=29, groups='1(users),2(staff)'),
-     User(firstname='Chris', lastname='Beck', age=36, groups='1(users)')]
+>>> from pprint import pprint
+>>> pprint(result)
+[User(firstname='Mark', lastname='Watney', age=41, groups='1(users)'),
+ User(firstname='Melissa', lastname='Lewis', age=40, groups='1(users),2(staff),3(admins)'),
+ User(firstname='Rick', lastname='Martinez', age=39, groups='1(users)'),
+ User(firstname='Alex', lastname='Vogel', age=40, groups=''),
+ User(firstname='Beth', lastname='Johanssen', age=29, groups='1(users),2(staff)'),
+ User(firstname='Chris', lastname='Beck', age=36, groups='1(users)')]
 """
+# endregion
 
+# region Show Imports
 import pickle
+# endregion
 
+# region Show Types
+result: bytes
+# endregion
 
 class Group:
     def __init__(self, gid, name):
@@ -38,7 +34,6 @@ class Group:
 
     def __repr__(self):
         return f'{self.gid}({self.name})'
-
 
 class User:
     def __init__(self, firstname, lastname, age, groups=None):
@@ -54,7 +49,6 @@ class User:
         groups = ','.join(repr(x) for x in self.groups)
         age = self.age
         return f'{clsname}({firstname=}, {lastname=}, {age=}, {groups=})'
-
 
 DATA = [
     User(firstname='Mark', lastname='Watney', age=41, groups=[
@@ -83,8 +77,15 @@ DATA = [
     ]),
 ]
 
+# English
+# 1. Save `DATA` to `FILE`
+# 2. Use `pickle` module
+# 3. Run doctests - all must succeed
 
-# Write `DATA` to `FILE`
-# Use `pickle` module
-result = ...
+# Polish
+# 1. Zapisz `DATA` do `FILE`
+# 2. Użyj modułu `pickle`
+# 3. Uruchom doctesty - wszystkie muszą się powieść
 
+# %% Your code
+result = pickle.dumps(DATA)

@@ -1,0 +1,1 @@
+result = np.identity(3, dtype='int64')

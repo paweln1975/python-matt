@@ -1,58 +1,44 @@
+
+# region Show Doctests
 """
-* Assignment: JSON Object Dataclass
-* Complexity: easy
-* Lines of code: 15 lines
-* Time: 13 min
+Doctests:
+>>> import sys; sys.tracebacklimit = 0
+>>> assert sys.version_info >= (3, 9), \
+'Python 3.9+ required'
 
-English:
-    1. `DATA` is a JSON downloaded from https://api.github.com/users
-    3. Using `dataclass` model data as class `User`
-    4. Iterate over records and create instances of this class
-    5. Collect all instances to one list
-    6. Run doctests - all must succeed
-
-Polish:
-    1. `DATA` to JSON pobrany z https://api.github.com/users
-    3. Używając `dataclass` zamodeluj dane za pomocą klasy `User`
-    4. Iterując po rekordach twórz instancje tej klasy
-    5. Zbierz wszystkie instancje do jednej listy
-    6. Uruchom doctesty - wszystkie muszą się powieść
-
-Hints:
-    * User(**obj)
-
-Tests:
-    >>> import sys; sys.tracebacklimit = 0
-
-    >>> type(result)
-    <class 'list'>
-    >>> len(result) > 0
-    True
-    >>> all(type(row) is User
-    ...     for row in result)
-    True
-    >>> result[0]  # doctest: +NORMALIZE_WHITESPACE
-    User(login='myuser',
-         id=1,
-         node_id='MDQ6VXNlcjE=',
-         avatar_url='https://avatars.githubusercontent.com/u/1?v=4',
-         gravatar_id='',
-         url='https://api.github.com/users/myuser',
-         html_url='https://github.com/myuser',
-         followers_url='https://api.github.com/users/myuser/followers',
-         following_url='https://api.github.com/users/myuser/following',
-         gists_url='https://api.github.com/users/myuser/gists{/gist_id}',
-         starred_url='https://api.github.com/users/myuser/starred',
-         subscriptions_url='https://api.github.com/users/myuser/subscriptions',
-         organizations_url='https://api.github.com/users/myuser/orgs',
-         repos_url='https://api.github.com/users/myuser/repos',
-         events_url='https://api.github.com/users/myuser/events{/privacy}',
-         received_events_url='https://api.github.com/users/myuser',
-         type='User',
-         site_admin=False)
+>>> type(result)
+<class 'list'>
+>>> len(result) > 0
+True
+>>> all(type(row) is User
+...     for row in result)
+True
+>>> result[0]  # doctest: +NORMALIZE_WHITESPACE
+User(login='myuser',
+     id=1,
+     node_id='MDQ6VXNlcjE=',
+     avatar_url='https://avatars.githubusercontent.com/u/1?v=4',
+     gravatar_id='',
+     url='https://api.github.com/users/myuser',
+     html_url='https://github.com/myuser',
+     followers_url='https://api.github.com/users/myuser/followers',
+     following_url='https://api.github.com/users/myuser/following',
+     gists_url='https://api.github.com/users/myuser/gists{/gist_id}',
+     starred_url='https://api.github.com/users/myuser/starred',
+     subscriptions_url='https://api.github.com/users/myuser/subscriptions',
+     organizations_url='https://api.github.com/users/myuser/orgs',
+     repos_url='https://api.github.com/users/myuser/repos',
+     events_url='https://api.github.com/users/myuser/events{/privacy}',
+     received_events_url='https://api.github.com/users/myuser',
+     type='User',
+     site_admin=False)
 """
+# endregion
+
+# region Show Imports
 import json
 from dataclasses import dataclass
+# endregion
 
 DATA = (
     '[{"login":"myuser","id":1,"node_id":"MDQ6VXNlcjE=","avatar_url":"http'
@@ -92,12 +78,47 @@ DATA = (
     'b.com/users/pjhyett/events{/privacy}","received_events_url":"https://'
     'api.github.com/users/pjhyett","type":"User","site_admin":false}]')
 
-
 @dataclass
 class User:
-    pass
+    login: str
+    id: str
+    node_id: str
+    avatar_url: str
+    gravatar_id: str
+    url: str
+    html_url: str
+    followers_url: str
+    following_url: str
+    gists_url: str
+    starred_url: str
+    subscriptions_url: str
+    organizations_url: str
+    repos_url: str
+    events_url: str
+    received_events_url: str
+    type: str
+    site_admin: bool
 
-# JSON decoded DATA
-result = ...
 
+# English
+# 1. Variable `DATA` is a JSON downloaded from https://api.github.com/users
+# 3. Using `dataclass` model data as class `User`
+# 4. Iterate over records and create instances of this class
+# 5. Collect all instances to one list
+# 6. Run doctests - all must succeed
 
+# Polish
+# 1. Zmienna `DATA` to JSON pobrany z https://api.github.com/users
+# 3. Używając `dataclass` zamodeluj dane za pomocą klasy `User`
+# 4. Iterując po rekordach twórz instancje tej klasy
+# 5. Zbierz wszystkie instancje do jednej listy
+# 6. Uruchom doctesty - wszystkie muszą się powieść
+
+# region Show Hints
+# - `User(**obj)`
+# endregion
+
+# %% Your code
+def decoder(obj):
+    return User(**obj)
+result = json.loads(DATA, object_hook=decoder)

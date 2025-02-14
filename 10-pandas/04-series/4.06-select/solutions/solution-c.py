@@ -1,0 +1,1 @@
+result = s.sample(n=3)

@@ -1,37 +1,32 @@
 
+# region Show Doctests
 """
-* Assignment: Pickle Load ListObjects
-* Complexity: easy
-* Lines of code: 2 lines
-* Time: 2 min
+Doctests:
+>>> import sys; sys.tracebacklimit = 0
+>>> assert sys.version_info >= (3, 9), \
+'Python 3.9+ required'
 
-English:
-    1. Define `result: list[User]` with data from `FILE`
-    2. Use `pickle` module
-    3. Run doctests - all must succeed
+>>> from os import remove
+>>> remove(FILE)
 
-Polish:
-    1. Zdefiniuj `result: list[User]` z danymi z `FILE`
-    2. Użyj modułu `pickle`
-    3. Uruchom doctesty - wszystkie muszą się powieść
-
-Tests:
-    >>> import sys; sys.tracebacklimit = 0
-    >>> from pprint import pprint
-    >>> from os import remove
-
-    >>> pprint(result, sort_dicts=False)
-    [{'firstname': 'Mark', 'lastname': 'Watney', 'group': 1},
-     {'firstname': 'Melissa', 'lastname': 'Lewis', 'group': 3},
-     {'firstname': 'Rick', 'lastname': 'Martinez', 'group': 1},
-     {'firstname': 'Alex', 'lastname': 'Vogel', 'group': None},
-     {'firstname': 'Beth', 'lastname': 'Johanssen', 'group': 2},
-     {'firstname': 'Chris', 'lastname': 'Beck', 'group': 1}]
-
-    >>> remove(FILE)
+>>> from pprint import pprint
+>>> pprint(result, sort_dicts=False)
+[{'firstname': 'Mark', 'lastname': 'Watney', 'group': 1},
+ {'firstname': 'Melissa', 'lastname': 'Lewis', 'group': 3},
+ {'firstname': 'Rick', 'lastname': 'Martinez', 'group': 1},
+ {'firstname': 'Alex', 'lastname': 'Vogel', 'group': None},
+ {'firstname': 'Beth', 'lastname': 'Johanssen', 'group': 2},
+ {'firstname': 'Chris', 'lastname': 'Beck', 'group': 1}]
 """
+# endregion
 
+# region Show Imports
 import pickle
+# endregion
+
+# region Show Types
+result: list[dict[str, str|int|None]]
+# endregion
 
 FILE = r'_temporary.pkl'
 
@@ -47,7 +42,6 @@ with open(FILE, mode='wb') as file:
         b'\x94(h\x02\x8c\x05Chris\x94h\x04\x8c\x04Beck\x94h\x06K\x01ue.'
     )
 
-
 class Group:
     def __init__(self, gid, name):
         self.gid = gid
@@ -55,7 +49,6 @@ class Group:
 
     def __repr__(self):
         return f'{self.gid}({self.name})'
-
 
 class User:
     def __init__(self, firstname, lastname, age, groups=None):
@@ -72,4 +65,16 @@ class User:
         age = self.age
         return f'{clsname}({firstname=}, {lastname=}, {age=}, {groups=})'
 
+# English
+# 1. Define `result: list[User]` with data from `FILE`
+# 2. Use `pickle` module
+# 3. Run doctests - all must succeed
 
+# Polish
+# 1. Zdefiniuj `result: list[User]` z danymi z `FILE`
+# 2. Użyj modułu `pickle`
+# 3. Uruchom doctesty - wszystkie muszą się powieść
+
+# %% Your code
+
+result = pickle.load(open(FILE, 'rb'))

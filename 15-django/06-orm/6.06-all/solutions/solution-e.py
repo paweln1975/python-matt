@@ -1,0 +1,1 @@
+result = Customer.objects.all().values('firstname', 'lastname')

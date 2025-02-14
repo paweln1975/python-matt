@@ -1,37 +1,32 @@
 
+# region Show Doctests
 """
-* Assignment: Pickle Load ListObjects
-* Complexity: easy
-* Lines of code: 2 lines
-* Time: 2 min
+Doctests:
+>>> import sys; sys.tracebacklimit = 0
+>>> assert sys.version_info >= (3, 9), \
+'Python 3.9+ required'
 
-English:
-    1. Define `result: list[User]` with data from `FILE`
-    2. Use `pickle` module
-    3. Run doctests - all must succeed
+>>> from os import remove
+>>> remove(FILE)
 
-Polish:
-    1. Zdefiniuj `result: list[User]` z danymi z `FILE`
-    2. Użyj modułu `pickle`
-    3. Uruchom doctesty - wszystkie muszą się powieść
-
-Tests:
-    >>> import sys; sys.tracebacklimit = 0
-    >>> from pprint import pprint
-    >>> from os import remove
-
-    >>> pprint(result)
-    [('Mark', 'Watney', 1),
-     ('Melissa', 'Lewis', 3),
-     ('Rick', 'Martinez', 1),
-     ('Alex', 'Vogel', None),
-     ('Chris', 'Beck', 1),
-     ('Beth', 'Johanssen', 2)]
-
-    >>> remove(FILE)
+>>> from pprint import pprint
+>>> pprint(result)
+[('Mark', 'Watney', 1),
+ ('Melissa', 'Lewis', 3),
+ ('Rick', 'Martinez', 1),
+ ('Alex', 'Vogel', None),
+ ('Chris', 'Beck', 1),
+ ('Beth', 'Johanssen', 2)]
 """
+# endregion
 
+# region Show Imports
 import pickle
+# endregion
+
+# region Show Types
+result: list[tuple[str,str,int]]
+# endregion
 
 FILE = r'_temporary.pkl'
 
@@ -46,4 +41,16 @@ with open(FILE, mode='wb') as file:
         b'\x94\x8c\x04Beth\x94\x8c\tJohanssen\x94K\x02\x87\x94e.'
     )
 
+# English
+# 1. Define `result: list[User]` with data from `FILE`
+# 2. Use `pickle` module
+# 3. Run doctests - all must succeed
 
+# Polish
+# 1. Zdefiniuj `result: list[User]` z danymi z `FILE`
+# 2. Użyj modułu `pickle`
+# 3. Uruchom doctesty - wszystkie muszą się powieść
+
+# %% Your code
+
+result = pickle.load(open(FILE, 'rb'))

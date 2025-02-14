@@ -1,2 +1,0 @@
-
-result = json.dumps(DATA)

@@ -1,0 +1,1 @@
+result = pd.DataFrame(DATA, columns=COLUMNS)

@@ -1,0 +1,1 @@
+result = np.full_like(DATA, fill_value=2, shape=(3,3), dtype='int64')

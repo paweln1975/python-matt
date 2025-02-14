@@ -1,0 +1,1 @@
+result = np.linspace(0, 10)

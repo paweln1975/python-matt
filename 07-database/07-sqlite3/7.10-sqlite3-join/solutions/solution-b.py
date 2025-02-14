@@ -1,0 +1,5 @@
+SQL_CREATE_TABLE = """
+
+    CREATE TABLE
+
+"""

@@ -1,0 +1,1 @@
+result, was_crated = Customer.objects.update_or_create(firstname='John', lastname='Doe')

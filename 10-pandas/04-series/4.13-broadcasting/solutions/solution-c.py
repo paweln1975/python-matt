@@ -1,0 +1,1 @@
+result = A.add(B, fill_value=0.0)

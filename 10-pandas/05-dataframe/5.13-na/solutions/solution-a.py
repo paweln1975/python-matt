@@ -1,0 +1,1 @@
+result = DATA.dropna(how='any', axis='rows')
