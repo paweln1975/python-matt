@@ -55,7 +55,7 @@
 
 
 # %% Specjalne wstawki
-# - .. todo::
+#
 # %%
 
 
@@ -67,7 +67,7 @@
 
 
 
-# %% TODO
+# %%
 # %%
 
 
