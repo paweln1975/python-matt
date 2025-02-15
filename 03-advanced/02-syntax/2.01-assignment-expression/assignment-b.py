@@ -79,4 +79,8 @@ header, *lines = DATA.splitlines()
 # 4. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = [(firstname, lastname) for user in lines
+          if (userdata := user.split(','))
+          and (firstname := userdata[0])
+          and (lastname := userdata[1])
+          and int(age := userdata[2]) >= 40]

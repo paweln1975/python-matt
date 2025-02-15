@@ -88,4 +88,7 @@ cbeck:x:1005:1005:Chris Beck:/home/cbeck:/bin/bash"""
 # 6. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = [user for passwd_user in DATA.splitlines()
+          if (record := passwd_user.split(':'))
+          and (user:=record[0])
+          and 0 <= int(uid:=record[2]) < 1000]
