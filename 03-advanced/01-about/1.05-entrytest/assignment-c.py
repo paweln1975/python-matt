@@ -84,4 +84,15 @@ DOMAINS = ('esa.int', 'nasa.gov')
 # 3. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+def valid_email(email: str) -> bool:
+    """
+    >>> valid_email('ptwardowski@polsa.gov.pl')
+    False
+    >>> valid_email('mwatney@nasa.gov')
+    True
+    """
+    _, domain = email.split('@')
+    return domain in DOMAINS
+
+emails = (user['email'] for user in DATA['values'])
+result = list(filter(valid_email, emails))

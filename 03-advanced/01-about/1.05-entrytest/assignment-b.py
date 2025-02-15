@@ -83,4 +83,6 @@ DATA = [
 # 4. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+header = tuple(DATA[0].keys())
+rows = [tuple(row.values()) for row in DATA]
+result = [header, *rows]

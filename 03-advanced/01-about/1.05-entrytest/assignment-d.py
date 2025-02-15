@@ -93,4 +93,29 @@ DATA = """##
 # 7. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+def valid_line(line: str) -> bool:
+    """
+    >>> valid_line(" #")
+    False
+    >>> valid_line("  ")
+    False
+    >>> valid_line("#  ")
+    False
+    >>> valid_line("192.168.1.1")
+    True
+    """
+    line = line.strip()
+    return not (line.startswith('#') or line == '')
+
+def parse_line(line: str) -> dict[str, list[str]]:
+    """
+    >>> parse_line("10.13.37.1      nasa.gov esa.int")
+    {'ip': '10.13.37.1', 'hosts': ['nasa.gov', 'esa.int']}
+    >>> parse_line("127.0.0.1       localhost")
+    {'ip': '127.0.0.1', 'hosts': ['localhost']}
+    """
+    ip, *hosts = line.split()
+    return {'ip': ip, 'hosts': hosts}
+
+result = list(map(parse_line,
+                  filter(valid_line, DATA.splitlines())))

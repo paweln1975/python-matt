@@ -83,5 +83,5 @@ DATA = [
 # 3. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-headers, *row = DATA
-result = dict(zip(headers, row))
+headers, *rows = DATA
+result = [dict(zip(headers, row)) for row in rows]
