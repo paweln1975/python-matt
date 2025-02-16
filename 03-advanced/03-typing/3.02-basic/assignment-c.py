@@ -52,5 +52,5 @@ Tests:
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-a = 'hello'
-b = b'hello'
+a:str = 'hello'
+b:bytes = b'hello'

@@ -7,7 +7,7 @@ pylint
 tzdata
 
 ## Python/ADV
-# mypy
+mypy
 
 ## Python/TDD
 pytest

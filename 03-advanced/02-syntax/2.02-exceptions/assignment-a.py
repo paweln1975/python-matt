@@ -52,3 +52,6 @@ NegativeKelvinError: type[Exception]
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
+
+class NegativeKelvinError(Exception):
+    pass

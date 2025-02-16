@@ -52,5 +52,5 @@ Tests:
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-a = 1
-b = 1.0
+a:int = 1
+b:float = 1.0

@@ -101,4 +101,11 @@ class User:
 
 # %% Result
 def login(username, password):
-    ...
+    users = [(user, passwd) for user_item in DATA
+             if (user:=user_item['username'])
+             and user == username
+             and (passwd:=user_item['password'])
+             and passwd == password]
+    if len(users) == 1:
+        return User(username)
+    raise User.DoesNotExist

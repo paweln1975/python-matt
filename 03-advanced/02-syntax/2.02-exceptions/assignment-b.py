@@ -62,10 +62,11 @@ class NegativeKelvinError(Exception):
 # 3. Run doctests - all must succeed
 
 # Polish
-# 1. Sprawdź wartość `value` przekazaną do funckji `result`
+# 1. Sprawdź wartość `value` przekazaną do funkcji `result`
 # 2. Jeżeli `value` jest mniejsze niż 0, podnieś `NegativeKelvinError`
 # 3. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
 def result(value):
-    ...
+    if value < 0:
+        raise NegativeKelvinError('Negative value not allowed')

@@ -55,6 +55,6 @@ Tests:
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-a = True
-b = False
-c = None
+a: bool = True
+b: bool = False
+c: None = None

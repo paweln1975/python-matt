@@ -42,6 +42,14 @@ True
 ...     True
 True
 
+>>> hero = Hero('Mellisa Lewis')
+
+>>> try:
+...     hero.take_damage(10)
+... except hero.IsDead:
+...     True
+True
+
 Hints:
 `class`
 `pass`
@@ -51,8 +59,6 @@ Hints:
 """
 
 # %% SetUp
-
-Hero: type
 
 # English
 # 1. Modify `Hero` class
@@ -74,3 +80,9 @@ class Hero:
 
     def take_damage(self, damage):
         self.health -= damage
+        if self.health <= 0:
+            raise self.IsDead
+
+
+    class IsDead(Exception):
+        pass
