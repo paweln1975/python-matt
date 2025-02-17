@@ -1,3 +1,4 @@
+from typing import Final, Literal
 #!/usr/bin/env python3
 # https://python3.info/advanced/typing/advanced.html
 
@@ -31,7 +32,8 @@
 # - Since Python 3.8: :pep:591 -- Adding a final qualifier to typing
 # %%
 
-
+a: Final[int] = 10
+print(a)
 
 # %% Literal
 # - Since Python 3.8: :pep:586 -- Literal Types
@@ -40,7 +42,9 @@
 # - https://docs.python.org/3/library/typing.html#typing.Literal
 # %%
 
-
+groups: Literal['users', 'admins', 'others']
+groups = 'user'
+print(groups)
 
 # %% Any
 # %%

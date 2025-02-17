@@ -52,7 +52,7 @@ from typing import Literal
 # 4. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-data: ...
+data: Literal['users', 'staff', 'admins']
 
 # Do not modify lines below
 data = 'users'

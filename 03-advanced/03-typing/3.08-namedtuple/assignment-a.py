@@ -63,5 +63,7 @@ from typing import NamedTuple
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-class User:
-    ...
+class User(NamedTuple):
+    firstname: str
+    lastname: str
+    age: int

@@ -57,7 +57,7 @@ Tests:
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-data = [
+data: list[tuple[float | str, float | str, float | str, float | str, str]] = [
     ('sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'species'),
     (5.8, 2.7, 5.1, 1.9, 'virginica'),
     (5.1, 3.5, 1.4, 0.2, 'setosa'),

@@ -52,7 +52,7 @@ from typing import Any
 # 4. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-data: ...
+data: Any
 
 # Do not modify lines below
 data = 1

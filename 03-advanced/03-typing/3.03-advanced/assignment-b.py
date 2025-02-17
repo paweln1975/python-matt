@@ -52,7 +52,7 @@ Tests:
 # 4. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-data: ...
+data: int | None
 
 # Do not modify lines below
 data = 1

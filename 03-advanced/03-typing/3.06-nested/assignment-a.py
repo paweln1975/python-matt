@@ -53,7 +53,7 @@ Tests:
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-data = [
+data: list[list[int]] = [
     [1, 2, 3],
     [4, 5, 6],
     [7, 8, 9],

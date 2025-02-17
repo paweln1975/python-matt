@@ -66,5 +66,7 @@ from typing import TypedDict
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-class User:
-    ...
+class User(TypedDict):
+    firstname: str
+    lastname: str
+    age: int

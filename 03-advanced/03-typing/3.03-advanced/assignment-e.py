@@ -52,7 +52,7 @@ from typing import Final
 # 4. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-data: ...
+data: Final[int]
 
 # Do not modify lines below
 data = 1

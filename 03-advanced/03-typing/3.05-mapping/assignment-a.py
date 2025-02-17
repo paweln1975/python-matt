@@ -55,6 +55,6 @@ Tests:
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-a = {}
-b = {'firstname': 'Mark', 'lastname': 'Watney'}
-c = {'firstname': 'Mark', 'lastname': 'Watney', 'age': 41}
+a: dict = {}
+b: dict[str, str] = {'firstname': 'Mark', 'lastname': 'Watney'}
+c: dict[str, str|int] = {'firstname': 'Mark', 'lastname': 'Watney', 'age': 41}
