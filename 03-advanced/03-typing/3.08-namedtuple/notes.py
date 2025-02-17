@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # https://python3.info/advanced/typing/namedtuple.html
+from typing import NamedTuple
 
 
 # %% Typing NamedTuple
@@ -7,7 +8,16 @@
 # - NamedTuple is immutable.
 # %%
 
+class User(NamedTuple):
+    firstname: str
+    lastname: str
+    age: int | None = None
 
+
+user = User(firstname="John", lastname="Doe")
+print(user.firstname)
+print(user.lastname)
+print(user.age)
 
 # %% Problem
 # %%
