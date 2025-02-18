@@ -35,8 +35,9 @@ Tests:
 # %% SetUp
 
 from typing import Callable
-add: Callable[[int|float, int|float], int|float]
 
+type T = int | float
+add: Callable[[T, T], T]
 # English
 # 1. Modify definition of a function `add`
 # 2. Refactor type definition using Python 3.12 syntax,
@@ -50,5 +51,6 @@ add: Callable[[int|float, int|float], int|float]
 # 3. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-def add(a: int | float, b: int | float) -> int | float:
+
+def add(a: T, b: T) -> T:
     return a + b

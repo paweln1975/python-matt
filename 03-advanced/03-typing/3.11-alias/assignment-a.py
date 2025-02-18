@@ -48,5 +48,7 @@ add: Callable[[int|float, int|float], int|float]
 # 3. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-def add(a: int | float, b: int | float) -> int | float:
+
+type T = int | float
+def add(a: T, b: T) -> T:
     return a + b
