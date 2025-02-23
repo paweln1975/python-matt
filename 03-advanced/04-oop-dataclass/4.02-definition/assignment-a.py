@@ -58,4 +58,5 @@ User: type
 # %% Result
 @dataclass
 class User:
-    ...
+    firstname: str
+    lastname: str
