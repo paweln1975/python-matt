@@ -68,4 +68,9 @@ User: type
 # %% Result
 @dataclass
 class User:
-    ...
+    firstname: str
+    lastname: str
+    _email: str
+    _phone: str
+    __username: str
+    __password: str

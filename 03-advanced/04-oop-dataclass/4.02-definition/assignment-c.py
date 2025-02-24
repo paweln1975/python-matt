@@ -64,5 +64,7 @@ Point: type
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
+@dataclass
 class Point:
-    ...
+    x: int = 0
+    y: int = 0
