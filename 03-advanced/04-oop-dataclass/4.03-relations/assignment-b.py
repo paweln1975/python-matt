@@ -55,9 +55,9 @@ Pet(id=0, category=Category(id=0, name='dogs'), name='doggie',
 
 from dataclasses import dataclass
 
-Category: type
-Tag: type
-Pet: type
+# Category: type
+# Tag: type
+# Pet: type
 
 DATA = """
 {
@@ -115,9 +115,9 @@ class Tag:
 # %% Result
 @dataclass
 class Pet:
-    id: ...
-    category: ...
-    name: ...
-    photoUrls: ...
-    tags: ...
-    status: ...
+    id: int
+    category: Category
+    name: str
+    photoUrls: list[str]
+    tags: list[Tag]
+    status: str

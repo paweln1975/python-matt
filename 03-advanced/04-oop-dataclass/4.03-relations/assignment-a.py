@@ -78,4 +78,4 @@ class Point:
 # %% Result
 @dataclass
 class Path:
-    ...
+    points: list[Point]
