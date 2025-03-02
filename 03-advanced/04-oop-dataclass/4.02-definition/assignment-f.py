@@ -76,3 +76,7 @@ class User:
     age: int
     AGE_MIN: ClassVar[int] = 18
     AGE_MAX: ClassVar[int] = 65
+
+u = User('Kay', 'Last', 32)
+u.firstname = 'John'
+u.lastname = 'Doe'

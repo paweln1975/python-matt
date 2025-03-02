@@ -213,3 +213,9 @@ class User:
     is_staff: bool
     is_superuser: bool
     user_permissions: list[dict]
+
+    def __post_init__(self):
+        if isinstance(self.birthdate, str):
+            self.birthdate = datetime.fromisoformat(self.birthdate).date()
+        if isinstance(self.last_login, str):
+            self.last_login = datetime.fromisoformat(self.last_login)
