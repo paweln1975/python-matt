@@ -77,6 +77,13 @@ User: type
 # 4. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
+
+def default_groups():
+    return ['user', 'staff']
+
 @dataclass
 class User:
-    ...
+    firstname: str
+    lastname: str
+    groups: list[str] = field(default_factory=default_groups)
+

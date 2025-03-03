@@ -83,7 +83,12 @@ Hero: type
 # 5. Użyj `dataclass`
 # 6. Uruchom doctesty - wszystkie muszą się powieść
 
+def default_health():
+    return randint(50, 100)
+
+
 # %% Result
 @dataclass
 class Hero:
-    ...
+    name: str
+    health: int = field(default_factory=default_health)
