@@ -65,4 +65,4 @@ Tests:
 
 # %% Result
 class User:
-    ...
+    __slots__ = ('firstname', 'lastname')

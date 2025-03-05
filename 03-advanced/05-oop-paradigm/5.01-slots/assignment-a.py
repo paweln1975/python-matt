@@ -64,6 +64,12 @@ User: type
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-@dataclass
+@dataclass(slots=True)
 class User:
-    ...
+    firstname: str
+    lastname: str
+
+@dataclass(slots=True)
+class Admin(User):
+    pass
+

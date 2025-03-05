@@ -74,4 +74,5 @@ dump: Callable[[object], dict[str,Any]]
 
 # %% Result
 def dump(obj) -> dict:
-    ...
+    return {k: getattr(obj, k) for k in obj.__slots__}
+

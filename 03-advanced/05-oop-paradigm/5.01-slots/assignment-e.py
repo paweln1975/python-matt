@@ -110,4 +110,6 @@ class Iris:
         return {x:getattr(self,x) for x in self.__slots__}
 
     def __repr__(self):
-        ...
+        clsname = self.__class__.__name__
+        values = tuple(getattr(self, n) for n in self.__slots__)
+        return f'{clsname}{values}'
