@@ -1,0 +1,60 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+left to right direction
+
+actor Admin
+actor User
+
+package Application {
+    usecase (Search A Sample) as SS
+    usecase (Add A Sample) as AS
+    usecase (Modify A Sample) as MS
+    usecase (Delete A Sample) as SD
+
+    AS --> SS : <<includes>>
+    MS --> SS : <<includes>>
+    SD --> SS : <<includes>>
+}
+
+package Administration {
+    usecase (Add A User) as AU
+    usecase (Modify A User) as MU
+    usecase (Delete A User) as DU
+}
+
+User -> SS
+User -> AS
+User -> MS
+User -> SD
+
+
+
+Admin ---> AU
+
+
+note right of Admin : System administrator with\nspecial privileges
+
+note right of AS
+Possibility to add a new sample to database
+Preconditions: System available
+End condition: A sample is added to the database. It is possible to find a sample
+
+Scenario:
+1. Add new sample option is chosen
+2. A QR code from a sample is scanned by a scanner
+3. Information is parsed and displayed for verification
+4. Attributes to be saved:
+* Project
+* Date of production
+* Date of adding in database (CreateDate)
+
+Open issues:
+1.
+
+end note
+
+note "This note is connected\nto several objects." as N2
+User .. N2
+N2 .. Admin
+@enduml
