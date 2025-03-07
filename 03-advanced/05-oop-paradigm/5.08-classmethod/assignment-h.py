@@ -202,7 +202,10 @@ class Character:
 
     @classmethod
     def from_toml(cls, filename: str, name: str):
-        ...
+        with open(filename, 'rb') as f:
+            d = tomllib.load(f)
+
+        return cls(**d.get(name))
 
 class Fighter(Character):
     pass

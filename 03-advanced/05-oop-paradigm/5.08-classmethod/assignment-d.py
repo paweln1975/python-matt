@@ -87,7 +87,10 @@ class Animal:
 
     @classmethod
     def from_dict(cls, data: dict):
-        ...
+        if len(data) == 2:
+            return cls(**data)
+
+        return cls(english_name=data.get('english_name'), latin_name=None)
 
 class Cat(Animal):
     pass

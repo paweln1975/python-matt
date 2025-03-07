@@ -95,6 +95,13 @@ from_passwd: Callable[[type, str], object]
 # 4. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
+
+def convert(value):
+    try:
+        return int(value)
+    except ValueError:
+        return value
+
 class Account:
     def __init__(self, username, password, uid, gid, gecos, home, shell):
         self.username = username
@@ -107,7 +114,9 @@ class Account:
 
     @classmethod
     def from_passwd(cls, line: str):
-        ...
+        *values, = line.split(':')
+        values = [convert(value) for value in values]
+        return cls(*values)
 
 class SystemAccount(Account):
     pass

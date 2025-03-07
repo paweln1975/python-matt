@@ -84,7 +84,7 @@ class Book:
 
     @classmethod
     def from_tuple(cls, data: tuple[str,str]):
-        ...
+        return cls(*data)
 
 class ScienceFiction(Book):
     pass

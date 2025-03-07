@@ -92,11 +92,13 @@ from_csv: Callable[[type, str], object]
 # %% Result
 class CSVMixin:
     def to_csv(self) -> str:
-        ...
+        return ','.join(self.__dict__.values()) + '\n'
 
     @classmethod
     def from_csv(cls, line: str):
-        ...
+        firstname, lastname = line.strip().split(',')
+        return cls(firstname, lastname)
+
 
 @dataclass
 class User(CSVMixin):

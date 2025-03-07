@@ -93,6 +93,7 @@ Hints:
 # %% SetUp
 
 from datetime import datetime
+from time import tzname
 from zoneinfo import ZoneInfo
 
 from typing import Callable
@@ -130,7 +131,8 @@ class DateTime:
 
     @classmethod
     def from_datetime(cls, dt: datetime):
-        ...
+        zi = ZoneInfo(cls.tzname)
+        return cls(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second, zi)
 
 class UTC(DateTime):
     tzname = 'Etc/UTC'

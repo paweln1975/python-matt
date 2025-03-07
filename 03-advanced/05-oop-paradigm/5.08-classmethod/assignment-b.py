@@ -109,7 +109,9 @@ class Iris:
 
     @classmethod
     def from_csv(cls, line: str):
-        ...
+        *values, species = line.split(',')
+        values = map(float, values)
+        return cls(*values, species)
 
 class Setosa(Iris):
     pass

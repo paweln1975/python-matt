@@ -54,6 +54,8 @@ Hints:
 from datetime import datetime, timezone
 
 from typing import Callable
+from zoneinfo import ZoneInfo
+
 Timezone: type
 from_timestamp: Callable[[type, int], object]
 
@@ -83,7 +85,8 @@ class Timezone:
 
     @classmethod
     def from_timestamp(cls, timestamp: int):
-        ...
+        return cls(datetime.fromtimestamp(timestamp, timezone.utc))
+
 
 class CET(Timezone):
     tzname = 'Central European Time'

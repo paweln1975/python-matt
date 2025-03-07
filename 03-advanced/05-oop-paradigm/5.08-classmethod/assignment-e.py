@@ -89,7 +89,8 @@ class Movie:
 
     @classmethod
     def from_json(cls, string: str):
-        ...
+        data = json.loads(string)
+        return cls(**data)
 
 class ScienceFiction(Movie):
     pass
