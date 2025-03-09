@@ -87,10 +87,7 @@ Hero: type
 
 # %% Result
 @dataclass
-class Hero:
-    HEALTH_MIN: ClassVar[int] = 10
-    HEALTH_MAX: ClassVar[int] = 20
-    health: int = 0
+class PositionMixin:
     position_x: int = 0
     position_y: int = 0
 
@@ -106,6 +103,11 @@ class Hero:
     def position_get(self) -> tuple:
         return self.position_x, self.position_y
 
+@dataclass
+class HealthMixin:
+    HEALTH_MIN: ClassVar[int] = 10
+    HEALTH_MAX: ClassVar[int] = 20
+    health: int = 0
     def __post_init__(self) -> None:
         self.health = randint(self.HEALTH_MIN, self.HEALTH_MAX)
 
@@ -114,3 +116,10 @@ class Hero:
 
     def is_dead(self) -> bool:
         return self.health <= 0
+
+@dataclass
+class Hero(HealthMixin, PositionMixin):
+    pass
+
+
+
