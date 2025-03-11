@@ -91,4 +91,10 @@ class Iris:
 # 6. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+def factory(row):
+    *values, species = row
+    classname = species.capitalize()
+    cls = type(classname, (Iris,), {})
+    return cls(*values)
+
+result = list(map(factory, DATA[1:]))

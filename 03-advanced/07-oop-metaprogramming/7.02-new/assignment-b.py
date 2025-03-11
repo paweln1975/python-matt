@@ -78,6 +78,16 @@ bjohanssen:x:1004:1004:Beth Johanssen:/home/bjohanssen:/bin/bash
 cbeck:x:1005:1005:Chris Beck:/home/cbeck:/bin/bash"""
 
 @dataclass
+class Account:
+    def __new__(cls, uuid, username, *args, **kwargs):
+        if int(uuid) < 1000:
+            instance = SystemAccount(username)
+        else:
+            instance = UserAccount(username)
+
+        return instance
+
+@dataclass
 class SystemAccount:
     username: str
 
@@ -108,4 +118,7 @@ class UserAccount:
 # 5. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = []
+for line in DATA.splitlines():
+    username, _, uuid, *_ = line.split(':')
+    result.append(Account(uuid, username))

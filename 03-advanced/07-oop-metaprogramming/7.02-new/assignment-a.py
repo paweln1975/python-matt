@@ -59,4 +59,10 @@ __init__: Callable[[object, int, int], None]
 
 # %% Result
 class Point:
-    ...
+    def __new__(cls, x, y, *args, **kwargs):
+        instance = super().__new__(cls, *args, **kwargs)
+        return instance
+
+    def __init__(self, x, y, *args, **kwargs):
+        self.x = x
+        self.y = y
