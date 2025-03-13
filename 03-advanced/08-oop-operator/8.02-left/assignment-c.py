@@ -68,3 +68,6 @@ __matmul__: Callable[[object, object], object]
 class Vector:
     x: int
     y: int
+
+    def __matmul__(self, other):
+        return Vector(self.x * other.x, self.y * other.y)

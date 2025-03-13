@@ -38,6 +38,15 @@ Given an integer, perform the following conditional actions:
 
 >>> is_weird(26)
 'Not Weird'
+
+>>> arithmetic_operations(3, 5)
+8
+-2
+15
+
+>>> division_operations(3, 5)
+0
+0.6
 """
 
 def is_odd(n: int) -> bool:
@@ -54,3 +63,13 @@ def is_weird(n: int) -> str:
     elif not is_odd(n) and n > 20:
         weird = False
     return 'Weird' if weird else 'Not Weird'
+
+
+def arithmetic_operations(a, b):
+    print(a + b)
+    print(a - b)
+    print(a * b)
+
+def division_operations(a, b):
+    print(a // b)
+    print(a / b)

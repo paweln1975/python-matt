@@ -68,3 +68,6 @@ __mul__: Callable[[object, object], object]
 class Vector:
     x: int
     y: int
+
+    def __mul__(self, other) -> int:
+        return self.x * other.x + self.y * other.y

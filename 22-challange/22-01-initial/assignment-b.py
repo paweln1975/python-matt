@@ -21,26 +21,20 @@ def consume_iterator(iter):
 class FibonacciIterator:
 
     def __init__(self, n):
-        self.data = []
-        self.current = -1
-
-        if n == 1:
-            self.data.append(0)
-
-        if n >= 2:
-            self.data.append(0)
-            self.data.append(1)
-            for n in range(2, n):
-                self.data.append(self.data[-1]+self.data[-2])
+        self.n = n
+        self.current = 0
+        self.next = 1
+        self.count = 0
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        self.current += 1
-        if self.current < len(self.data):
-            return self.data[self.current]
-        else:
+        if self.count >= self.n:
             raise StopIteration
 
+        result = self.current
+        self.current, self.next = self.next, self.current + self.next
+        self.count += 1
 
+        return result

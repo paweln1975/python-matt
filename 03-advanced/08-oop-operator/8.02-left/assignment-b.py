@@ -68,3 +68,6 @@ __sub__: Callable[[object, object], object]
 class Vector:
     x: int
     y: int
+
+    def __sub__(self, other):
+        return Vector(x=self.x - other.x, y=self.y - other.y)

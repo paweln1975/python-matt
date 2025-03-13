@@ -16,6 +16,7 @@ classes: 2
 got: 2
 """
 import re
+from typing import OrderedDict
 
 DATA = """
 Most of the lists and dicts and stuff were fine for me…but when it got to Classes section (Python Code Challenges: Classes), WOW it got hard. The hints didn’t help - looked at the answers and re-read the prompt…wondering who in the world wrote it because it answered the obvious while skipped the parts that was NOT taught in the Class section before. Also I found actual spelling typos (like so was spelled “se” etc.)
@@ -24,20 +25,18 @@ num = 5
 
 
 def get_top(regexp: str, text: str, num, what = 'letters'):
-    result = {}
+    result: dict[str, int] = {}
     text = text.strip().lower()
     item_list = re.findall(regexp, text)
     for item in item_list:
         value = result.get(item, 0)
         result[item] = value + 1
-    result = dict(sorted(result.items(), key=lambda item: item[0]))
-    result = dict(sorted(result.items(), key=lambda item: item[1], reverse=True))
+    items = [(k, v) for k, v in result.items()]
+    sorted_items = sorted(items, key=lambda x: (-x[1], x[0]))
+    top_items = sorted_items[:num]
 
-
-    result = {k: v for i, (k, v) in enumerate(result.items()) if i < num}
     output = f'Top {num} {what}:\n'
-
-    for k, v in result.items():
+    for k, v in top_items:
         output += f'{k}: {v}\n'
 
     return output.rstrip()
