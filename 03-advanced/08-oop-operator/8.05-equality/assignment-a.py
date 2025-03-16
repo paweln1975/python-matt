@@ -47,6 +47,9 @@ False
 # %% SetUp
 
 from typing import Callable
+
+from mypy.typeops import false_only
+
 Mission: type
 __eq__: Callable[[object, object], bool]
 
@@ -65,3 +68,9 @@ class Mission:
     def __init__(self, year, name):
         self.year = year
         self.name = name
+
+    def __eq__(self, other):
+        if not isinstance(other, self.__class__):
+            return False
+        return self.year == other.year and self.name == other.name
+

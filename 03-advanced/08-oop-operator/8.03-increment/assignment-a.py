@@ -77,3 +77,9 @@ class User:
     firstname: str
     lastname: str
     groups: list[Group]
+
+    def __iadd__(self, other):
+        if isinstance(other, Group):
+            if not other in self.groups:
+                self.groups.append(other)
+        return self
