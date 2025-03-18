@@ -161,3 +161,7 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 !/venv/
+.idea/git_toolbox_blame.xml
+.idea/git_toolbox_prj.xml
+.vscode/launch.json
+.vscode/settings.json
