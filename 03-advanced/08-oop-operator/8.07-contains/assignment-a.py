@@ -80,6 +80,11 @@ class Group:
         self.gid = gid
         self.name = name
 
+    def __eq__(self, other):
+        if not isinstance(other, Group):
+            return False
+        return self.gid == other.gid and self.name == other.name
+
 class User:
     firstname: str
     lastname: str
@@ -89,3 +94,13 @@ class User:
         self.firstname = firstname
         self.lastname = lastname
         self.groups = groups
+
+    def __contains__(self, item):
+        if not isinstance(item, Group):
+            return False
+
+        for group in self.groups:
+            if group == item:
+                return True
+
+        return False
