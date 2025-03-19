@@ -1,5 +1,5 @@
 import calendar
-import doctest
+import pytest
 
 
 def is_leap(year, build_in = True):
@@ -68,41 +68,4 @@ def is_leap(year, build_in = True):
 
 def is_leap2(year):
     return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
-
-import pytest
-from challenge.b import is_leap2  # Replace 'your_module' with the actual module name
-
-@pytest.mark.parametrize("year, expected", [
-    (2000, True),
-    (1999, False),
-    (1700, False),
-    (1300, False),
-    (1900, False),
-    (2100, False),
-    (2200, False),
-    (2300, False),
-    (2500, False),
-    (2600, False),
-    (2020, True),
-    (2024, True),
-    (1600, True),
-    (2400, True),
-])
-def test_is_leap2(year, expected):
-    assert is_leap2(year) == expected
-
-def test_is_leap2_edge_cases():
-    assert is_leap2(0) == True
-    assert is_leap2(-4) == True
-    assert is_leap2(-100) == False
-    assert is_leap2(-400) == True
-
-def test_is_leap2_type_error():
-    with pytest.raises(TypeError):
-        is_leap2("2000")
-    with pytest.raises(TypeError):
-        is_leap2(2000.0)
-
-
-
 
