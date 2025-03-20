@@ -83,5 +83,9 @@
 # - https://youtu.be/eis11j_iGMs
 # %%
 
+add = lambda x, y: x + y
+t = [(x, x*2) for x in range(10)]
+m = [add(*values) for values in t]
+print(m)
 
 
