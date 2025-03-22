@@ -65,5 +65,5 @@ fib: Callable[[int], int]
 # 5. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-def fib():
-    ...
+def fib(n: int):
+    return 1 if n == 0 or n == 1 else fib(n-1) + fib(n-2)
