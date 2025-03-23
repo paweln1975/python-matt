@@ -27,18 +27,60 @@
 # %% Function Based Decorator
 # %%
 
+def my_cache(fun):
+    def wrapper(n):
+        if n not in wrapper.cache:
+            wrapper.cache[n] = fun(n)
+        return wrapper.cache[n]
+    wrapper.cache = {}
+    return wrapper
 
+@my_cache
+def factorial(n: int = 0):
+    print(f"Calculation {n}! for {n=}")
+    return 1 if n == 0 else n * factorial(n-1)
+
+print(factorial(10))
+print(factorial(5))
+print(factorial(5))
+print(factorial(5))
+print(factorial(2))
 
 # %% Class Based Decorator
 # %%
 
+class Cache(dict):
+    def __init__(self, fun):
+        self.fun = fun
 
+    def __call__(self, n: int = 0):
+        return self[n]
+
+    def __missing__(self, n: int = 0):
+        self[n] = self.fun(n)
+        return self[n]
+
+@Cache
+def fib(n: int):
+    print(f"Calculation fib({n}) for {n=}")
+    return 1 if n == 0 or n == 1 else fib(n-1) + fib(n-2)
+
+print(fib(5))
 
 # %% Functools Cache
 # - Cache with unlimited size
 # %%
+from functools import cache
 
+@cache
+def factorial(n: int = 0):
+    print(f"Second calculation {n}! for {n=}")
+    return 1 if n == 0 else n * factorial(n-1)
 
+print(factorial(15))
+print(factorial(10))
+
+print(factorial.cache_info())
 
 # %% Functools LRU Cache
 # - Least Recently Used
