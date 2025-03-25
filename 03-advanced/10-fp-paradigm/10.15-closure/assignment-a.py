@@ -86,4 +86,13 @@ def hello():
 # 10. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+def check(func: Callable):
+    def wrapper(*args, **kwargs):
+        return 'hello from wrapper'
+    return wrapper
+
+def hello():
+    return 'hello from function'
+result = check(hello)
+
+del check

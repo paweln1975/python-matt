@@ -60,4 +60,4 @@ def myfunc():
 
 # %% Result
 def run():
-    ...
+    return myfunc

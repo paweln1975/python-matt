@@ -56,5 +56,7 @@ check: Callable[[Callable], Callable]
 # 6. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-def check():
-    ...
+def check(func: Callable):
+    def wrapper(*args, **kwargs):
+        pass
+    return wrapper

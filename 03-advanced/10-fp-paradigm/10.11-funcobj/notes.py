@@ -27,7 +27,21 @@
 # %% Annotations
 # %%
 
+def parameter_printer(func):
+    argnames = func.__code__.co_varnames
+    def wrapper(*args, **kwargs):
+        arguments = dict(zip(argnames, args)) | kwargs
+        for argname, argvalue in arguments.items():
+            print(f'{argname}={argvalue}')
+        return func(*args, **kwargs)
+    return wrapper
 
+@parameter_printer
+def add(a, b):
+    print(a+b)
+
+add(1, 2)
+add(a=3, b=5)
 
 # %% Signature
 # %%

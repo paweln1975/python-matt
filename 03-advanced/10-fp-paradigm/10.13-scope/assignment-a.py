@@ -78,5 +78,5 @@ SELECT = {'setosa', 'versicolor'}
 # 4. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-def sumselected():
-    ...
+def sumselected(values, species):
+    return sum(values) if species in SELECT else 0
