@@ -27,14 +27,13 @@ Tests:
 'Python 3.10+ required'
 
 >>> from pathlib import Path
->>> basedir = Path('myproject')
-
+>>> basedir = Path('C:\\\\Users\\wz6l1y\\Projects\\python-matt\\django_project')
 >>> assert basedir.exists()
->>> assert (basedir/'manage.py').exists()
->>> assert (basedir/'myproject'/'settings.py').exists()
->>> assert (basedir/'myproject'/'asgi.py').exists()
->>> assert (basedir/'myproject'/'wsgi.py').exists()
->>> assert (basedir/'myproject'/'urls.py').exists()
+>>> assert basedir.joinpath('manage.py').exists()
+>>> assert basedir.joinpath('django_project\\settings.py').exists()
+>>> assert basedir.joinpath('django_project\\\\asgi.py').exists()
+>>> assert basedir.joinpath('django_project\\wsgi.py').exists()
+>>> assert basedir.joinpath('django_project\\\\urls.py').exists()
 
 """
 
@@ -49,3 +48,8 @@ Tests:
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
+
+from pathlib import Path
+basedir = Path('C:\\Users\\wz6l1y\\Projects\\python-matt\\django_project')
+print(basedir.exists())
+print(basedir.joinpath('django_project\\asgi.py').exists())

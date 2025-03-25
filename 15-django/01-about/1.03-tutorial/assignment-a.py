@@ -56,4 +56,4 @@ result: int
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = 1

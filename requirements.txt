@@ -19,11 +19,11 @@ pytest
 # tzdata
 # IPython
 # Pillow
-# django
-# django-ninja
-# django-debug-toolbar
-# django-extensions
-# pydotplus
+django
+django-ninja
+django-debug-toolbar
+django-extensions
+pydotplus
 # brew install graphviz
 # https://graphviz.org/download/
 

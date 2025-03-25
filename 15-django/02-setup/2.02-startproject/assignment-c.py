@@ -29,7 +29,7 @@ Tests:
 >>> import sqlite3
 
 >>> from pathlib import Path
->>> DATABASE = Path(__file__).parent.parent.parent / 'myproject' / 'db.sqlite3'
+>>> DATABASE = Path(__file__).parent.parent.parent.parent / 'django_project' / 'db.sqlite3'
 >>> SQL = 'SELECT date_joined FROM auth_user WHERE username="admin"'
 >>>
 >>> with sqlite3.connect(DATABASE) as db:
@@ -64,3 +64,6 @@ Tests:
 # - `Superuser created successfully`
 
 # %% Result
+from pathlib import Path
+DATABASE = Path(__file__).parent.parent.parent.parent / 'django_project' / 'db.sqlite3'
+print(DATABASE)

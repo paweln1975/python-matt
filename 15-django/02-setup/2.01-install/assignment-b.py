@@ -53,4 +53,6 @@ result: str
 # 3. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+import django
+result = django.__version__
+print(result)

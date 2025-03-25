@@ -27,7 +27,7 @@ Tests:
 'Python 3.10+ required'
 
 >>> from pathlib import Path
->>> basedir = Path('myproject')
+>>> basedir = Path('C:\\\\Users\\wz6l1y\\Projects\\python-matt\\django_project')
 
 >>> assert basedir.exists()
 >>> assert (basedir/'db.sqlite3').exists()
