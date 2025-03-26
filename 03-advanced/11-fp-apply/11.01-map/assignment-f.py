@@ -103,4 +103,15 @@ class Versicolor(Iris):
 # 4. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+
+def decoder(data):
+    match data:
+        case {"species":"virginica", **values}:
+            object = Virginica(**values)
+        case {"species": "setosa", **values}:
+            object = Setosa(**values)
+        case {"species": "versicolor", **values}:
+            object = Versicolor(**values)
+    return object
+
+result = map(decoder, json.loads(DATA))

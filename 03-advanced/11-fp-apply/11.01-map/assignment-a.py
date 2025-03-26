@@ -68,4 +68,4 @@ def cube(x):
 # 3. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = map(cube, DATA)

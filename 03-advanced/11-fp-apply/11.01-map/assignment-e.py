@@ -71,4 +71,9 @@ DATA = """5.8,2.7,5.1,1.9,virginica
 # 3. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+def parse_line(line: str) -> tuple[float | str]:
+    *values, species = line.split(',')
+    values_tuple = tuple(map(float, values))
+    return values_tuple + (species,)
+
+result = map(parse_line, DATA.splitlines())

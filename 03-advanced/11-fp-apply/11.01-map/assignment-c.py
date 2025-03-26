@@ -81,4 +81,5 @@ FORMATS = [
 # 3. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+
+result = map(datetime.strptime, DATA, FORMATS)
