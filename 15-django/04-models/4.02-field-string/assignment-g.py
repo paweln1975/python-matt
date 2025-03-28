@@ -59,4 +59,5 @@ Person: type
 
 # %% Result
 class Person(models.Model):
-    comment = models.TextField(verbose_name=_('Comment'), null=True, blank=True, default=None)
+    comment = models.TextField(verbose_name=_('Comment'), null=True, blank=True, default=None,
+                               validators=[MinLengthValidator(0), MaxLengthValidator(20)])

@@ -64,4 +64,14 @@ Person: type
 
 # %% Result
 class Person(models.Model):
-    firstname = ...
+    lastname = models.CharField(verbose_name=_('Lastname'), max_length=30, null=False, blank=False, db_index=True)
+    firstname = models.CharField(verbose_name=_('Firstname'), max_length=30, null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.lastname}, {self.firstname}'
+
+    class Meta:
+        app_label = 'demo'
+        verbose_name = _('Person')
+        verbose_name_plural = _('People')
+        ordering = ['lastname']
