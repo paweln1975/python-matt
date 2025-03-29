@@ -1,7 +1,7 @@
 """
 Name: Database ORM Create
 Difficulty: easy
-Lines: 2
+Lines: 1
 Minutes: 2
 
 License:
@@ -19,7 +19,7 @@ Exception can be granted only by the author
 Run:
 PyCharm: right-click in the editor and `Run Doctest in ...`
 PyCharm: keyboard shortcut `Control + Shift + F10`
-Terminal: `python -m doctest -v assignment-b.py`
+Terminal: `python -m doctest -v assignment-a.py`
 
 Tests:
 >>> import sys; sys.tracebacklimit = 0
@@ -27,38 +27,39 @@ Tests:
 'Python 3.10+ required'
 
 >>> result
-<Customer: John Doe>
+<Role: Cleaner>
 
->>> assert Customer.objects.filter(firstname='John', lastname='Doe').delete()
+>>> assert Role.objects.filter(name='Cleaner').delete()
 
 Hints:
-`.save()`
+`.create()`
 
 """
 
 # %% SetUp
 
-import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'myproject.settings'
+import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'django_project.settings'
 import django; django.setup()
-from shop.models import Customer
+from demo.models import Role
 
-result: Customer
+result: Role
 
 # English
 # 0. Use `myproject.shop`
-# 1. Define variable `result` with result of
-#    create a new `Customer` model instance with:
+# 1. Define variable `result` with result of ORM call for
+#    create a new `Customer`:
 #    - firstname: John
 #    - lastname: Doe
-# 2. Use `.save()` method to add it do database
+# 2. Use `.create()` method
 
 # Polish
 # 0. Użyj `myproject.shop`
-# 1. Zdefiniuj zmienną `result` z wynikiem
-#    stworzenia nowej instancji modelu `Customer` z:
+# 1. Zdefiniuj zmienną `result` z wynikiem zapytania ORM dla
+#    stworzenia nowego `Customer`:
 #    - firstname: John
 #    - lastname: Doe
-# 2. Użyj metody `.save()` aby dodać go do bazy danych
+# 2. Użyj metody `.create()`
 
 # %% Result
-result = ...
+result = Role(name='Cleaner', comment='Cleaner')
+result.save()

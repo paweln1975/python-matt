@@ -30,38 +30,25 @@ Tests:
 
 # %% SetUp
 
-import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'myproject.settings'
+import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'django_project.settings'
+
+# get the current working directory
+current_working_directory = os.getcwd()
+
+# print output to the console
+print(current_working_directory)
+
 import django; django.setup()
-from shop.models import Product
+from demo.models import Role
 
-Product.objects.all().delete()
 
-PRODUCTS = [
-    {"barcode": "5039271113244", "name": "Alfa", "price": "123.00"},
-    {"barcode": "5202038482222", "name": "Bravo", "price": "312.22"},
-    {"barcode": "5308443764554", "name": "Charlie", "price": "812.00"},
-    {"barcode": "5439667086587", "name": "Delta", "price": "332.18"},
-    {"barcode": "5527865721147", "name": "Echo", "price": "114.00"},
-    {"barcode": "5535686226512", "name": "Foxtrot", "price": "99.12"},
-    {"barcode": "5721668602638", "name": "Golf", "price": "123.00"},
-    {"barcode": "5776136485596", "name": "Hotel", "price": "444.40"},
-    {"barcode": "5863969679442", "name": "India", "price": "674.21"},
-    {"barcode": "5908105406923", "name": "Juliet", "price": "324.00"},
-    {"barcode": "5957751061635", "name": "Kilo", "price": "932.20"},
-    {"barcode": "6190780033092", "name": "Lima", "price": "128.00"},
-    {"barcode": "6512625994397", "name": "Mike", "price": "91.00"},
-    {"barcode": "6518235371269", "name": "November", "price": "12.00"},
-    {"barcode": "6565923118590", "name": "Oscar", "price": "43.10"},
-    {"barcode": "6650630136545", "name": "Papa", "price": "112.00"},
-    {"barcode": "6692669560199", "name": "Quebec", "price": "997.10"},
-    {"barcode": "6711341590108", "name": "Romeo", "price": "1337.00"},
-    {"barcode": "6816011714454", "name": "Sierra", "price": "998.10"},
-    {"barcode": "7050114819954", "name": "Tango", "price": "123.00"},
-    {"barcode": "7251625012784", "name": "Uniform", "price": "564.99"},
-    {"barcode": "7251925199277", "name": "Victor", "price": "990.50"},
-    {"barcode": "7283004100423", "name": "Whisky", "price": "881.89"},
-    {"barcode": "7309682004683", "name": "X-Ray", "price": "123.63"},
-    {"barcode": "7324670042560", "name": "Zulu", "price": "311.00"}
+
+Role.objects.all().delete()
+
+ROLES = [
+    {"name": "Admin", "comment": "Alfa"},
+    {"name": "User", "comment": "Bravo"},
+    {"name": "Root", "comment": "Charlie"}
 ]
 
 # English
@@ -81,3 +68,6 @@ PRODUCTS = [
 #    - Nie instaluj ani nie używaj dodatkowych pakietów
 
 # %% Result
+
+for role in ROLES:
+    Role.objects.create(**role)

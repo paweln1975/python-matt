@@ -27,9 +27,9 @@ Tests:
 'Python 3.10+ required'
 
 >>> result
-<Customer: John Doe>
+<Role: Cleaner>
 
->>> assert Customer.objects.filter(firstname='John', lastname='Doe').delete()
+>>> assert Role.objects.filter(name='Cleaner').delete()
 
 Hints:
 `.create()`
@@ -38,11 +38,11 @@ Hints:
 
 # %% SetUp
 
-import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'myproject.settings'
+import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'django_project.settings'
 import django; django.setup()
-from shop.models import Customer
+from demo.models import Role
 
-result: Customer
+result: Role
 
 # English
 # 0. Use `myproject.shop`
@@ -61,4 +61,4 @@ result: Customer
 # 2. Użyj metody `.create()`
 
 # %% Result
-result = ...
+result = Role.objects.create(name='Cleaner', comment='Cleaner')

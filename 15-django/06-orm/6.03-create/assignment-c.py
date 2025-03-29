@@ -65,4 +65,5 @@ result: Customer
 #    a potrzebny jest tylko `Customer`
 
 # %% Result
-result = ...
+result = Role(name='Cleaner', comment='Cleaner')
+result.save()
