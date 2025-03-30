@@ -29,14 +29,14 @@ Tests:
 >>> assert result is not Ellipsis, \
 'Assign your result to variable `result`'
 
->>> john = Customer.objects.filter(firstname='John', lastname='Doe')
->>> jane = Customer.objects.filter(firstname='Jane', lastname='Doe')
+>>> john = Person.objects.filter(firstname='John', lastname='Doe')
+>>> jane = Person.objects.filter(firstname='Jane', lastname='Doe')
 
 >>> assert not john.exists()
 >>> assert jane.exists()
 
->>> assert jane.delete()
->>> assert john.delete()
+# >>> assert jane.delete()
+# >>> assert john.delete()
 
 Hints:
 `.get()`
@@ -46,13 +46,13 @@ Hints:
 
 # %% SetUp
 
-import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'myproject.settings'
+import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'django_project.settings'
 import django; django.setup()
-from shop.models import Customer
+from demo.models import Person
 
-result: Customer
+result: Person
 
-Customer.objects.create(firstname='John', lastname='Doe')
+Person.objects.create(firstname='John', lastname='Doe')
 
 # English
 # 0. Use `myproject.shop`
@@ -69,4 +69,6 @@ Customer.objects.create(firstname='John', lastname='Doe')
 # 3. Użyj metody `.save()`
 
 # %% Result
-result = ...
+result = Person.objects.get(firstname='John', lastname='Doe')
+result.firstname = 'Jane'
+result.save()

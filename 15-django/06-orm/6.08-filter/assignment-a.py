@@ -35,7 +35,13 @@ Tests:
 
 >>> from pprint import pprint
 >>> pprint(result)
-<QuerySet [<Customer: Mark Watney>]>
+<QuerySet [<Person: Mark Watney>]>
+
+>>> Person.objects.all().delete()
+(6, {'demo.Person': 6})
+
+>>> Person.objects.all().count()
+0
 
 Hints:
 `.filter()`
@@ -44,11 +50,21 @@ Hints:
 
 # %% SetUp
 
-import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'myproject.settings'
+import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'django_project.settings'
 import django; django.setup()
 from django.db.models import QuerySet
-from shop.models import Customer
+from demo.models import Person
 
+persons = [
+    Person(firstname='Mark', lastname='Watney'),
+    Person(firstname='Melissa', lastname='Lewis'),
+    Person(firstname='Rick', lastname='Martinez'),
+    Person(firstname='Alex', lastname='Vogel'),
+    Person(firstname='Beth', lastname='Johanssen'),
+    Person(firstname='Chris', lastname='Beck'),
+]
+
+Person.objects.bulk_create(persons)
 result: QuerySet
 
 # English
@@ -64,4 +80,4 @@ result: QuerySet
 #    Gdzie `firstname` to `Mark`
 
 # %% Result
-result = ...
+result = Person.objects.filter(firstname='Mark')

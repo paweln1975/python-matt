@@ -19,7 +19,7 @@ Exception can be granted only by the author
 Run:
 PyCharm: right-click in the editor and `Run Doctest in ...`
 PyCharm: keyboard shortcut `Control + Shift + F10`
-Terminal: `python -m doctest -v assignment-d.py`
+Terminal: `python -m doctest -v assignment-a.py`
 
 Tests:
 >>> import sys; sys.tracebacklimit = 0
@@ -28,32 +28,43 @@ Tests:
 
 >>> assert result is not Ellipsis, \
 'Assign your result to variable `result`'
->>> assert type(result) is Customer, \
-'Variable `result` has invalid type, should be Customer'
 
->>> from pprint import pprint
->>> pprint(result)
-<Customer: Mark Watney>
+>>> from django.db.models.query import QuerySet
+>>> assert type(result) is Person, \
+'Variable `result` has invalid type, should be Person'
+
+>>> result
+<Person: Chris Beck>
+
+>>> Person.objects.all().delete()
+(6, {'demo.Person': 6})
+
+>>> Person.objects.all().count()
+0
 
 Hints:
-`.all()`
-getitem
+`.filter()`
 
 """
 
 # %% SetUp
 
-import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'myproject.settings'
+import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'django_project.settings'
 import django; django.setup()
-from shop.models import Customer
+from django.db.models import QuerySet
+from demo.models import Person
 
-result: Customer
+persons = [
+    Person(firstname='Mark', lastname='Watney'),
+    Person(firstname='Melissa', lastname='Lewis'),
+    Person(firstname='Rick', lastname='Martinez'),
+    Person(firstname='Alex', lastname='Vogel'),
+    Person(firstname='Beth', lastname='Johanssen'),
+    Person(firstname='Chris', lastname='Beck'),
+]
 
-# English
-# 0. Use `myproject.shop`
-# 1. Define variable `result` with result of ORM call for:
-#    Select first Customer
-# 2. Do not use `first()` method
+Person.objects.bulk_create(persons)
+result: QuerySet
 
 # Polish
 # 0. Użyj `myproject.shop`
@@ -61,5 +72,7 @@ result: Customer
 #    Wybierz pierwszego klienta
 # 2. Nie używaj metody `first()`
 
+
 # %% Result
-result = ...
+result = Person.objects.all()[0]
+

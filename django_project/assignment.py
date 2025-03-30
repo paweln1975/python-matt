@@ -1,8 +1,8 @@
 """
-Name: Database ORM Create
+Name: Database ORM Filter
 Difficulty: easy
 Lines: 1
-Minutes: 2
+Minutes: 3
 
 License:
 Copyright 2025, Matt Harasymczuk <matt@python3.info>
@@ -26,15 +26,21 @@ Tests:
 >>> assert sys.version_info >= (3, 10), \
 'Python 3.10+ required'
 
+>>> assert result is not Ellipsis, \
+'Assign your result to variable `result`'
+
+>>> from django.db.models.query import QuerySet
+>>> assert type(result) is QuerySet, \
+'Variable `result` has invalid type, should be QuerySet'
+
 >>> result
-[<Role: Cleaner>, <Role: Trainer>]
+<QuerySet [<Person: Mark Watney>]>
 
->>> assert Role.objects.filter(name='Cleaner').delete()
->>> assert Role.objects.filter(name='Trainer').delete()
-
+>>> Person.objects.all().count()
+6
 
 Hints:
-`.create()`
+`.filter()`
 
 """
 
@@ -42,30 +48,34 @@ Hints:
 
 import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'django_project.settings'
 import django; django.setup()
-from demo.models import Role
+from django.db.models import Q
+from django.db.models import QuerySet
+from demo.models import Person
 
-result: Role
+persons = [
+    Person(firstname='Mark', lastname='Watney'),
+    Person(firstname='Melissa', lastname='Lewis'),
+    Person(firstname='Rick', lastname='Martinez'),
+    Person(firstname='Alex', lastname='Vogel'),
+    Person(firstname='Beth', lastname='Johanssen'),
+    Person(firstname='Chris', lastname='Beck'),
+]
 
-# English
-# 0. Use `myproject.shop`
-# 1. Define variable `result` with result of ORM call for
-#    create a new `Customer`:
-#    - firstname: John
-#    - lastname: Doe
-# 2. Use `.create()` method
+Person.objects.bulk_create(persons)
+result: QuerySet
 
 # Polish
 # 0. Użyj `myproject.shop`
-# 1. Zdefiniuj zmienną `result` z wynikiem zapytania ORM dla
-#    stworzenia nowego `Customer`:
-#    - firstname: John
-#    - lastname: Doe
-# 2. Użyj metody `.create()`
+# 1. Zdefiniuj zmienną `result` z wynikiem zapytania ORM dla:
+#    Wybierz wszystkich klientów
+#    Gdzie `firstname` is `Mark` And `lastname` is `Watney`
+#    Lub `firstname` is `Melissa` And `lastname` is `Lewis`
+# 2. Użyj obiektu `Q``
+
 
 # %% Result
-roles_list = [
-    Role(name='Cleaner', comment='Cleaner'),
-    Role(name='Trainer', comment='Trainer')
-]
-result = Role.objects.bulk_create(roles_list)
+mark = Q(firstname='Mark')
+watney = Q(firstname='Watney')
+result = Person.objects.filter(mark | watney)
+
 

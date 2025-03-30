@@ -19,7 +19,7 @@ Exception can be granted only by the author
 Run:
 PyCharm: right-click in the editor and `Run Doctest in ...`
 PyCharm: keyboard shortcut `Control + Shift + F10`
-Terminal: `python -m doctest -v assignment-b.py`
+Terminal: `python -m doctest -v assignment-a.py`
 
 Tests:
 >>> import sys; sys.tracebacklimit = 0
@@ -35,7 +35,13 @@ Tests:
 
 >>> from pprint import pprint
 >>> pprint(result)
-<QuerySet [<Customer: Mark Watney>]>
+<QuerySet [<Person: Mark Watney>]>
+
+>>> Person.objects.all().delete()
+(6, {'demo.Person': 6})
+
+>>> Person.objects.all().count()
+0
 
 Hints:
 `.filter()`
@@ -44,11 +50,21 @@ Hints:
 
 # %% SetUp
 
-import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'myproject.settings'
+import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'django_project.settings'
 import django; django.setup()
 from django.db.models import QuerySet
-from shop.models import Customer
+from demo.models import Person
 
+persons = [
+    Person(firstname='Mark', lastname='Watney'),
+    Person(firstname='Melissa', lastname='Lewis'),
+    Person(firstname='Rick', lastname='Martinez'),
+    Person(firstname='Alex', lastname='Vogel'),
+    Person(firstname='Beth', lastname='Johanssen'),
+    Person(firstname='Chris', lastname='Beck'),
+]
+
+Person.objects.bulk_create(persons)
 result: QuerySet
 
 # English
@@ -56,14 +72,12 @@ result: QuerySet
 # 1. Define variable `result` with result of ORM call for:
 #    Select all Customers
 #    Where `firstname` is `Mark`
-#    And `lastname` is `Watney`
 
 # Polish
 # 0. Użyj `myproject.shop`
 # 1. Zdefiniuj zmienną `result` z wynikiem zapytania ORM dla:
 #    Wybierz wszystkich klientów
 #    Gdzie `firstname` to `Mark`
-#    Oraz `lastname` to `Watney`
 
 # %% Result
-result = ...
+result = Person.objects.filter(firstname='Mark', lastname='Watney')

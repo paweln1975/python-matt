@@ -19,7 +19,7 @@ Exception can be granted only by the author
 Run:
 PyCharm: right-click in the editor and `Run Doctest in ...`
 PyCharm: keyboard shortcut `Control + Shift + F10`
-Terminal: `python -m doctest -v assignment-c.py`
+Terminal: `python -m doctest -v assignment-a.py`
 
 Tests:
 >>> import sys; sys.tracebacklimit = 0
@@ -35,28 +35,37 @@ Tests:
 
 >>> from pprint import pprint
 >>> pprint(result)
-<QuerySet [<Customer: Melissa Lewis>, <Customer: Rick Martinez>, <Customer: Alex Vogel>, <Customer: Beth Johanssen>, <Customer: Chris Beck>]>
+<QuerySet [<Person: Alex Vogel>, <Person: Beth Johanssen>, <Person: Chris Beck>, <Person: Melissa Lewis>, <Person: Rick Martinez>]>
+
+>>> Person.objects.all().delete()
+(6, {'demo.Person': 6})
+
+>>> Person.objects.all().count()
+0
 
 Hints:
-`.exclude()`
+`.filter()`
 
 """
 
 # %% SetUp
 
-import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'myproject.settings'
+import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'django_project.settings'
 import django; django.setup()
 from django.db.models import QuerySet
-from shop.models import Customer
+from demo.models import Person
 
+persons = [
+    Person(firstname='Mark', lastname='Watney'),
+    Person(firstname='Melissa', lastname='Lewis'),
+    Person(firstname='Rick', lastname='Martinez'),
+    Person(firstname='Alex', lastname='Vogel'),
+    Person(firstname='Beth', lastname='Johanssen'),
+    Person(firstname='Chris', lastname='Beck'),
+]
+
+Person.objects.bulk_create(persons)
 result: QuerySet
-
-# English
-# 0. Use `myproject.shop`
-# 1. Define variable `result` with result of ORM call for:
-#    Select all Customers
-#    Where `firstname` is not `Mark`
-#    And `lastname` is not `Watney`
 
 # Polish
 # 0. Użyj `myproject.shop`
@@ -65,5 +74,10 @@ result: QuerySet
 #    Gdzie `firstname` to nie `Mark`
 #    Oraz `lastname` to nie `Watney`
 
+
 # %% Result
-result = ...
+result = Person.objects \
+         .exclude(firstname='Mark') \
+         .exclude(lastname='Watney') \
+         .order_by('firstname', 'lastname')
+

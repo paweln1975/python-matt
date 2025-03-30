@@ -34,8 +34,8 @@ Tests:
 >>> result
 1
 
->>> john = Customer.objects.filter(firstname='John', lastname='Doe')
->>> jane = Customer.objects.filter(firstname='Jane', lastname='Doe')
+>>> john = Person.objects.filter(firstname='John', lastname='Doe')
+>>> jane = Person.objects.filter(firstname='Jane', lastname='Doe')
 
 >>> assert not john.exists()
 >>> assert jane.exists()
@@ -51,13 +51,13 @@ Hints:
 
 # %% SetUp
 
-import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'myproject.settings'
+import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'django_project.settings'
 import django; django.setup()
-from shop.models import Customer
+from demo.models import Person
 
 result: int
 
-Customer.objects.create(firstname='John', lastname='Doe')
+Person.objects.create(firstname='John', lastname='Doe')
 
 # English
 # 0. Use `myproject.shop`
@@ -74,4 +74,4 @@ Customer.objects.create(firstname='John', lastname='Doe')
 # 2. Użyj metody `.update()`
 
 # %% Result
-result = ...
+result = Person.objects.filter(firstname='John', lastname='Doe').update(firstname='Jane')

@@ -1,0 +1,22 @@
+{% extends "page.html" %};.l
+{% load static %}
+
+{% block page_title %}
+All Persons
+{% endblock %}
+
+{% block css_styles %}
+<link rel="stylesheet" href="{% static 'blog/post.css' %}">
+<link rel="stylesheet" href="{% static 'blog/all-posts.css' %}">
+{% endblock %}
+
+{% block content %}
+<section id="all-persons">
+    <h2>Persons</h2>
+    <ul>
+        {% for person in persons %}
+            <li> {{ person.firstname }} {{ person.lastname }}</li>
+        {% endfor  %}
+    </ul>
+</section>
+{% endblock %}

@@ -1,5 +1,5 @@
 """
-Name: Database ORM Q
+Name: Database ORM Filter
 Difficulty: easy
 Lines: 1
 Minutes: 3
@@ -33,33 +33,39 @@ Tests:
 >>> assert type(result) is QuerySet, \
 'Variable `result` has invalid type, should be QuerySet'
 
->>> from pprint import pprint
->>> pprint(result)
-<QuerySet [<Customer: Mark Watney>, <Customer: Melissa Lewis>]>
+>>> result
+<QuerySet [<Person: Mark Watney>]>
+
+>>> Person.objects.all().delete()
+(6, {'demo.Person': 6})
+
+>>> Person.objects.all().count()
+0
 
 Hints:
-`Q()`
-`|` - or
 `.filter()`
 
 """
 
 # %% SetUp
 
-import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'myproject.settings'
+import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'django_project.settings'
 import django; django.setup()
-from django.db.models import QuerySet, Q
-from shop.models import Customer
+from django.db.models import Q
+from django.db.models import QuerySet
+from demo.models import Person
 
+persons = [
+    Person(firstname='Mark', lastname='Watney'),
+    Person(firstname='Melissa', lastname='Lewis'),
+    Person(firstname='Rick', lastname='Martinez'),
+    Person(firstname='Alex', lastname='Vogel'),
+    Person(firstname='Beth', lastname='Johanssen'),
+    Person(firstname='Chris', lastname='Beck'),
+]
+
+Person.objects.bulk_create(persons)
 result: QuerySet
-
-# English
-# 0. Use `myproject.shop`
-# 1. Define variable `result` with result of ORM call for:
-#    Select all Customers
-#    Where `firstname` is `Mark` And `lastname` is `Watney`
-#    Or `firstname` is `Melissa` And `lastname` is `Lewis`
-# 2. Use `Q` object
 
 # Polish
 # 0. Użyj `myproject.shop`
@@ -67,7 +73,12 @@ result: QuerySet
 #    Wybierz wszystkich klientów
 #    Gdzie `firstname` is `Mark` And `lastname` is `Watney`
 #    Lub `firstname` is `Melissa` And `lastname` is `Lewis`
-# 2. Użyj obiektu `Q`
+# 2. Użyj obiektu `Q``
+
 
 # %% Result
-result = ...
+mark = Q(firstname='Mark')
+watney = Q(firstname='Watney')
+result = Person.objects.filter(mark | watney)
+
+

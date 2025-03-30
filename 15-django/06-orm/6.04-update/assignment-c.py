@@ -28,13 +28,13 @@ Tests:
 
 >>> assert result is not Ellipsis, \
 'Assign your result to variable `result`'
->>> assert type(result) is Customer, \
-'Variable `result` has invalid type, should be Customer'
+>>> assert type(result) is Person, \
+'Variable `result` has invalid type, should be Person'
 
 >>> result
-<Customer: John Doe>
+<Person: John Doe>
 
->>> john = Customer.objects.filter(firstname='John', lastname='Doe')
+>>> john = Person.objects.filter(firstname='John', lastname='Doe')
 >>> assert john.exists()
 >>> assert john.delete()
 
@@ -45,13 +45,13 @@ Hints:
 
 # %% SetUp
 
-import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'myproject.settings'
+import os; os.environ['DJANGO_SETTINGS_MODULE'] = 'django_project.settings'
 import django; django.setup()
-from shop.models import Customer
+from demo.models import Person
 
-result: Customer
+result: Person
 
-Customer.objects.create(firstname='John', lastname='Doe')
+Person.objects.create(firstname='John', lastname='Doe')
 
 # English
 # 0. Use `myproject.shop`
@@ -72,4 +72,4 @@ Customer.objects.create(firstname='John', lastname='Doe')
 #    a potrzebny jest tylko `Customer`
 
 # %% Result
-result = ...
+result, was_created = Person.objects.filter(firstname='John', lastname='Doe').update_or_create(firstname='John', lastname='Doe')

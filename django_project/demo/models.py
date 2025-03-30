@@ -90,7 +90,7 @@ class Person(BaseModel):
         return super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'{self.lastname}, {self.firstname}'
+        return f'{self.firstname} {self.lastname}'
 
     class Meta:
         app_label = 'demo'
