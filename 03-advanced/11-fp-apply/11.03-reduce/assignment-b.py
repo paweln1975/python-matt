@@ -67,4 +67,13 @@ myreduce: Callable[[Callable, tuple|list], object]
 
 # %% Result
 def myreduce(function, iterable):
-    ...
+    index = 0
+    i = iterable[index]
+    index += 1
+    lenght = len(iterable)
+    while index < lenght:
+        j = iterable[index]
+        result = function(i, j)
+        i = result
+        index += 1
+    return result

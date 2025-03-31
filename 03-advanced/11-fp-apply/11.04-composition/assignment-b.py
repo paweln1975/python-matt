@@ -63,4 +63,4 @@ DATA = filter(even, NUMBERS)
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = len(list(DATA))

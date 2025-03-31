@@ -63,4 +63,5 @@ DATA = filter(even, NUMBERS)
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+DATA = list(DATA)
+result = sum(DATA)/len(DATA)

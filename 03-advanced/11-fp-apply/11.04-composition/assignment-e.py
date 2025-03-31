@@ -103,4 +103,4 @@ def transform(line):
 # 4. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = tuple(map(transform, filter(is_valid, map(str.strip, DATA.splitlines()))))
