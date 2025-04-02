@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DetailView
 from django.views.generic import ListView
 from demo.models import Person
 
@@ -16,3 +15,8 @@ class PersonsList(ListView):
         base_query = super().get_queryset()
         data = base_query.order_by('lastname', 'firstname')
         return data
+
+class PersonDetailView(DetailView):
+    model = Person
+    template_name = "person.html"
+    context_object_name = 'person'

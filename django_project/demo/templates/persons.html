@@ -6,8 +6,7 @@ All Persons
 {% endblock %}
 
 {% block css_styles %}
-<link rel="stylesheet" href="{% static 'blog/post.css' %}">
-<link rel="stylesheet" href="{% static 'blog/all-posts.css' %}">
+
 {% endblock %}
 
 {% block content %}
@@ -15,7 +14,7 @@ All Persons
     <h2>Persons</h2>
     <ul>
         {% for person in persons %}
-            <li> {{ person.firstname }} {{ person.lastname }}</li>
+            <li><a href="/demo/person/{{ person.id }}">{{ person.firstname }} {{ person.lastname }}</a></li>
         {% endfor  %}
     </ul>
 </section>

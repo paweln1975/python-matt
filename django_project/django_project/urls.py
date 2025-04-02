@@ -18,9 +18,11 @@ from django.contrib import admin
 from django.urls import path
 from demo.views import IndexView
 from demo.views import PersonsList
+from demo.views import PersonDetailView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('demo/index', IndexView.as_view(), name='demo-index-cbv'),
     path('demo/persons', PersonsList.as_view(), name='demo-persons-list' ),
+    path('demo/person/<int:pk>', PersonDetailView.as_view(), name='demo-person-detail')
 ]
 
