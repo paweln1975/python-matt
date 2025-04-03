@@ -12,8 +12,9 @@ All Persons
 {% block content %}
 <section id="person-detail">
     <h2>Person</h2>
-    <p>
-        Name: {{ person.firstname }} {{ person.lastname }}
-    </p>
+    <form method="post"> {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Update">
+    </form>
 </section>
 {% endblock %}

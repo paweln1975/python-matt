@@ -1,0 +1,20 @@
+{% extends "page.html" %};.l
+{% load static %}
+
+{% block page_title %}
+All Persons
+{% endblock %}
+
+{% block css_styles %}
+
+{% endblock %}
+
+{% block content %}
+<section id="person-detail">
+    <h2>Person</h2>
+    <form method="post"> {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save">
+    </form>
+</section>
+{% endblock %}

@@ -4,6 +4,7 @@ from django.core.validators import MinLengthValidator, MaxLengthValidator
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.text import slugify
 from django.core.exceptions import ValidationError
+from django.urls import reverse
 
 # Create your models here.
 class BaseModel(models.Model):
@@ -68,6 +69,9 @@ class Person(BaseModel):
                                    default=Currency.PLN, choices=Currency)
     roles = models.ManyToManyField(verbose_name=_('Roles'), to='Role', related_name='persons', blank=True)
 
+    def get_absolute_url(self):
+        return reverse("demo-person-detail", kwargs={"pk": self.pk})
+
     @staticmethod
     def add(firstname, lastname):
         person = Person(firstname=firstname, lastname=lastname)
@@ -97,6 +101,7 @@ class Person(BaseModel):
         verbose_name = _('Person')
         verbose_name_plural = _('People')
         ordering = ['lastname']
+
 
 class Address(models.Model):
     street = models.CharField(verbose_name=_('Street'), max_length=20, null=True, blank=True, default=None)
