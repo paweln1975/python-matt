@@ -2,20 +2,28 @@ from django.views.generic import TemplateView, DetailView, UpdateView, DeleteVie
 from django.views.generic import ListView
 from demo.models import Person
 from django.urls import reverse_lazy
+from tools.logger_ext import *
+
 
 # Create your views here.
-class IndexView(TemplateView):
+class IndexView(TemplateView, DjangoLogger):
     template_name = 'index.html'
 
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request,*args, **kwargs)
 
-class PersonsList(ListView):
+class PersonsList(ListView, DjangoLogger):
     model = Person
     context_object_name = 'persons'
     template_name = 'persons.html'
 
+    def __init__(self):
+        print('PersonsList:__init__')
+        super().__init__()
+
     def get_queryset(self):
+        # print(help(PersonsList))
+        self.log_something('get_queryset')
         base_query = super().get_queryset()
         data = base_query.order_by('lastname', 'firstname')
         return data
