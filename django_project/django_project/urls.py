@@ -14,27 +14,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-import debug_toolbar
 from django.contrib import admin
-from django.urls import path, include
-from demo.views import IndexView, PersonUpdateView, PersonDeleteView, PersonCreateView
-from demo.views import PersonsList
-from demo.views import PersonDetailView
-from django_project import settings
+from django.urls import path
+from demo.views import IndexView, index_view
+from demo.views import PersonsList, PersonDetailView, PersonUpdateView, PersonDeleteView, PersonCreateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('demo/', IndexView.as_view(), name='demo-index-cbv'),
-    path('demo/persons', PersonsList.as_view(), name='demo-persons-list' ),
-    path('demo/person/create', PersonCreateView.as_view(), name='demo-person-create'),
+    path('', index_view, name='default'),
+    path('demo', IndexView.as_view(), name='demo-index-view'),
+    path('demo/persons', PersonsList.as_view(), name='demo-person-list' ),
     path('demo/person/<int:pk>', PersonDetailView.as_view(), name='demo-person-detail'),
     path('demo/person/<int:pk>/update', PersonUpdateView.as_view(), name='demo-person-update'),
-    path('demo/person/<int:pk>/delete', PersonDeleteView.as_view(), name='demo-person-delete')
+    path('demo/person/<int:pk>/delete', PersonDeleteView.as_view(), name='demo-person-delete'),
+    path('demo/person/create', PersonCreateView.as_view(), name='demo-person-create'),
 ]
-
-if settings.DEBUG:
-    urlpatterns += [
-        path(
-            '__debug__/', include(debug_toolbar.urls)),
-    ]
 

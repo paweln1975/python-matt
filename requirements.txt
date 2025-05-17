@@ -23,6 +23,7 @@ django
 django-ninja
 django-debug-toolbar
 django-extensions
+django-tables2
 pydotplus
 # brew install graphviz
 # https://graphviz.org/download/

@@ -10,10 +10,11 @@
 <body>
 <header id="main-navigation">
     <h1>
-
+    Welcome to DJANGO demo project!
     </h1>
     <nav>
-        <a href="{% url 'demo-persons-list' %}">All Persons</a>
+        <a class="button" href="{% url 'demo-person-list' %}">All Persons</a>
+        <a class="button" href="{% url 'demo-person-create' %}">Create a Person</a>
     </nav>
 </header>
 {% block content %}Empty content{% endblock %}

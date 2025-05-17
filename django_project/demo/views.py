@@ -1,54 +1,65 @@
-from django.views.generic import TemplateView, DetailView, UpdateView, DeleteView, CreateView
-from django.views.generic import ListView
-from demo.models import Person
+from django.shortcuts import redirect, reverse
 from django.urls import reverse_lazy
-from tools.logger_ext import *
+from django.views.generic import TemplateView, DetailView, UpdateView, DeleteView, CreateView
+from django_tables2 import SingleTableView
+
+from demo.forms import PersonForm
+from demo.models import Person
+from demo.tables import PersonTable
 
 
-# Create your views here.
-class IndexView(TemplateView, DjangoLogger):
+def index_view(request):
+    return redirect(reverse('demo-index-view'))
+
+class IndexView(TemplateView):
     template_name = 'index.html'
 
     def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request,*args, **kwargs)
+        return super().dispatch(request, *args, **kwargs)
 
-class PersonsList(ListView, DjangoLogger):
+class PersonsList(SingleTableView):
     model = Person
     context_object_name = 'persons'
-    template_name = 'persons.html'
+    template_name = 'person-list.html'
+    table_class = PersonTable
 
-    def __init__(self):
-        print('PersonsList:__init__')
-        super().__init__()
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
-        # print(help(PersonsList))
-        self.log_something('get_queryset')
         base_query = super().get_queryset()
         data = base_query.order_by('lastname', 'firstname')
         return data
 
-class PersonDetailView(DetailView):
+class PersonDetailView(UpdateView):
     model = Person
     template_name = "person-detail.html"
     context_object_name = 'person'
+    form_class = PersonForm
 
     def dispatch(self, request, *args, **kwargs):
-        print(request.user, request.user.is_authenticated)
-        return super().dispatch(request,*args, **kwargs)
+        return super().dispatch(request, *args, **kwargs)
+
+class PersonUpdateView(PersonDetailView):
+    template_name = 'person-update.html'
+
+    def get_success_url(self):
+        return reverse_lazy('demo-person-detail', kwargs={'pk': self.object.id})
+
+class PersonDeleteView(DeleteView):
+    model = Person
+    success_url = reverse_lazy('demo-person-list')
+    context_object_name = 'person'
+    template_name = 'person-delete.html'
 
 class PersonCreateView(CreateView):
     model = Person
     template_name = "person-create.html"
-    fields = '__all__'
+    context_object_name = 'person'
+    form_class = PersonForm
 
-class PersonUpdateView(UpdateView):
-    model = Person
-    fields = ['lastname', 'firstname']
-    template_name = 'person_update_form.html'
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
-class PersonDeleteView(DeleteView):
-    model = Person
-    success_url = reverse_lazy('demo-persons-list')
-    template_name = 'person-confirm-delete.html'
-
+    def get_success_url(self):
+        return reverse_lazy('demo-person-detail', kwargs={'pk': self.object.id})

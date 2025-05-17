@@ -12,12 +12,12 @@ All Persons
 {% block content %}
 <section id="person-detail">
     <h2>Person: {{ person.firstname }} {{ person.lastname }}</h2>
-    <form> {% csrf_token %}
-        <fieldset disabled>
-            {{ form.as_p }}
-        </fieldset>
+    <form method="post"> {% csrf_token %}
+        <p>
+          Are you sure to delete the object?
+        </p>
+            {{ form }}
+        <input type="submit" value="Confirm">
     </form>
-    <a class="button" href="{% url 'demo-person-update' person.id %}">Update</a>
-    <a class="button" href="{% url 'demo-person-list' %}">Back</a>
 </section>
 {% endblock %}
