@@ -1,0 +1,129 @@
+Found a 5 line (101 tokens) duplication in the following files:
+Starting at line 403 of C:\paweln1975\Gerrit\software\integration\SIP\Appl\GenData\Dem\Dem_PBcfg.c
+Starting at line 219 of C:\paweln1975\Gerrit\software\integration\SIP\Appl\GenData\Os\osConfigBlock.c
+Starting at line 219 of C:\paweln1975\Gerrit\software\integration\bsm\Os\osConfigBlock.c
+
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+};
+
+=====================================================================
+Found a 51 line (100 tokens) duplication in the following files:
+Starting at line 1080 of C:\paweln1975\Gerrit\software\integration\SIP\Appl\GenData\Os\tcb.c
+Starting at line 1065 of C:\paweln1975\Gerrit\software\integration\SIP\Appl\GenData\Rte_gen\src\Rte.c
+Starting at line 1065 of C:\paweln1975\Gerrit\software\integration\bsm\Rte_gen\src\Rte.c
+
+osqROM0 osqROM1 const osqROM2 osPrioFlagType osqROM3 oskResInternalCeilingPrioMask[osdNumberOfAllTasks]=
+{
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+
+=====================================================================
+Found a 50 line (100 tokens) duplication in the following files:
+Starting at line 1082 of C:\paweln1975\Gerrit\software\integration\SIP\Appl\GenData\Os\tcb.c
+Starting at line 1068 of C:\paweln1975\Gerrit\software\integration\SIP\Appl\GenData\Rte_gen\src\Rte.c
+Starting at line 1082 of C:\paweln1975\Gerrit\software\integration\bsm\Os\tcb.c
+Starting at line 1136 of C:\paweln1975\Gerrit\software\integration\bsm\Os\tcb.c
+Starting at line 1068 of C:\paweln1975\Gerrit\software\integration\bsm\Rte_gen\src\Rte.c
+
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+};
+
+=====================================================================
