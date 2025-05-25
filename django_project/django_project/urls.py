@@ -29,4 +29,3 @@ urlpatterns = [
     path('demo/person/<int:pk>/delete', PersonDeleteView.as_view(), name='demo-person-delete'),
     path('demo/person/create', PersonCreateView.as_view(), name='demo-person-create'),
 ]
-

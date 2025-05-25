@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 
-from django.conf.global_settings import STATICFILES_DIRS
 from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,14 +26,7 @@ MEDIA_URL = os.environ.get('DJANGO_MEDIA_URL', 'media/')
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-5b&nvl$+*u@n4+e*7ery7ne)i(=l(*3cvs$#c*@%1sa&t#f10_'
-
-SECRET_KEY_FILE = Path('secret-key.txt')
-
-if not SECRET_KEY_FILE.exists():
-    raise ImproperlyConfigured('SECRET_KEY file does not exist')
-
-SECRET_KEY = SECRET_KEY_FILE.read_text().strip()
+SECRET_KEY = 'django-insecure-5b&nvl$+*u@n4+e*7ery7ne)i(=l(*3cvs$#c*@%1sa&t#f10_'
 
 if not SECRET_KEY:
     raise ImproperlyConfigured('SECRET_KEY is empty')
@@ -48,20 +40,27 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+    },
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
         },
     },
     'loggers': {
         'django': {
             'handlers': ['console'],
-            'level': 'INFO',
+            'level': 'DEBUG' if DEBUG else 'INFO',
             'propagate': True,
         },
         'django.db': {
             'handlers': ['console'],
-            'level': 'DEBUG',
+            'level': 'DEBUG' if DEBUG else 'INFO',
             'propagate': True
         },
     },
@@ -157,7 +156,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-# STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
