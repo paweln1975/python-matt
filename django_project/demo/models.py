@@ -94,7 +94,15 @@ class Person(BaseModel):
         return super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'{self.firstname} {self.lastname}'
+        # Check if both firstname and lastname are empty or just whitespace
+        if not self.firstname.strip() and not self.lastname.strip():
+            return '-'
+        else:
+            # If at least one is not empty, return the concatenated string
+            return f'{self.firstname} {self.lastname}'.strip()
+
+    def get_full_name(self):
+        return str(self)
 
     class Meta:
         app_label = 'demo'

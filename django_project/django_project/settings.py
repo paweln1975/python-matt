@@ -63,7 +63,16 @@ LOGGING = {
             'level': 'DEBUG' if DEBUG else 'INFO',
             'propagate': True
         },
+        'django.utils.autoreload': {
+            'handlers': ['console'], # You can keep 'console' if you want to see WARNING/ERROR
+            'level': 'WARNING',  # Set to a higher level to suppress INFO/DEBUG
+            'propagate': False,  # Prevent propagation to the 'django' logger
+        },
     },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG' if DEBUG else 'INFO', # Set a default level for all other loggers
+    }
 }
 
 # Application definition
