@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Scanner Bridge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .status {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .connected {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .disconnected {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .scan-result {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-left: 3px solid #007bff;
+        }
+        #scanResults {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>QR Scanner Bridge</h1>
+
+    <div id="connectionStatus" class="status disconnected">
+        Disconnected from scanner bridge
+    </div>
+
+    <button id="connectBtn">Connect to Bridge</button>
+    <button id="checkStatusBtn" disabled>Check Status</button>
+    <button id="clearBtn">Clear Results</button>
+
+    <div id="scanResults">
+        <p>Scan results will appear here...</p>
+    </div>
+
+    <script>
+        // Configuration
+        const WS_URL = 'ws://localhost:8765';
+
+        // DOM elements
+        const connectBtn = document.getElementById('connectBtn');
+        const checkStatusBtn = document.getElementById('checkStatusBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const connectionStatus = document.getElementById('connectionStatus');
+        const scanResults = document.getElementById('scanResults');
+
+        // WebSocket connection
+        let socket = null;
+
+        // Connect to WebSocket server
+        function connect() {
+            if (socket && socket.readyState === WebSocket.OPEN) {
+                console.log('Already connected');
+                return;
+            }
+
+            connectionStatus.textContent = 'Connecting to scanner bridge...';
+            connectionStatus.className = 'status disconnected';
+
+            socket = new WebSocket(WS_URL);
+
+            socket.onopen = () => {
+                console.log('WebSocket connection established');
+                connectionStatus.textContent = 'Connected to scanner bridge';
+                connectionStatus.className = 'status connected';
+                connectBtn.textContent = 'Disconnect';
+                checkStatusBtn.disabled = false;
+            };
+
+            socket.onclose = () => {
+                console.log('WebSocket connection closed');
+                connectionStatus.textContent = 'Disconnected from scanner bridge';
+                connectionStatus.className = 'status disconnected';
+                connectBtn.textContent = 'Connect to Bridge';
+                checkStatusBtn.disabled = true;
+                socket = null;
+            };
+
+            socket.onerror = (error) => {
+                console.error('WebSocket error:', error);
+                connectionStatus.textContent = 'Error connecting to scanner bridge';
+                connectionStatus.className = 'status disconnected';
+            };
+
+            socket.onmessage = (event) => {
+                try {
+                    const message = JSON.parse(event.data);
+                    handleMessage(message);
+                } catch (e) {
+                    console.error('Error parsing message:', e);
+                }
+            };
+        }
+
+        // Disconnect from WebSocket server
+        function disconnect() {
+            if (socket) {
+                socket.close();
+            }
+        }
+
+        // Handle incoming WebSocket messages
+        function handleMessage(message) {
+            console.log('Received message:', message);
+
+            switch (message.type) {
+                case 'scan_data':
+                    // Display scan result
+                    const resultElement = document.createElement('div');
+                    resultElement.className = 'scan-result';
+
+                    const time = new Date().toLocaleTimeString();
+                    resultElement.innerHTML = `
+                        <strong>${time}</strong>: ${message.data}
+                    `;
+
+                    scanResults.prepend(resultElement);
+                    break;
+
+                case 'connection_status':
+                    // Update connection status
+                    connectionStatus.textContent = message.message;
+                    connectionStatus.className = message.status === 'connected' ?
+                        'status connected' : 'status disconnected';
+                    break;
+
+                case 'status':
+                    // Display scanner status
+                    alert(`Scanner Status:\nConnected: ${message.connected}\nPort: ${message.port}`);
+                    break;
+
+                default:
+                    console.log('Unknown message type:', message.type);
+            }
+        }
+
+        // Event listeners
+        connectBtn.addEventListener('click', () => {
+            if (socket && socket.readyState === WebSocket.OPEN) {
+                disconnect();
+            } else {
+                connect();
+            }
+        });
+
+        checkStatusBtn.addEventListener('click', () => {
+            if (socket && socket.readyState === WebSocket.OPEN) {
+                socket.send(JSON.stringify({ command: 'get_status' }));
+            }
+        });
+
+        clearBtn.addEventListener('click', () => {
+            scanResults.innerHTML = '<p>Scan results will appear here...</p>';
+        });
+    </script>
+</body>
+</html>
