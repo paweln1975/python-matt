@@ -1,0 +1,31 @@
+{% extends 'sudoku/base.html' %}
+
+{% block title %}Szczegóły łamigłówki #{{ puzzle.id }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">Łamigłówka Sudoku #{{ puzzle.id }}</h1>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Informacje o łamigłówce</h5>
+            <p class="card-text">
+                <strong>Poziom trudności:</strong> {{ puzzle.get_difficulty_display }}<br>
+                <strong>Status:</strong> {% if puzzle.solved %}Rozwiązana{% else %}Nierozwiązana{% endif %}<br>
+                {% if puzzle.solved %}
+                    <strong>Czas rozwiązania:</strong> {{ puzzle.solve_time|floatformat:0 }} sekund
+                {% endif %}
+            </p>
+
+            <div class="mt-3">
+                {% if not puzzle.solved %}
+                    <a href="{% url 'sudoku:puzzle_solve' puzzle.id %}" class="btn btn-primary">Rozwiąż</a>
+                {% endif %}
+                <a href="{% url 'sudoku:puzzle_edit' puzzle.id %}" class="btn btn-warning">Edytuj</a>
+                <a href="{% url 'sudoku:puzzle_delete' puzzle.id %}" class="btn btn-danger">Usuń</a>
+                <a href="{% url 'sudoku:puzzle_list' %}" class="btn btn-secondary">Powrót do listy</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

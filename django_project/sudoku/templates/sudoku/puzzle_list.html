@@ -1,0 +1,30 @@
+{% extends 'sudoku/base.html' %}
+
+{% block title %}Lista łamigłówek Sudoku{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Łamigłówki Sudoku</h1>
+        <a href="{% url 'sudoku:puzzle_create' %}" class="btn btn-primary">
+            Dodaj nową łamigłówkę
+        </a>
+    </div>
+
+    <div class="row mt-4">
+        {% for puzzle in puzzles %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Sudoku #{{ puzzle.id }}</h5>
+                        <p class="card-text">Poziom trudności: {{ puzzle.get_difficulty_display }}</p>
+                        <a href="{% url 'sudoku:puzzle_solve' puzzle.id %}" class="btn btn-primary">Rozwiąż</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col">
+                <p>Brak dostępnych łamigłówek.</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

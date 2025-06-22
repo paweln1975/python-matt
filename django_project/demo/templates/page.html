@@ -13,8 +13,8 @@
     Welcome to DJANGO demo project!
     </h1>
     <nav>
-        <a class="button" href="{% url 'demo-person-list' %}">All Persons</a>
-        <a class="button" href="{% url 'demo-person-create' %}">Create a Person</a>
+        <a class="button" href="{% url 'demo:person-list' %}">All Persons</a>
+        <a class="button" href="{% url 'demo:person-create' %}">Create a Person</a>
     </nav>
 </header>
 {% block content %}Empty content{% endblock %}

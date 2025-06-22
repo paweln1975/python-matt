@@ -9,7 +9,7 @@ from demo.tables import PersonTable
 
 
 def index_view(request):
-    return redirect(reverse('demo-index-view'))
+    return redirect(reverse('demo:index-view'))
 
 class IndexView(TemplateView):
     template_name = 'index.html'
@@ -44,11 +44,11 @@ class PersonUpdateView(PersonDetailView):
     template_name = 'person-update.html'
 
     def get_success_url(self):
-        return reverse_lazy('demo-person-detail', kwargs={'pk': self.object.id})
+        return reverse_lazy('demo:person-detail', kwargs={'pk': self.object.id})
 
 class PersonDeleteView(DeleteView):
     model = Person
-    success_url = reverse_lazy('demo-person-list')
+    success_url = reverse_lazy('demo:person-list')
     context_object_name = 'person'
     template_name = 'person-delete.html'
 
@@ -62,4 +62,4 @@ class PersonCreateView(CreateView):
         return super().dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse_lazy('demo-person-detail', kwargs={'pk': self.object.id})
+        return reverse_lazy('demo:person-detail', kwargs={'pk': self.object.id})

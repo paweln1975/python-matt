@@ -1,0 +1,20 @@
+{% extends 'sudoku/base.html' %}
+
+{% block title %}Usuń łamigłówkę{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h3>Potwierdź usunięcie</h3>
+            <p>Czy na pewno chcesz usunąć łamigłówkę #{{ puzzle.id }}?</p>
+
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Tak, usuń</button>
+                <a href="{% url 'sudoku:puzzle_detail' puzzle.id %}" class="btn btn-secondary">Anuluj</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

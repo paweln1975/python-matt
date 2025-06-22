@@ -1,0 +1,29 @@
+.sudoku-grid {
+    border: 2px solid #333;
+    display: inline-block;
+    padding: 10px;
+    background-color: #f8f9fa;
+}
+
+.sudoku-cell input {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 20px;
+    padding: 0;
+    border: 1px solid #dee2e6;
+}
+
+.sudoku-cell input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.border-bold-right {
+    border-right: 2px solid #333 !important;
+}
+
+.border-bold-bottom {
+    border-bottom: 2px solid #333 !important;
+}

@@ -17,9 +17,10 @@ from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 
 MEDIA_ROOT = os.environ.get('DJANGO_MEDIA_ROOT', str(BASE_DIR.joinpath('tmp/media')))
-STATIC_ROOT = os.environ.get('DJANGO_STATIC_ROOT', str(BASE_DIR.joinpath('tmp/static')))
 MEDIA_URL = os.environ.get('DJANGO_MEDIA_URL', 'media/')
 
 # Quick-start development settings - unsuitable for production
@@ -85,7 +86,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'demo.apps.DemoConfig',
-    'django_tables2'
+    'django_tables2',
+    'sudoku.apps.SudokuConfig'
 ]
 
 MIDDLEWARE = [
@@ -165,6 +167,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

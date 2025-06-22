@@ -113,20 +113,20 @@ class ViewsTest(TestCase):
         Test the index_view function, which should redirect to 'demo-index-view'.
         """
         # Use reverse to get the URL for the view you want to test
-        url = reverse('demo-index-view')
+        url = reverse('demo:index-view')
         request = self.factory.get(url)  # Create a GET request
         response = index_view(request)  # Call the view
 
         # Check that the response is a redirect
         self.assertEqual(response.status_code, 302)  # 302 is the status code for a redirect
-        self.assertEqual(response.url, reverse('demo-index-view'))  # Check the redirect URL
+        self.assertEqual(response.url, reverse('demo:index-view'))  # Check the redirect URL
 
     def test_index_view_dispatch(self):
         """
         Test the dispatch method of the IndexView.
         This test checks if the dispatch method is called and returns a valid response.
         """
-        url = reverse('demo-index-view')
+        url = reverse('demo:index-view')
         request = self.factory.get(url)
         view = IndexView()
         view.setup(request)  # You need to call setup
@@ -150,7 +150,7 @@ class PersonViewsTest(TestCase):
         Test the PersonsList view.
         This view should display a list of Person objects.
         """
-        url = reverse('demo-person-list')  # Replace with your actual URL name
+        url = reverse('demo:person-list')  # Replace with your actual URL name
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
@@ -165,7 +165,7 @@ class PersonViewsTest(TestCase):
         Test the PersonDetailView.
         This view should display the details of a single Person object.
         """
-        url = reverse('demo-person-detail', kwargs={'pk': self.john.pk})  # Use the pk of the Person created in setUp
+        url = reverse('demo:person-detail', kwargs={'pk': self.john.pk})  # Use the pk of the Person created in setUp
         response = self.client.get(url) # Pass pk to the view
 
         self.assertEqual(response.status_code, 200)
@@ -178,7 +178,7 @@ class PersonViewsTest(TestCase):
         Test the PersonUpdateView.
         This view should allow updating an existing Person object.
         """
-        url = reverse('demo-person-update', kwargs={'pk': self.john.pk})
+        url = reverse('demo:person-update', kwargs={'pk': self.john.pk})
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
@@ -204,7 +204,7 @@ class PersonViewsTest(TestCase):
         Test the PersonDeleteView.
         This view should allow deleting an existing Person object.
         """
-        url = reverse('demo-person-delete', kwargs={'pk': self.john.pk})
+        url = reverse('demo:person-delete', kwargs={'pk': self.john.pk})
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
@@ -223,7 +223,7 @@ class PersonViewsTest(TestCase):
         Test the PersonCreateView.
         This view should allow creating a new Person object.
         """
-        url = reverse('demo-person-create')
+        url = reverse('demo:person-create')
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)

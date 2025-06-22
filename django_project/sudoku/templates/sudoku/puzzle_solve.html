@@ -1,0 +1,167 @@
+{% extends 'sudoku/base.html' %}
+
+{% load sudoku_tags %}
+
+{% block title %}Rozwiąż Sudoku #{{ puzzle.id }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">Rozwiąż Sudoku #{{ puzzle.id }}</h1>
+    <p>Poziom trudności: {{ puzzle.get_difficulty_display }}</p>
+
+    <form method="post" class="sudoku-form" id="solveForm">
+        {% csrf_token %}
+        <input type="hidden" name="solve_time" id="solveTime">
+
+        <div class="sudoku-grid">
+    {% for row in "012345678" %}
+        <div class="sudoku-row">
+            {% for col in "012345678" %}
+                <div class="sudoku-cell-container {% if forloop.counter0|divisibleby:3 %}border-left{% endif %}">
+                    {% with cell_name="cell_"|add:row|add:"_"|add:col %}
+                        {{ form|getattr:cell_name }}
+                    {% endwith %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+
+
+        <div class="mt-4 text-center">
+            <div class="mb-3">
+                <span id="timer" class="h4">00:00</span>
+            </div>
+            <button type="submit" class="btn btn-primary">Sprawdź rozwiązanie</button>
+            <a href="{% url 'sudoku:puzzle_list' %}" class="btn btn-secondary">Powrót do listy</a>
+        </div>
+    </form>
+</div>
+
+<style>
+/* Te same style co wcześniej */
+.sudoku-grid {
+    display: grid;
+    grid-template-rows: repeat(9, 1fr);
+    gap: 1px;
+    background-color: #ccc;
+    padding: 2px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.sudoku-row {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 1px;
+}
+
+.sudoku-cell-container {
+    background-color: white;
+    padding: 2px;
+}
+
+.sudoku-cell {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 20px;
+}
+
+.sudoku-cell:focus {
+    outline: 2px solid #007bff;
+}
+
+.sudoku-cell[readonly] {
+    background-color: #f8f9fa;
+    color: #495057;
+}
+
+/* Pogrubione linie dla kwadratów 3x3 */
+.sudoku-row:nth-child(3n) {
+    border-bottom: 2px solid #333;
+}
+
+.border-left {
+    border-left: 2px solid #333;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const startTime = {{ start_time }};
+    const timerElement = document.getElementById('timer');
+    const solveTimeInput = document.getElementById('solveTime');
+
+    // Timer
+    function updateTimer() {
+        const currentTime = Math.floor((new Date().getTime() / 1000) - startTime);
+        const minutes = Math.floor(currentTime / 60);
+        const seconds = currentTime % 60;
+        timerElement.textContent =
+            `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        solveTimeInput.value = currentTime;
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // Obsługa wprowadzania danych
+    const cells = document.querySelectorAll('.sudoku-cell:not([readonly])');
+    cells.forEach(cell => {
+        cell.addEventListener('input', function(e) {
+            // Ograniczenie do jednej cyfry
+            let value = this.value;
+            if (value.length > 1) {
+                this.value = value.slice(0, 1);
+            }
+            // Tylko cyfry 1-9
+            if (value !== '' && (isNaN(value) || value < 1 || value > 9)) {
+                this.value = '';
+            }
+        });
+
+        // Automatyczne przejście do następnej komórki
+        cell.addEventListener('keyup', function(e) {
+            if (e.key >= '1' && e.key <= '9') {
+                const currentRow = parseInt(this.dataset.row);
+                const currentCol = parseInt(this.dataset.col);
+
+                // Znajdź następną dostępną komórkę
+                let nextCell;
+                let found = false;
+
+                // Szukaj w tym samym wierszu
+                for (let col = currentCol + 1; col < 9 && !found; col++) {
+                    nextCell = document.querySelector(
+                        `.sudoku-cell[data-row="${currentRow}"][data-col="${col}"]:not([readonly])`
+                    );
+                    if (nextCell) {
+                        found = true;
+                    }
+                }
+
+                // Jeśli nie znaleziono, szukaj w następnych wierszach
+                if (!found) {
+                    for (let row = currentRow + 1; row < 9 && !found; row++) {
+                        for (let col = 0; col < 9 && !found; col++) {
+                            nextCell = document.querySelector(
+                                `.sudoku-cell[data-row="${row}"][data-col="${col}"]:not([readonly])`
+                            );
+                            if (nextCell) {
+                                found = true;
+                            }
+                        }
+                    }
+                }
+
+                if (nextCell) {
+                    nextCell.focus();
+                }
+            }
+        });
+    });
+});
+</script>
+{% endblock %}
