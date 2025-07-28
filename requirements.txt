@@ -25,6 +25,8 @@ django-debug-toolbar
 django-extensions
 django-tables2
 pydotplus
+plyer
+requests
 # brew install graphviz
 # https://graphviz.org/download/
 

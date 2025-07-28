@@ -167,3 +167,5 @@ cython_debug/
 !/django_project/staticfiles/
 !/django_project/demo/migrations/
 !/django_project/sudoku/migrations/
+!/.idea/dbnavigator.xml
+!/.idea/misc.xml
