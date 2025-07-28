@@ -27,6 +27,7 @@ django-tables2
 pydotplus
 plyer
 requests
+desktop-notifier
 # brew install graphviz
 # https://graphviz.org/download/
 
