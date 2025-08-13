@@ -169,3 +169,4 @@ cython_debug/
 !/django_project/sudoku/migrations/
 !/.idea/dbnavigator.xml
 !/.idea/misc.xml
+!/22-challange/22-06-coverity-levels/checker-properties.json
