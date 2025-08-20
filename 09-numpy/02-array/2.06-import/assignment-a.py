@@ -105,6 +105,9 @@ DATA = 'https://python3.info/_static/iris-dirty.csv'
 # 3. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-species = ...
-features = ...
-labels = ...
+with open('iris-dirty.csv', 'rt', encoding='utf-8') as file:
+    DATA = file.readlines()
+
+species = np.array(DATA[0].strip().split(',')[2:5])
+features = np.array([line.strip().split(',')[0:4] for line in DATA[1:]], dtype=np.float64)
+labels = np.array([line.strip().split(',')[4] for line in DATA[1:]], dtype=np.int64)

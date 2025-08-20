@@ -75,4 +75,4 @@ DATA = np.array([[1, 2, 3],
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = np.full_like(DATA, 2, dtype=np.int64)

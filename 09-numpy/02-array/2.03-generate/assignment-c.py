@@ -66,4 +66,4 @@ result: np.ndarray
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = np.ones((3, 3), dtype=np.int64)

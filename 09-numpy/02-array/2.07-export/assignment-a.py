@@ -105,6 +105,6 @@ DATA = 'https://python3.info/_static/iris-dirty.csv'
 # 3. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-species = ...
-features = ...
-labels = ...
+species = np.loadtxt(DATA, delimiter=',', max_rows=1, usecols=(2, 3, 4), dtype='str')
+features = np.loadtxt(DATA, delimiter=',', skiprows=1, usecols=(0, 1, 2, 3), dtype='float64')
+labels = np.loadtxt(DATA, delimiter=',', skiprows=1, usecols=(4,), dtype='int64')

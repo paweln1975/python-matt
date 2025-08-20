@@ -75,4 +75,4 @@ DATA = np.array([[1, 2, 3],
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = np.zeros_like(DATA, dtype=np.int64)

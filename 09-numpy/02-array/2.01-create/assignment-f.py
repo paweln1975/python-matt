@@ -66,4 +66,4 @@ result: np.ndarray
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = np.linspace(0, 10)
