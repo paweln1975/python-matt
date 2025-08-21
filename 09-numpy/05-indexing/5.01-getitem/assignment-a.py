@@ -75,4 +75,4 @@ DATA = np.array([
 # 5. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = DATA[[0, 2, 0, 1], [2, 2, 0, 0]].reshape(2, 2).astype(float)

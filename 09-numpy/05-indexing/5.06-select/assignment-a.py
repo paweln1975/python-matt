@@ -68,4 +68,9 @@ np.random.seed(0)
 # 6. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+a = np.random.randint(0, 1025, size=(50, 50))
+b = 2 ** np.arange(11)
+mask = np.isin(a, b)
+result = a[mask]
+result.sort()
+result = np.flip(result).astype(np.int64)

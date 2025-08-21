@@ -59,4 +59,4 @@ DATA = np.array([
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = DATA[1:3, 1:3]

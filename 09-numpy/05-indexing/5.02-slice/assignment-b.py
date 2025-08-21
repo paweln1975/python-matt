@@ -73,4 +73,5 @@ DATA = np.array([[5, 0, 3, 3, 7, 9, 3, 5, 2, 4, 7, 6, 8, 8, 1, 6],
 # 3. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+step = (DATA.shape[0] - 4) // 2
+result = DATA[step:step + 4, step:step + 4]

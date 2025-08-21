@@ -79,6 +79,6 @@ DATA = np.random.randint(0, 100, size=9)
 # 6. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-data = ...
-result_a = ...
-result_b = ...
+data = (DATA % 2 == 0) & (DATA < 50)
+result_a = data.all()
+result_b = data.any()

@@ -63,4 +63,4 @@ b = 2 ** np.arange(7)
 # 3. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = np.isin(a, b)
