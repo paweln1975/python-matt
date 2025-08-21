@@ -59,4 +59,8 @@ DATA = np.arange(1, 50)
 # 3. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = np.random.choice(DATA, size=6, replace=False)
+
+# generate np.ndarray 1-dim array with 5000 float values based on normal distribution
+values = np.random.normal(loc=0, scale=1, size=5000)
+print(values.mean())

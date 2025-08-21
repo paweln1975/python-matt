@@ -77,6 +77,6 @@ DATA = np.array([[1, 2, 3],
 # 4. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result_a = ...
-result_b = ...
-result_c = ...
+result_a = DATA.ravel()
+result_b = DATA.flatten()
+result_c = DATA.reshape(1, 9)

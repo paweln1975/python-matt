@@ -59,4 +59,4 @@ DATA = np.arange(1, 50)
 # 3. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = np.random.choice(DATA, size=6, replace=False)

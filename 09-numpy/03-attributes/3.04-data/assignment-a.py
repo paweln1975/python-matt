@@ -72,10 +72,10 @@ DATA = np.array([[-1.1, 0.0, 1.1],
 
 # %% Result
 result = {
-    'number of dimensions': ...,
-    'number of elements': ...,
-    'data type': ...,
-    'element size': ...,
-    'shape': ...,
-    'strides': ...,
+    'number of dimensions': DATA.ndim,
+    'number of elements': DATA.size,
+    'data type': DATA.dtype,
+    'element size': DATA.itemsize,
+    'shape': DATA.shape,
+    'strides': DATA.strides,
 }

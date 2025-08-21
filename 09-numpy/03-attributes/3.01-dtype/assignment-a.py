@@ -70,5 +70,5 @@ DATA = np.array([[-1.1, 0.0, 1.1],
 # 5. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result_a = ...
-result_b = ...
+result_a = DATA.astype(np.int64)
+result_b = DATA.astype(np.bool)
