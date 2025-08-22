@@ -87,13 +87,13 @@ b = np.array([
 
 # %% Result
 def mul_ab(a, b):
-    return ...
+    return a * b
 
 def matmul_ab(a, b):
-    return ...
+    return np.matmul(a, b)
 
 def mul_ba(b, a):
-    return ...
+    return b * a
 
 def matmul_ba(b, a):
-    return ...
+    return np.matmul(b, a)

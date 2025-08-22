@@ -53,7 +53,7 @@ Hints:
 # %% SetUp
 
 from math import sqrt
-
+import numpy as np
 from typing import Callable
 type point = tuple[int,int]
 result: Callable[[point, point], point]
@@ -76,4 +76,7 @@ result: Callable[[point, point], point]
 
 # %% Result
 def result(a, b):
-    ...
+    if len(a) != len(b):
+        raise ValueError('Points must be in the same dimensions')
+    return np.linalg.norm(np.array(a) - np.array(b)).item()
+

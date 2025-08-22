@@ -84,6 +84,6 @@ DATA = np.array([0.5488135 , 0.71518937, 0.60276338, 0.54488318, 0.4236548 ,
 # 4. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result_a = ...
-result_b = ...
-result_c = ...
+result_a = np.ceil(DATA)
+result_b = np.floor(DATA)
+result_c = np.round(DATA, 0)

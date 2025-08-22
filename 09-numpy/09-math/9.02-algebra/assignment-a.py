@@ -53,6 +53,9 @@ Tests:
 from math import sqrt
 
 from typing import Callable
+
+import numpy as np
+
 type point = tuple[int,int]
 result: Callable[[point, point], point]
 
@@ -72,4 +75,6 @@ result: Callable[[point, point], point]
 
 # %% Result
 def result(a, b):
-    ...
+    p1 = np.array(a)
+    p2 = np.array(b)
+    return np.sqrt(np.sum((p1 - p2) ** 2)).item()

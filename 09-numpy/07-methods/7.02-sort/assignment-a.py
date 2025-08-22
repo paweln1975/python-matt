@@ -73,5 +73,6 @@ DATA = np.array([[44, 47, 64, 67],
 # 3. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result_a = ...
-result_b = ...
+result_a = np.copy(DATA)
+result_a.sort()
+result_b = np.flip(DATA, axis=0)

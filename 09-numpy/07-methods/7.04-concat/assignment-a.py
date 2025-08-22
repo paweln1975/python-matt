@@ -59,4 +59,4 @@ b = np.array([4, 5, 6])
 # 4. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = np.concatenate((a, b)).reshape(2, 3)

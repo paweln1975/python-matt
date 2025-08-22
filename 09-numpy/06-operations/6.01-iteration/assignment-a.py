@@ -62,4 +62,8 @@ DATA = np.array([[1, 2, 3],
 # 3. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = [value for value in DATA.flatten() if value % 2 == 0]
+
+arr = np.arange(10)
+bool_arr = arr % 2 == 0
+print(bool_arr)

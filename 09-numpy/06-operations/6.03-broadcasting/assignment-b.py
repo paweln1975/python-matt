@@ -66,5 +66,5 @@ b = [[4, 1], [2, 2]]
 # 5. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result_ab = ...
-result_ba = ...
+result_ab = a + b
+result_ba = b + a

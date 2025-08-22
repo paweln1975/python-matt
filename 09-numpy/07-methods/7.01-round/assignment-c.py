@@ -72,4 +72,5 @@ DATA = np.array([[44, 47, 64],
 # 4. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = np.copy(DATA)
+result[:, 0] = np.clip(result[:, 0], 50, 80)

@@ -64,4 +64,7 @@ DATA = np.array([[44, 47, 64, 67],
 # 6. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = DATA.reshape(3, 4)
+result[:, -1] = 0
+result = result.T.astype(float)
+result[0, :] = np.nan

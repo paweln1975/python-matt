@@ -89,9 +89,9 @@ trigonometry: Callable[[int|float], dict[str, np.float64]]
 # %% Result
 def trigonometry(angle_deg):
     return {
-        'rad': ...,
-        'sin': ...,
-        'cos': ...,
-        'tan': ...,
-        'ctg': ...,
+        'rad': np.radians(angle_deg),
+        'sin': np.sin(np.radians(angle_deg)),
+        'cos': np.cos(np.radians(angle_deg)),
+        'tan': np.inf if angle_deg == 180 else np.tan(np.radians(angle_deg)),
+        'ctg': np.inf if angle_deg in (0, 90) else 1 / np.tan(np.radians(angle_deg)),
     }
