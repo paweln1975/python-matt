@@ -72,7 +72,9 @@ desktop-notifier
 # xlrd
 # scipy
 # jupyter
-# jupyterlab
+jupyterlab
+notebook
+voila
 # openpyxl
 
 ## Python/ML
@@ -81,7 +83,8 @@ desktop-notifier
 # jupyterlab
 # numpy
 # pandas
-# matplotlib
+matplotlib
+scikit-learn
 # requests
 # lxml
 # html5lib
