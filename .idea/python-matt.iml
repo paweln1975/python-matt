@@ -37,6 +37,7 @@
       <sourceFolder url="file://$MODULE_DIR$/21-dragon" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/22-challange" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/django_project" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/23-handy" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
