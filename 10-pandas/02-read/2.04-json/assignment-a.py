@@ -56,4 +56,6 @@ DATA = 'https://python3.info/_static/iris.json'
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = pd.read_json(DATA)
+print(result)
+print(type(result))

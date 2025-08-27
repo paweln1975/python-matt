@@ -62,16 +62,16 @@ desktop-notifier
 
 ## Python/PANDAS
 # IPython
-# numpy
-# pandas
-# matplotlib
-# requests
-# lxml
-# html5lib
-# beautifulsoup4
-# xlrd
-# scipy
-# jupyter
+numpy
+pandas
+matplotlib
+requests
+lxml
+html5lib
+beautifulsoup4
+xlrd
+scipy
+jupyter
 jupyterlab
 notebook
 voila
@@ -83,8 +83,8 @@ voila
 # jupyterlab
 # numpy
 # pandas
-matplotlib
-scikit-learn
+# matplotlib
+# scikit-learn
 # requests
 # lxml
 # html5lib

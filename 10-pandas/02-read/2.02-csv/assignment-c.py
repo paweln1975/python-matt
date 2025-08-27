@@ -95,4 +95,14 @@ COLUMNS = [
 # 6. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+header = pd.read_csv(DATA, nrows=0)
+nrows, nvalues, *labels = header.columns
+decoder = dict(enumerate(labels))
+
+print(decoder)
+result = pd.read_csv(
+    DATA,
+    nrows=25,
+    names=COLUMNS,
+    skiprows=1,
+).replace(to_replace={'label': decoder})

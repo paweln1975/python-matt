@@ -62,4 +62,4 @@ DATA = 'https://python3.info/_static/readcsv-a.csv'
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = pd.read_csv(DATA)

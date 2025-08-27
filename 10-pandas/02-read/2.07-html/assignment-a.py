@@ -69,4 +69,6 @@ DATA = 'https://python3.info/_static/european-astronaut-corps.html'
 # 3. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+tables = pd.read_html(DATA)
+result = tables[0]
+print(result)

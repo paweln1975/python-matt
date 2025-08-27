@@ -64,4 +64,4 @@ DATA = 'https://python3.info/_static/readcsv-b.csv'
 # 3. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = pd.read_csv(DATA, parse_dates=['birthdate'])

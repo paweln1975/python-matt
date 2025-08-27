@@ -70,6 +70,7 @@ DATA = 'https://python3.info/_static/openapi.json'
 # 5. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-resp = ...
-data = ...
-result = ...
+resp = requests.get(DATA)
+data = resp.json()
+result = pd.DataFrame(data['paths'])
+print(result)
