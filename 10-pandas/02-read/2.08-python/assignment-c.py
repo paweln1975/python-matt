@@ -65,4 +65,5 @@ COLUMNS = ['firstname', 'lastname', 'role']
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = pd.DataFrame(DATA, columns=COLUMNS)
+print(result)

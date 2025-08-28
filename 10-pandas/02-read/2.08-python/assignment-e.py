@@ -127,4 +127,18 @@ DATA = [
 # 5. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+data = []
+for user in DATA:
+    user = vars(user)
+    entry = {
+        'firstname': user.pop('firstname'),
+        'lastname': user.pop('lastname'),
+    }
+    for i, group in enumerate(user.pop('groups'), start=1):
+        group = vars(group)
+        for field, value in group.items():
+            column_name = f'group{i}_{field}'
+            entry[column_name] = value
+    data.append(entry)
+result = pd.DataFrame(data)
+print(result)

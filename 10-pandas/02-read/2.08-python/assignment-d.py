@@ -96,4 +96,15 @@ DATA = [
 # 5. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+data = []
+for entry in DATA:
+    d = {}
+    d['firstname'] = entry['firstname']
+    d['lastname'] = entry['lastname']
+    for index, group in enumerate(entry['groups']):
+        d['group{}_gid'.format(index + 1)] = group['gid']
+        d['group{}_name'.format(index + 1)] = group['name']
+    data.append(d)
+print(data)
+result = pd.DataFrame(data)
+print(result)

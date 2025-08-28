@@ -63,4 +63,6 @@ DATA = {
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = pd.DataFrame(DATA)
+print(result)
+print(result.index)
