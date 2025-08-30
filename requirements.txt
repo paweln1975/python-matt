@@ -84,7 +84,7 @@ voila
 # numpy
 # pandas
 # matplotlib
-# scikit-learn
+scikit-learn
 # requests
 # lxml
 # html5lib
