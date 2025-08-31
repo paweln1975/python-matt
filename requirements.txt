@@ -85,13 +85,13 @@ voila
 # pandas
 # matplotlib
 scikit-learn
+pillow
 # requests
 # lxml
 # html5lib
 # beautifulsoup4
 # xlrd
 # scipy
-# scikit-learn
 # statsmodels
 # seaborn
 # bokeh
