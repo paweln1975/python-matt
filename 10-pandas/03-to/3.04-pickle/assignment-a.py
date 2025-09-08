@@ -75,3 +75,5 @@ result = (pd
   .head(n=146)
   .tail(n=11)
 )
+
+pd.to_pickle(result['Event'], FILE)

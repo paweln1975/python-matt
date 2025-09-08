@@ -73,3 +73,5 @@ result = (pd
   .head(n=146)
   .tail(n=11)
 )
+
+result.to_csv(FILE, index=True, columns=['Event'])

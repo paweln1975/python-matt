@@ -72,4 +72,5 @@ result: pd.Series
 # 5. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = pd.Series(pd.date_range(start='1961-04-12', end='1969-07-21'))
+print(result)

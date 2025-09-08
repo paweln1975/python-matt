@@ -72,3 +72,5 @@ result = (pd
   .head(n=146)
   .tail(n=11)
 )
+
+result['Event'].to_json(FILE, indent=2)

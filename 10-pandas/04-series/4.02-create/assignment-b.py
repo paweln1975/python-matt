@@ -62,4 +62,5 @@ result: pd.Series
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = pd.Series(np.arange(0, 20, 2), dtype='int64')
+print(result)

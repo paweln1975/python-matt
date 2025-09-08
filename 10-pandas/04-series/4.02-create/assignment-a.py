@@ -59,4 +59,4 @@ result: pd.Series
 # 3. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+result = pd.Series([1., 2. , None, 4., 5.])

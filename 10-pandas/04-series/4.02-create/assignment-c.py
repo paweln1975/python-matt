@@ -66,4 +66,6 @@ np.random.seed(0)
 # 3. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+# set seed to 0
+
+result = pd.Series(np.random.randint(0, 10, size=10))

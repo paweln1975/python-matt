@@ -78,3 +78,7 @@ result = (pd
   .head(n=146)
   .tail(n=11)
 )
+
+db = sqlite3.connect(FILE)
+result['Event'].to_sql('apollo11', db, if_exists='replace', index=True)
+db.close()
