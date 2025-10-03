@@ -50,7 +50,7 @@ Hints:
 `dict()`
 `dict.values()`
 `dict.get()`
-`str.join()`
+`str.join()`def
 
 """
 
@@ -112,4 +112,15 @@ DATA = [
 # 5. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+def as_dict(contact: dict) -> dict[str, str]:
+    addresses = contact.get('addresses', [])
+    addresses_str = ';'.join(
+        ','.join(str(value) for value in address.values())
+        for address in addresses
+    )
+    return {
+        'firstname': contact.get('firstname', ''),
+        'lastname': contact.get('lastname', ''),
+        'addresses': addresses_str,
+    }
+result = map(as_dict, DATA)

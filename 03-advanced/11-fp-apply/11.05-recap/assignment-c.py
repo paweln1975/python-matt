@@ -95,4 +95,19 @@ DATA = [
 # 4. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+def flat(i, group):
+    gid = group.get('gid')
+    name = group.get('name')
+    return {f'group{i}_gid': gid, f'group{i}_name': name}
+
+def flatten(groups):
+    dicts = starmap(flat, enumerate(groups, start=1))
+    return reduce(or_, dicts, {})
+
+def convert(user):
+    firstname = user.get('firstname')
+    lastname = user.get('lastname')
+    groups = flatten(user.get('groups'))
+    return {'firstname': firstname, 'lastname': lastname} | groups
+
+result = map(convert, DATA)

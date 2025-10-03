@@ -88,3 +88,11 @@ class Point:
     x: int
     y: int
     z: int
+    position = property()
+    @position.setter
+    def position(self, value: list|tuple|set):
+        if not isinstance(value, list|tuple|set):
+            raise TypeError
+        if len(value) != 3:
+            raise ValueError
+        self.x, self.y, self.z = value

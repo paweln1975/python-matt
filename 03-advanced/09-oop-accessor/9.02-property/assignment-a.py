@@ -61,6 +61,8 @@ class Point:
     x: int
     y: int
     z: int
+    position = property()
 
-    def position():
-        ...
+    @position.deleter
+    def position(self):
+        self.x, self.y, self.z = 0, 0, 0

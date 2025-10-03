@@ -81,4 +81,14 @@ class Point:
     z: int
 
     def __setattr__(self, name, value):
-        ...
+        if not hasattr(self, name):
+            if name in ('x', 'y', 'z'):
+                super().__setattr__(name, value)
+            else:
+                raise PermissionError(
+                    'Cannot set other attributes than x, y, z'
+                )
+        else:
+            raise PermissionError(
+                'Cannot modify existing attributes'
+            )

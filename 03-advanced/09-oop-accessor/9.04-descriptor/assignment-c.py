@@ -99,7 +99,21 @@ Validator: type
 
 # %% Result
 class Validator:
-    pass
+    min: float
+    max: float
+
+    def __set_name__(self, owner, name):
+        self.name = name
+
+    def __get__(self, instance, owner):
+        return instance.__dict__[self.name]
+
+    def __set__(self, instance, value):
+        if not (self.min <= value <= self.max):
+            raise ValueError(
+                f'Out of bounds, must be between {self.min} and {self.max}'
+            )
+        instance.__dict__[self.name] = value
 
 class Latitude(Validator):
     min = -90.0

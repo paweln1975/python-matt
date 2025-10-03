@@ -56,3 +56,11 @@ ValueError: Negative temperature
 # 5. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
+class Kelvin:
+    def __get__(self, instance, owner):
+        return instance._kelvin
+
+    def __set__(self, instance, value):
+        if value < 0:
+            raise ValueError("Negative temperature")
+        instance._kelvin = value

@@ -83,10 +83,24 @@ class ValueRange:
     min: float
     max: float
 
+    def __init__(self, name: str, min: float, max: float):
+        self.name = name
+        self.min = min
+        self.max = max
+        self.private_name = f'_{name}'
+
+    def __get__(self, instance, owner):
+        return getattr(instance, self.private_name)
+
+    def __set__(self, instance, value):
+        if not (self.min <= value <= self.max):
+            raise ValueError(f'{self.name} is not between {self.min} and {self.max}')
+        setattr(instance, self.private_name, value)
+
 @dataclass
 class User:
     firstname: str
     lastname: str
-    age: int
-    height: float
-    weight: float
+    age: int = ValueRange(name='age', min=18, max=65)
+    height: float = ValueRange(name='height', min=150, max=200)
+    weight: float = ValueRange(name='weight', min=50, max=150)

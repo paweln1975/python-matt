@@ -129,11 +129,13 @@ class Address:
     region: str
     country: str
 
+
 @dataclass
 class User:
     firstname: str
     lastname: str
     addresses: tuple[Address, ...]
+
 
 # English
 # 1. In `DATA` we have two classes
@@ -148,4 +150,16 @@ class User:
 # 4. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-result = ...
+
+def as_user(user_data: dict) -> User:
+    values = map(dict.values, user_data.get('addresses'))
+    addresses: tuple[Address, ...] = tuple(
+        starmap(Address, values))
+
+    return User(
+        firstname=user_data.get('firstname'),
+        lastname=user_data.get('lastname'),
+        addresses=addresses
+    )
+
+result = map(as_user, DATA)

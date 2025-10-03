@@ -64,3 +64,6 @@ class Point:
     x: int
     y: int
     z: int
+
+    def __delattr__(self, name: str) -> None:
+        raise PermissionError("Cannot delete attributes")
