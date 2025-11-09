@@ -33,9 +33,16 @@ if not SECRET_KEY:
     raise ImproperlyConfigured('SECRET_KEY is empty')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG', False)
-
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+# DEBUG = os.environ.get('DJANGO_DEBUG', False)
+DEBUG=False
+ALLOWED_HOSTS = ['dl8fwskj3.home', 'localhost', '127.0.0.1'] # Dodaj wszystkie możliwe identyfikatory
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+SECURE_HSTS_SECONDS = 31536000 # Rok w sekundach
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
 
 # logging
 LOGGING = {

@@ -19,15 +19,15 @@ pytest
 # tzdata
 # IPython
 # Pillow
-django
-django-ninja
-django-debug-toolbar
-django-extensions
-django-tables2
-pydotplus
-plyer
-requests
-desktop-notifier
+# django
+# django-ninja
+# django-debug-toolbar
+# django-extensions
+# django-tables2
+# pydotplus
+# plyer
+# requests
+# desktop-notifier
 # brew install graphviz
 # https://graphviz.org/download/
 
@@ -62,19 +62,19 @@ desktop-notifier
 
 ## Python/PANDAS
 # IPython
-numpy
-pandas
-matplotlib
-requests
-lxml
-html5lib
-beautifulsoup4
-xlrd
-scipy
-jupyter
-jupyterlab
-notebook
-voila
+# numpy
+# pandas
+# matplotlib
+# requests
+# lxml
+# html5lib
+# beautifulsoup4
+# xlrd
+# scipy
+# jupyter
+# jupyterlab
+# notebook
+# voila
 # openpyxl
 
 ## Python/ML
@@ -84,8 +84,8 @@ voila
 # numpy
 # pandas
 # matplotlib
-scikit-learn
-pillow
+# scikit-learn
+# pillow
 # requests
 # lxml
 # html5lib

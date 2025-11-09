@@ -88,5 +88,8 @@ group2 = [
 # %% Result
 def can_login(func):
     def wrapper(users):
+        for user in users:
+            if not user['is_staff']:
+                raise PermissionError(f'{user["username"]} is not a staff')
         return func(users)
     return wrapper

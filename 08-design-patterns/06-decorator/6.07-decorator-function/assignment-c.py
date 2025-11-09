@@ -102,5 +102,10 @@ _cache = {}
 # %% Result
 def cache(func):
     def wrapper(n):
-        return func(n)
+        if n not in _cache:
+            result = func(n)
+            _cache[n] = result
+        else:
+            result = _cache[n]
+        return result
     return wrapper
