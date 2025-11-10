@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class type {
+}
+
+metaclass Singleton {
+    - {field} instance
+    __call__(cls, *args, **kwargs)
+}
+
+class ConfigManager {
+    - {field} settings: dict
+    {method} get()
+    {method} set()
+    {method} pop()
+}
+
+type <|-- Singleton
+Singleton <-- ConfigManager : use as metaclass
+
+
+@enduml

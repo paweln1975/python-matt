@@ -18,6 +18,9 @@ class ConfigManager(metaclass=Singleton):
     def get(self, key: str) -> Any:
         return self.settings.get(key)
 
+    def pop(self, key: str) -> Any:
+        return self.settings.pop(key, None)
+
 
 manager = ConfigManager()
 manager.set('name', 'Mark')
@@ -26,3 +29,8 @@ other = ConfigManager()
 print(other.get('name'))
 print(other.get('name'))
 print(other.get('missing_key'))
+
+third = ConfigManager()
+print(third.pop('name'))
+print(third.pop('name'))
+print(manager.get('name'))
