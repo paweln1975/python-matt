@@ -27,16 +27,16 @@ class MetaBorg(type):
             cls._state['__skip_init__'] = True
         return instance
 
-class A(metaclass=MetaBorg):
+class SharedStateManager(metaclass=MetaBorg):
     def __init__(self, value):
         self.value = value
 
-class B(A):
-    def __init__(self, value):
-        self.value = value
+class SharedStateSubManager(SharedStateManager):
+    pass
 
-a = A(1)
-print(a.value)
+s = SharedStateManager(1)
+print(s.value)
 
-b = B()
-print(b.value)
+d = SharedStateSubManager()  # type: ignore
+print(d.value)
+
