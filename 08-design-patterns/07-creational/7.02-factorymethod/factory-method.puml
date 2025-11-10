@@ -1,0 +1,50 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Document {
+    {abstract} {field} extension
+    {abstract} {method} render()
+    - {method} new(cls, *args, **kwargs}
+    - {method} init(self, *args, **kwargs}
+}
+class Txt {
+    {method} render()
+}
+class Pdf {
+    {method} render()
+}
+class Html {
+    {method} render()
+}
+
+Document <|-- Txt
+Document <|-- Pdf
+Document <|-- Html
+
+abstract class Localizer {
+    {abstract} {method} localize(msg: str)
+}
+
+class SpanishLocalizer {
+}
+
+class EnglishLocalizer {
+}
+
+Localizer <|-- SpanishLocalizer
+Localizer <|-- EnglishLocalizer
+
+abstract class LocalizerFactory {
+    {abstract} {method} create_localizer()
+}
+
+class SpanishLocalizerFactory {
+}
+
+class EnglishLocalizerFactory {
+}
+
+LocalizerFactory <|-- SpanishLocalizerFactory
+LocalizerFactory <|-- EnglishLocalizerFactory
+
+@enduml

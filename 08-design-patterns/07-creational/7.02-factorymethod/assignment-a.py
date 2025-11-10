@@ -97,4 +97,6 @@ class Virginica(Iris):
 
 # %% Result
 def iris(row: tuple[float,float,float,float,str]) -> Iris:
-    ...
+    *values, species = row
+    cls = globals()[species.capitalize()]
+    return cls(*values)
