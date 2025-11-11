@@ -28,10 +28,10 @@ Tests:
 
 >>> from pprint import pprint
 
->>> main(Platform.iOS)
-iOS Textbox username
-iOS Textbox password
-iOS Button submit
+>>> main(Platform.Linux)
+Linux Textbox username
+Linux Textbox password
+Linux Button submit
 
 >>> main(Platform.Android)
 Android Textbox username
@@ -55,31 +55,75 @@ from abc import ABC, abstractmethod
 # 2. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
+
+# abstract products
+class Button(ABC):
+
+    def __init__(self, name: str):
+        self.name = name
+
+    @abstractmethod
+    def render(self):
+        pass
+
+class TextBox(ABC):
+    def __init__(self, name: str):
+        self.name = name
+
+    @abstractmethod
+    def render(self):
+        pass
+
+
+# concrete products
+class LinuxButton(Button):
+    def render(self):
+        print(f'Linux Button {self.name}')
+
+class LinuxTextBox(TextBox):
+    def render(self):
+        print(f'Linux Textbox {self.name}')
+
+class AndroidButton(Button):
+    def render(self):
+        print(f'Android Button {self.name}')
+
+class AndroidTextBox(TextBox):
+    def render(self):
+        print(f'Android Textbox {self.name}')
+
+# abstract factory
+class OSFactory(ABC):
+
+    @abstractmethod
+    def create_button(self, name: str) -> Button:
+        raise NotImplementedError()
+
+    @abstractmethod
+    def create_text_box(self, name: str) -> TextBox:
+        raise NotImplementedError()
+
+# concrete factories
+class LinuxFactory(OSFactory):
+    def create_button(self, name: str) -> Button:
+        return LinuxButton(name)
+
+    def create_text_box(self, name: str) -> TextBox:
+        return LinuxTextBox(name)
+
+class AndroidFactory(OSFactory):
+    def create_button(self, name: str) -> Button:
+        return AndroidButton(name)
+
+    def create_text_box(self, name: str) -> TextBox:
+        return AndroidTextBox(name)
+
 class Platform(Enum):
-    iOS = 'iOS'
-    Android = 'Android'
-
-@dataclass
-class Button:
-    name: str
-
-    def render(self, platform: Platform):
-        if platform is platform.iOS:
-            print(f'iOS Button {self.name}')
-        elif platform is platform.Android:
-            print(f'Android Button {self.name}')
-
-@dataclass
-class Textbox:
-    name: str
-
-    def render(self, platform: Platform):
-        if platform is platform.iOS:
-            print(f'iOS Textbox {self.name}')
-        elif platform is platform.Android:
-            print(f'Android Textbox {self.name}')
+    Linux = LinuxFactory()
+    Android = AndroidFactory()
 
 def main(platform: Platform):
-    Textbox('username').render(platform)
-    Textbox('password').render(platform)
-    Button('submit').render(platform)
+    factory = platform.value
+    factory.create_text_box('username').render()
+    factory.create_text_box('password').render()
+    factory.create_button('submit').render()

@@ -1,0 +1,59 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Enum {}
+abstract class OSFactory {
+    {abstract} {method} create_button(name: str): Button
+    {abstract} {method} create_textbox(name: str): TextBox
+}
+
+class LinuxFactory {
+    {method} create_button(name: str): Button
+    {method} create_textbox(name: str): TextBox
+}
+
+class AndroidFactory {
+    {method} create_button(name: str): Button
+    {method} create_textbox(name: str): TextBox
+}
+
+abstract class Button {
+    {field} name: str
+    {abstract} {method} render()
+}
+
+abstract class TextBox {
+    {field} name: str
+    {abstract} {method} render()
+}
+
+class LinuxButton {
+    {method} render()
+}
+
+class LinuxTextBox {
+    {method} render()
+}
+
+class AndroidButton {
+    {method} render()
+}
+
+class AndroidTextBox {
+    {method} render()
+}
+
+
+
+Button <|-- LinuxButton
+Button <|-- AndroidButton
+
+TextBox <|-- LinuxTextBox
+TextBox <|-- AndroidTextBox
+
+
+Enum <|-- OSFactory
+
+OSFactory <|-- LinuxFactory
+OSFactory <|-- AndroidFactory
+@enduml
