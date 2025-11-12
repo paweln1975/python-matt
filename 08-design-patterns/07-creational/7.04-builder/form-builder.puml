@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class FormField {
+    {field} name: str
+    {field} label: str
+    {field} type: str
+    {field} placeholder: str
+    {method} render()
+   }
+
+class FormButton {
+    {field} name: str
+    {field} label: str
+    {method} render()
+   }
+
+abstract class Builder {
+    {abstract} {method} add_field(name: str, label: str, type: str, placeholder: str): Builder
+    {abstract} {method} add_email(name: str, label: str, type: str, placeholder: str): Builder
+    {abstract} {method} add_password(name: str, label: str, type: str, placeholder: str): Builder
+    {abstract} {method} add_button(name: str, label: str): Builder
+    {abstract} {method} build(): str
+}
+
+class HTMLFormBuilder {
+    {method} add_field(name: str, label: str, type: str, placeholder: str): Builder
+    {method} add_email(name: str, label: str, type: str, placeholder: str): Builder
+    {method} add_password(name: str, label: str, type: str, placeholder: str): Builder
+    {method} add_button(name: str, label: str): Builder
+    {method} build(): str
+   }
+
+Builder <|-- HTMLFormBuilder
+
+class Director {
+    {field} builder: Builder
+    {method} __init__(builder: Builder)
+    {method} construct_login_form(): str
+    {method} construct_registration_form(): str
+}
+
+Director --> Builder
+@enduml

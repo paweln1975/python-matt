@@ -93,9 +93,9 @@ class Email:
         return self
 
     def with_subject(self, subject):
-        self.subject = subject
+        self.subject = subject.encode('utf-8')
         return self
 
     def with_body(self, body):
-        self.body = body
+        self.body = body.encode('utf-8')
         return self

@@ -78,3 +78,25 @@ class Email:
     subject: str
     body: str
     attachment: bytes
+
+    def __init__(self):
+        self.recipient = ''
+        self.sender = ''
+        self.subject = ''
+        self.body = ''
+
+    def with_recipient(self, recipient: str) -> Email:
+        self.recipient = recipient
+        return self
+
+    def with_sender(self, sender: str) -> Email:
+        self.sender = sender
+        return self
+
+    def with_subject(self, subject: str) -> Email:
+        self.subject = subject
+        return self
+
+    def with_body(self, body: str) -> Email:
+        self.body = body
+        return self

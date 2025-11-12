@@ -75,3 +75,26 @@ class Texture:
     width: int
     height: int
     quality: int
+
+    def with_file(self, file: str) -> Texture:
+        self.file = file
+        return self
+
+    def with_width(self, width: int) -> Texture:
+        if width <= 0:
+            raise ValueError("Width must be greater than 0")
+        self.width = width
+        return self
+
+    def with_height(self, height: int) -> Texture:
+        if height <= 0:
+            raise ValueError("Height must be greater than 0")
+        self.height = height
+        return self
+
+    def with_quality(self, quality: int) -> Texture:
+        if not (1 <= quality <= 100):
+            raise ValueError("Quality must be between 1 and 100")
+        self.quality = quality
+        return self
+    

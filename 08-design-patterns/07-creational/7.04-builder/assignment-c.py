@@ -91,17 +91,26 @@ class Email:
     body: bytes
 
     def with_recipient(self, recipient):
+        if not Email.validate_email(recipient):
+            raise ValueError('Invalid recipient')
         self.recipient = recipient
         return self
 
     def with_sender(self, sender):
+        if not Email.validate_email(sender):
+            raise ValueError('Invalid sender')
         self.sender = sender
         return self
 
     def with_subject(self, subject):
-        self.subject = subject
+        self.subject = subject.encode('utf-8')
         return self
 
     def with_body(self, body):
-        self.body = body
+        self.body = body.encode('utf-8')
         return self
+
+    @staticmethod
+    def validate_email(email: str) -> bool:
+        pattern = r'^[a-z]+@nasa.gov$'
+        return re.match(pattern, email) is not None

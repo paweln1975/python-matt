@@ -100,4 +100,5 @@ class Email:
         return self
 
     def with_attachment(self, attachment):
-        ...
+        self.attachment = b64encode(attachment)
+        return self
