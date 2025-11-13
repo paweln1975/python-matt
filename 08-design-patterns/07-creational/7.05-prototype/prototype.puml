@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class User {
+    {field} firstname: str
+    {field} lastname: str
+    {field} email: str
+    {method} clone()
+    {method} copy()
+}
+
+class Admin
+
+User <|-- Admin
+
+@enduml

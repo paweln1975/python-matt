@@ -74,3 +74,7 @@ class Date:
     year: int
     month: int
     day: int
+
+    def clone(self) -> Date:
+        values = vars(self)
+        return Date(**values)

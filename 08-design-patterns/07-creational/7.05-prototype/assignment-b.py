@@ -79,3 +79,7 @@ class Time:
     minute: int = 0
     second: int = 0
     microsecond: int = 0
+
+    def clone(self) -> Time:
+        values = vars(self)
+        return Time(**values)

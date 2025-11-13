@@ -84,5 +84,12 @@ seed(0)
 
 # %% Result
 @dataclass
-class Dragon:
-    ...
+class Dragon:  # type: ignore
+    name: str
+    health: int = field(default_factory=lambda: randint(50, 100))
+    gold: int = field(default_factory=lambda: randint(1, 100))
+    position: tuple[int, int] = (0, 0)
+
+    def clone(self) -> Dragon:  # type: ignore
+        values = vars(self)
+        return Dragon(**values)
