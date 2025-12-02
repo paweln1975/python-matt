@@ -83,3 +83,15 @@ class User:
     firstname: str
     lastname: str
     groups: tuple = ()
+
+    def __iter__(self):
+        self._index = 0
+        return self
+
+    def __next__(self):
+        if self._index < len(self.groups):
+            group = self.groups[self._index]
+            self._index += 1
+            return group
+        else:
+            raise StopIteration

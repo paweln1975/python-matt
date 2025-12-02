@@ -59,7 +59,20 @@ __next__: Callable[[object], str]
 class Crew:
     def __init__(self):
         self.members = list()
+        self._index = 0
 
     def __iadd__(self, other):
         self.members.append(other)
         return self
+
+    def __iter__(self):
+        self._index = 0
+        return self
+
+    def __next__(self):
+        if self._index < len(self.members):
+            member = self.members[self._index]
+            self._index += 1
+            return member
+        else:
+            raise StopIteration

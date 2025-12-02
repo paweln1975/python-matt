@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+interface Iterator {
+    __iter__()
+    __next__()
+}
+
+class AnyClass {
+    {field} items: list
+    {method} __iter__()
+    {method} __next__(): Any
+   }
+@enduml

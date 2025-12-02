@@ -9,7 +9,7 @@ class ConfigManager:
         self.settings = {}
 
     @classmethod
-    def get_instance(cls) -> 'ConfigManager':
+    def get_instance(cls) -> ConfigManager:
         if not cls.instance:
             cls.instance = super().__new__(cls)
             cls.instance.__init__()

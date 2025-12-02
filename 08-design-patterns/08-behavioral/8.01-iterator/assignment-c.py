@@ -75,3 +75,31 @@ class Range:
     start: int = 0
     stop: int = None
     step: int = 1
+
+
+    def __init__(self, start: int, stop: int = None, step: int = 1):
+        self.start = start
+        self.stop = stop
+        self.step = step
+        self.current = start
+
+    def __iter__(self):
+        self.current = self.start
+        return self
+
+    def __next__(self):
+        if self.stop is None:
+            raise ValueError("Stop value must be provided")
+
+        if self.step <= 0:
+            raise ValueError("Step value must be positive")
+
+        if self.current >= self.stop:
+            raise StopIteration
+
+        result = self.current
+        self.current += self.step
+
+        return result
+
+
