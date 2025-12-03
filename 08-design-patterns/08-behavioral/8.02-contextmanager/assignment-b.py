@@ -85,4 +85,24 @@ __exit__: Callable[[object, Any, Any, Any], None]
 
 # %% Result
 class File:
-    ...
+    BUFFER_LIMIT: int = 100
+
+    def __init__(self, path: str):
+        self.path = path
+        self.buffer: list[str] = []
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        self.flush()
+
+    def append(self, text: str):
+        self.buffer.append(text + '\n')
+        if getsizeof(self.buffer) >= self.BUFFER_LIMIT:
+            self.flush()
+
+    def flush(self):
+        with open(self.path, 'a') as file:
+            file.writelines(self.buffer)
+        self.buffer = []

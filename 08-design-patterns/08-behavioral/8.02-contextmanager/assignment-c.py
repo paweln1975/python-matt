@@ -90,4 +90,36 @@ __exit__: Callable[[object, Any, Any, Any], None]
 
 # %% Result
 class File:
-    ...
+    AUTOSAVE_SECONDS: float = 1.0
+
+    def __init__(self, path: str):
+        self.path = path
+        self.buffer: list[str] = []
+        self.set_timer()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        self.flush()
+        if hasattr(self, 'timer'):
+            self.timer.cancel()
+
+    def append(self, text: str):
+        self.buffer.append(text + '\n')
+
+    def flush(self):
+        to_write = self.buffer.copy()
+        self.buffer = []
+        if self.path:
+            with open(self.path, 'a') as file:
+                file.writelines(to_write)
+            self.set_timer()
+
+    def set_timer(self):
+        if hasattr(self, 'timer'):
+            self.timer.cancel()
+        self.timer = Timer(self.AUTOSAVE_SECONDS, self.flush)
+        self.timer.start()
+
+

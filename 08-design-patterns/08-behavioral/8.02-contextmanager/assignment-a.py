@@ -85,4 +85,16 @@ __exit__: Callable[[object, Any, Any, Any], None]
 
 # %% Result
 class File:
-    ...
+    def __init__(self, path: str):
+        self.path = path
+
+    def __enter__(self):
+        self.f = open(self.path, 'w')
+        return self
+
+    def __exit__(self, *args):
+        self.f.close()
+
+    def append(self, text: str):
+        self.f.write(text)
+        self.f.write('\n')

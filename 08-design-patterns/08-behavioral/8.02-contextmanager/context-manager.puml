@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+interface ConextManager {
+    __enter__(self): self
+    __exit__(self, *args): None
+}
+
+class AnyClass {
+    {method} __enter__(self): self
+    {method} __exit__(self, *args): None
+   }
+@enduml
