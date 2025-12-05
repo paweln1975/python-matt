@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class CallbackExecutor {
+    {method} execute(data: Any, on_success: Callable, on_error: Callable): None
+}
+
+class Client {
+    {method} process_data(data: Any): None
+    {method} on_success(result: Any): None
+    {method} on_error(error: Exception): None
+}
+
+Client <-- CallbackExecutor : uses
+
+@enduml
