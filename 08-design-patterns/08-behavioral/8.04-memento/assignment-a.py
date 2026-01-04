@@ -50,6 +50,8 @@ Tests:
 
 from dataclasses import dataclass, field
 from datetime import datetime
+from uuid import uuid4
+
 
 # English
 # 1. Implement Memento pattern
@@ -68,12 +70,35 @@ from datetime import datetime
 # 4. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
+@dataclass(frozen=True)
+class State:
+    when: datetime = field(default_factory=datetime.now)
+    uuid: str = field(default_factory=uuid4)
+    data: dict | None = None
+
 @dataclass
-class Account:
+class Memento:
+    _states: list[State] = field(default_factory=list)
+
+    def _save(self) -> None:
+        data = self.__dict__.copy()
+        state = State(data=data)
+        self._states.append(state)
+
+    def _restore(self):
+        if not self._states:
+            raise IndexError("Memento has not been saved")
+        state = self._states.pop()
+        self.__dict__.update(state.data)
+
+
+@dataclass
+class Account(Memento):
     balance: float = 0.0
 
     def deposit(self, amount: float) -> None:
-        raise NotImplementedError
+        self._save()
+        self.balance += amount
 
     def undo(self):
-        raise NotImplementedError
+        self._restore()

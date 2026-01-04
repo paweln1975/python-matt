@@ -1,4 +1,5 @@
 import random
+import copy
 from enum import Enum
 EMPTY_CELL = '.'
 FROG_CELL = 'F'
@@ -114,33 +115,29 @@ class Board:
                 return False
         return True
 
-    def simulate_frog_walk(self, n: int) -> tuple[int, list[tuple[int, int]]]:
-        path = []
-        count = 0
-        for _ in range(n):
-            count += 1
-            self.load_from_file()
-            path = self.frog_walk()
-            if self.check_all_flies_eaten():
-                break
-
-        return count, path
-
     def display(self):
         for row in self.grid:
             print(' '.join(row))
         print()
 
 
+    def copy(self) -> Board:
+        return copy.deepcopy(self)
 
 if __name__ == "__main__":
-    board = Board(5, 'board.txt')
+    ro_board = Board(5, 'board.txt')
+    board = ro_board.copy()
     board.display()
-    sim_count, moves = board.simulate_frog_walk(1000)
-    if board.check_all_flies_eaten():
-        print("Frog ate all flies!")
-        print("Frog's path:", moves)
-        board.display()
+
+    for i in range(100):
+        path = board.frog_walk()
+        if board.check_all_flies_eaten():
+            print("Frog ate all flies!")
+            print("Frog's path:", path)
+            board.display()
+            print("Simulation count:", i + 1)
+            break
+        else:
+            board = ro_board.copy()
     else:
-        print("Frog could not eat all flies.")
-    print("Simulations run:", sim_count)
+        print("Frog could not eat all flies in 100 simulations.")

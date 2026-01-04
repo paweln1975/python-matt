@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class State {
+    timestamp: datetime
+    uuid: str
+    data: dict | None
+}
+
+class Memento {
+    -states: list[State]
+    #save()
+    #restore()
+}
+
+Memento "0" o-- "*" State : contains
+
+class Account {
+    -balance: float
+
+    +deposit(amount: float): void
+    +undo(): void
+    }
+
+Memento <|- Account
+
+
+@enduml
