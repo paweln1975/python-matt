@@ -1,0 +1,63 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class CheckoutState {
+    {abstract}{method} add_item(): CheckoutState
+    {abstract}{method} review_cart(): CheckoutState
+    {abstract}{method} enter_shipping_info(info: String): CheckoutState
+    {abstract}{method} process_payment(): CheckoutState
+}
+
+class CartEmptyState {
+    {method} add_item(): CheckoutState
+    {method} review_cart(): CheckoutState
+    {method} enter_shipping_info(info: String): CheckoutState
+    {method} process_payment(): CheckoutState
+}
+
+class ItemsInCartState {
+    {method} add_item(): CheckoutState
+    {method} review_cart(): CheckoutState
+    {method} enter_shipping_info(info: String): CheckoutState
+    {method} process_payment(): CheckoutState
+}
+
+class ShippingInfoState {
+    {method} add_item(): CheckoutState
+    {method} review_cart(): CheckoutState
+    {method} enter_shipping_info(info: String): CheckoutState
+    {method} process_payment(): CheckoutState
+}
+
+class PaymentProcessingState {
+    {method} add_item(): CheckoutState
+    {method} review_cart(): CheckoutState
+    {method} enter_shipping_info(info: String): CheckoutState
+    {method} process_payment(): CheckoutState
+}
+
+class CheckoutContext {
+    {field} state: CheckoutState
+    {method} set_state(state: CheckoutState): None
+    {method} add_item(): CheckoutState
+    {method} review_cart(): CheckoutState
+    {method} enter_shipping_info(info: String): CheckoutState
+    {method} process_payment(): CheckoutState
+}
+
+CheckoutContext --> CheckoutState : has a
+
+together {
+    class CartEmptyState
+    class ItemsInCartState
+    class ShippingInfoState
+    class PaymentProcessingState
+}
+
+CheckoutState <|-- CartEmptyState
+CheckoutState <|-- ItemsInCartState
+CheckoutState <|-- ShippingInfoState
+CheckoutState <|-- PaymentProcessingState
+
+
+@enduml

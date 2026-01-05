@@ -46,7 +46,7 @@ Tests:
 '再见'
 
 """
-
+from abc import abstractmethod, ABC
 # %% SetUp
 
 from enum import Enum
@@ -66,10 +66,48 @@ from enum import Enum
 # 3. Uruchom doctesty - wszystkie muszą się powieść
 
 # %% Result
-class Language(Enum):
-    POLISH = 'pl'
-    ENGLISH = 'en'
-    SPANISH = 'es'
+# class Language(Enum):
+#     POLISH = 'pl'
+#     ENGLISH = 'en'
+#     SPANISH = 'es'
+
+class Language(ABC):
+    @abstractmethod
+    def hello(self) -> str:
+        pass
+
+    @abstractmethod
+    def goodbye(self) -> str:
+        pass
+
+class Polish(Language):
+    def hello(self) -> str:
+        return 'Cześć'
+
+    def goodbye(self) -> str:
+        return 'Do widzenia'
+
+class English(Language):
+    def hello(self) -> str:
+        return 'Hello'
+
+    def goodbye(self) -> str:
+        return 'Goodbye'
+
+class Chinese(Language):
+    def hello(self) -> str:
+        return '你好'
+
+    def goodbye(self) -> str:
+        return '再见'
+
+class Spanish(Language):
+    def hello(self) -> str:
+        return 'Buenos Días'
+
+    def goodbye(self) -> str:
+        return 'Adiós'
+
 
 class Translation:
     language: Language
@@ -78,21 +116,13 @@ class Translation:
         self.language = language
 
     def hello(self) -> str:
-        if self.language is Language.POLISH:
-            return 'Cześć'
-        elif self.language is Language.ENGLISH:
-            return 'Hello'
-        elif self.language is Language.SPANISH:
-            return 'Buenos Días'
-        else:
+        if self.language is None:
             return 'Unknown language'
+        else:
+            return self.language.hello()
 
     def goodbye(self) -> str:
-        if self.language is Language.POLISH:
-            return 'Do widzenia'
-        elif self.language is Language.ENGLISH:
-            return 'Goodbye'
-        elif self.language is Language.SPANISH:
-            return 'Adiós'
-        else:
+        if self.language is None:
             return 'Unknown language'
+        else:
+            return self.language.goodbye()
