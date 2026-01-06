@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class ImageFileCompressor {
+    + {abstract} compress(imagePath: String)
+}
+abstract class ImageFilter {
+    + {abstract} apply(imagePath: String)
+}
+class JpegCompressor {
+    compress(imagePath: String)
+}
+
+class PngCompressor {
+    compress(imagePath: String)
+}
+class BlackAndWhiteFilter {
+    apply(imagePath: String)
+}
+class HighContrastFilter {
+    apply(imagePath: String)
+}
+
+ImageFileCompressor <|-- JpegCompressor
+ImageFileCompressor <|-- PngCompressor
+ImageFilter <|-- BlackAndWhiteFilter
+ImageFilter <|-- HighContrastFilter
+
+class ImageProcessor {
+- compressor: ImageFileCompressor
+- filter: ImageFilter
++ setCompressor(c: ImageFileCompressor)
++ setFilter(f: ImageFilter)
++ process(imagePath: String)
+}
+ImageProcessor o-- ImageFileCompressor
+ImageProcessor o-- ImageFilter
+
+@enduml
