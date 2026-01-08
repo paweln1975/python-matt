@@ -4,16 +4,44 @@
 abstract class ImageFileCompressor {
     + {abstract} compress(imagePath: String)
 }
+
+note right of ImageFileCompressor
+    Defines the interface for image compression strategies.
+    Subclasses implement specific compression algorithms.
+end note
+
 abstract class ImageFilter {
     + {abstract} apply(imagePath: String)
 }
+
+note right of ImageFilter
+    Defines the interface for image filter strategies.
+    Subclasses implement specific image filters.
+end note
+
 class JpegCompressor {
     compress(imagePath: String)
 }
 
+note bottom of JpegCompressor
+    Implements JPEG compression for image files.
+end note
+
+class TiffCompressor {
+    compress(imagePath: String)
+}
+note bottom of TiffCompressor
+    Implements TIFF compression for image files.
+end note
+
 class PngCompressor {
     compress(imagePath: String)
 }
+
+note bottom of PngCompressor
+    Implements PNG compression for image files.
+end note
+
 class BlackAndWhiteFilter {
     apply(imagePath: String)
 }
@@ -23,6 +51,7 @@ class HighContrastFilter {
 
 ImageFileCompressor <|-- JpegCompressor
 ImageFileCompressor <|-- PngCompressor
+ImageFileCompressor <|-- TiffCompressor
 ImageFilter <|-- BlackAndWhiteFilter
 ImageFilter <|-- HighContrastFilter
 
@@ -33,6 +62,12 @@ class ImageProcessor {
 + setFilter(f: ImageFilter)
 + process(imagePath: String)
 }
+
+note right of ImageProcessor
+    Context class that uses filter and compressor strategies
+    to process image files. Allows dynamic strategy changes.
+end note
+
 ImageProcessor o-- ImageFileCompressor
 ImageProcessor o-- ImageFilter
 

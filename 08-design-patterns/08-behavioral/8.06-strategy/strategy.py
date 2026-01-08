@@ -15,6 +15,9 @@ class PngCompressor(ImageFileCompressor):
     def compress(self, filename: str) -> None:
         print(f"Compressing {filename} using PNG compression.")
 
+class TiffCompressor(ImageFileCompressor):
+    def compress(self, filename: str) -> None:
+        print(f"Compressing {filename} using TIFF compression.")
 
 class ImageFilter(ABC):
     @abstractmethod
@@ -50,3 +53,9 @@ if __name__ == "__main__":
 
     processor = ImageProcessor(png_compressor, bw_filter)
     processor.process("photo2.png")
+
+    tiff_compressor = TiffCompressor()
+    high_contrast_filter = HighContrastFilter()
+
+    processor = ImageProcessor(tiff_compressor, high_contrast_filter)
+    processor.process("photo3.tiff")
