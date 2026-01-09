@@ -65,10 +65,10 @@ pytest
 # numpy
 # pandas
 # matplotlib
-# requests
+requests
 # lxml
 # html5lib
-# beautifulsoup4
+beautifulsoup4
 # xlrd
 # scipy
 # jupyter
