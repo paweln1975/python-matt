@@ -1,0 +1,49 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Command {
+    + __init__(self, receiver): void
+    + {abstract} execute(): void
+}
+
+note right of Command
+    Defines the interface for command objects.
+    Each command encapsulates a receiver as an object.
+end note
+
+class PingCommand {
+    + execute(): void
+}
+
+class TracerouteCommand {
+    + execute(): void
+}
+
+Command <|-- PingCommand
+Command <|-- TracerouteCommand
+
+
+class NetworkDevice {
+    + ping(): void
+    + traceroute(): void
+}
+
+note right of NetworkDevice
+    Represents a network device that can execute various network commands.
+end note
+
+class CommandExecutor {
+    - command: Command[]
+    + add_command(command: Command): void
+    + execute_commands(): void
+}
+
+note top of CommandExecutor
+    Invokes commands on the receiver (NetworkDevice).
+    Maintains a list of commands to be executed.
+end note
+
+CommandExecutor "1" *-- "*" Command
+NetworkDevice <-- Command : receiver
+
+@enduml

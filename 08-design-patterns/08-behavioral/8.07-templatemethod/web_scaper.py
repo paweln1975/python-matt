@@ -60,7 +60,7 @@ class RegexpScraper(WebScraperTemplate):
             print(f"Link: {link}")
 
 if __name__ == "__main__":
-    url = "http://dl1b5yy03.aptiv.com/"
+    url = "http://10.224.185.56/"
     scraper = BeautifulSoupScraper()
     scraper.scrape(url)
 
