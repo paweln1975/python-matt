@@ -38,9 +38,16 @@ class CommandExecutor {
     + execute_commands(): void
 }
 
-note top of CommandExecutor
+note right of CommandExecutor
     Invokes commands on the receiver (NetworkDevice).
     Maintains a list of commands to be executed.
+end note
+
+note top of CommandExecutor
+    The Command design pattern is a behavioral design pattern that turns a request into a stand-alone object
+    that contains all information about the request. This transformation lets you pass requests as a method arguments,
+    delay or queue a request's execution, and support undoable operations.
+    In Python, we can implement the Command pattern using classes.
 end note
 
 CommandExecutor "1" *-- "*" Command

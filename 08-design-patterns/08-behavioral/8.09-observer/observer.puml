@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class ChatRoom {
+    - participants: User[]
+    + join (observer: User): void
+    + leave (observer: User): void
+    + broadcast(): void
+}
+
+note top of ChatRoom
+    The Observer design pattern is a behavioral design pattern that allows an object (known as the subject)
+     to notify other objects (known as observers) about changes in its state. The subject maintains a list of
+     observers and provides methods to add and remove observers from this list. When the state of the subject changes,
+     it sends a notification to all its observers. This pattern is particularly useful in event-driven programming.
+end note
+
+class User {
+    - name: String
+    - chat: ChatRoom
+    + send_message (message: String): void
+    + receive_message (sender: User, message: String): void
+    + join_chat (chat: ChatRoom): void
+    + leave_chat (): void
+}
+
+ChatRoom "1" *-- "*" User : observers
+
+@enduml
