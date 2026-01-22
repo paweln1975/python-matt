@@ -67,7 +67,7 @@ class UIElement(ABC):
     value: Any
 
     def changed(self):
-        raise NotImplementedError
+        self.owner.on_change()
 
     @abstractmethod
     def set_value(self, value: Any) -> None: ...
@@ -84,6 +84,7 @@ class Input(UIElement):
 
     def set_value(self, value: str) -> None:
         self.value = value
+        self.changed()
 
 @dataclass
 class Button(UIElement):
@@ -120,14 +121,14 @@ class LoginForm(Form):
 
     def set_username(self, username: str):
         self.username_input.set_value(username)
-        self.on_change()
 
     def set_password(self, password: str):
         self.password_input.set_value(password)
-        self.on_change()
 
     def on_change(self):
-        if self.username_input.get_value() and self.password_input.get_value():
+        username = self.username_input.get_value()
+        password = self.password_input.get_value()
+        if username and password:
             self.submit_button.enable()
         else:
             self.submit_button.disable()
