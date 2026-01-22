@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Component {
+    - name: String
+    - mediator: Mediator
+    + send(message: String): void
+    + receive(message: String): void
+}
+
+class Mediator {
+    + {abstract} notify(sender, event): void
+    + {abstract} register(component: Component): void
+}
+
+Component "1" o-- "1" Mediator : communicates with
+
+class ComponentMediator {
+    + notify(sender: Component, message: String): void
+    + register(component: Component): void
+}
+
+Mediator <|-- ComponentMediator
+
+note top of Mediator
+    The Mediator design pattern is a behavioral design pattern that reduces coupling between classes by making them
+    communicate indirectly, through a mediator object. The mediator object handles and coordinates communication between
+    different classes.
+    In Python, we can implement the Mediator pattern using classes.
+end note
+
+
+@enduml

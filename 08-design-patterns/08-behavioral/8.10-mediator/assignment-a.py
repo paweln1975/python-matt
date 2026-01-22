@@ -80,20 +80,20 @@ class Input(UIElement):
     value: str = ''
 
     def get_value(self) -> str:
-        raise NotImplementedError
+        return self.value
 
     def set_value(self, value: str) -> None:
-        raise NotImplementedError
+        self.value = value
 
 @dataclass
 class Button(UIElement):
     value: bool = False
 
     def set_value(self, value: bool) -> None:
-        raise NotImplementedError
+        self.value = value
 
     def get_value(self) -> Any:
-        raise NotImplementedError
+        return self.value
 
     def enable(self):
         self.set_value(True)
@@ -114,16 +114,23 @@ class LoginForm(Form):
     submit_button: Button
 
     def __init__(self):
-        raise NotImplementedError
+        self.username_input = Input(name='username', owner=self, value='')
+        self.password_input = Input(name='password', owner=self, value='')
+        self.submit_button = Button(name='submit', owner=self, value=False)
 
     def set_username(self, username: str):
-        raise NotImplementedError
+        self.username_input.set_value(username)
+        self.on_change()
 
     def set_password(self, password: str):
-        raise NotImplementedError
+        self.password_input.set_value(password)
+        self.on_change()
 
     def on_change(self):
-        raise NotImplementedError
+        if self.username_input.get_value() and self.password_input.get_value():
+            self.submit_button.enable()
+        else:
+            self.submit_button.disable()
 
     def submit(self):
         if self.submit_button.is_enabled():
