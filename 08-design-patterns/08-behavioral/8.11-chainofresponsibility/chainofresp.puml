@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Handler {
+    + set_next(handler: Handler): Handler
+    + {abstract} handle(request): String
+    + process_request(request): String
+}
+
+note top of Handler
+    The Chain of Responsibility Design Pattern is a behavioral pattern that provides a solution for passing requests
+     along a chain of handlers. These handlers, like links in a chain, process the request or pass it to the next
+     handler in line. This pattern acts as an intermediary, allowing you to decouple the sender of a request from
+     its receivers. It simplifies your code and allows you to skip explicit sender-receiver bindings.
+end note
+
+class AuthHandler {
+    + handle(request): String
+}
+
+class LoggingHandler {
+    + handle(request): String
+}
+
+class CompressionHandler {
+    + handle(request): String
+}
+
+Handler <|-- AuthHandler
+Handler <|-- LoggingHandler
+Handler <|-- CompressionHandler
+
+AuthHandler "1" *-- "0..1" Handler : next
+LoggingHandler "1" *-- "0..1" Handler : next
+CompressionHandler "1" *-- "0..1" Handler : next
+
+class Server {
+    - handler:  Handler
+    + set_handler(handler: Handler): void
+    + handle_request(request): String
+}
+Server "1" o-- "1" Handler : uses
+
+@enduml
