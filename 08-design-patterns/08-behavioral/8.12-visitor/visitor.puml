@@ -1,0 +1,64 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Exporter {
+    + {abstract} export_paragraph(paragraph): String
+    + {abstract} export_image(image): String
+    + {abstract} export_heading(heading): String
+}
+
+note top of Exporter
+    The Visitor design pattern is a behavioral design pattern that allows you to add new behaviors to existing class
+    hierarchies without altering any existing code. It works by creating a separate visitor class that implements all
+    the appropriate specializations of a particular operation for all classes of an object structure.port formats.
+end note
+
+class HTMLExporter {
+    + export_paragraph(paragraph): String
+    + export_image(image): String
+    + export_heading(heading): String
+}
+
+class PDFExporter {
+    + export_paragraph(paragraph): String
+    + export_image(image): String
+    + export_heading(heading): String
+}
+
+Exporter <|-- HTMLExporter
+Exporter <|-- PDFExporter
+
+abstract class Element {
+    + {abstract} accept(visitor: Exporter): String
+}
+
+class Paragraph {
+    - text: String
+    + accept(visitor: Exporter): String
+}
+
+class Image {
+    - url: String
+    - alt: String
+    + accept(visitor: Exporter): String
+}
+
+class Heading {
+    - text: String
+    - level: Int
+    + accept(visitor: Exporter): String
+}
+
+Element <|-- Paragraph
+Element <|-- Image
+Element <|-- Heading
+
+class Document {
+    - elements: List<Element>
+    + add_element(element: Element): void
+    + export(visitor: Exporter): String
+}
+
+Document "1" o-- "*" Element : contains
+
+@enduml
