@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+<table>
+    <th>Test header</th>
+    {% for item in items %}
+        <tr>
+            <td>{{ item }}</td>
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

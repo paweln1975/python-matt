@@ -99,3 +99,4 @@ beautifulsoup4
 # pytorch
 # keras
 # openpyxl
+Jinja2
