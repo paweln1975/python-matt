@@ -1,0 +1,58 @@
+@startuml gateway_class_diagram
+
+title Gateway Pattern Class Diagram
+
+class APIGateway {
+    - base_url: str
+    - api_key: str
+    - cache: Cache
+    - session: Session
+    + __init__(base_url: str, api_key: str, cache: Cache): void
+    + get(endpoint: str): dict
+}
+
+note top of APIGateway
+    The Gateway pattern provides a single entry point to a subsystem,
+    encapsulating the complexity of interacting with external systems or services.
+    It acts as a facade, simplifying the interface for clients and allowing for
+    easier maintenance, testing, and changes to the underlying systems.
+end note
+
+class Cache {
+    - expiration: timedelta
+    - location: str
+    + {abstract} get(key: str): str
+    + {abstract} set(key: str, value: str): void
+    + {abstract} is_valid(key: str): bool
+}
+
+note right of Cache
+    Abstract base class for caching mechanisms.
+    Defines the interface for cache operations.
+end note
+
+class FileSystemCache {
+    - location: str
+    + __init__(location: str, *args, **kwargs): void
+    + __get_cache_path(key: str): str
+    + set(key: str, value: str): void
+    + get(key: str): str
+    + is_valid(key: str): bool
+}
+
+note right of FileSystemCache
+    Concrete implementation of Cache using the file system.
+    Stores cached data in files with expiration checks.
+end note
+
+
+
+note right of APIGateway
+    Gateway class that handles HTTP requests to an external API.
+    Supports caching via the Cache interface.
+end note
+
+Cache <|-- FileSystemCache : extends
+APIGateway --> Cache : uses
+
+@enduml
