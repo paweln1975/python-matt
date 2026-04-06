@@ -1,5 +1,14 @@
 @startuml
+!include ../../styles.puml
 'https://plantuml.com/class-diagram
+
+title Callback Design Pattern Documentation
+
+header
+    The Callback Pattern allows for asynchronous execution and event-driven
+    programming. It involves passing a function as an argument to another function,
+    which is then executed when a specific event occurs or when the operation completes.
+endheader
 
 class CallbackExecutor {
     {method} execute(data: Any, on_success: Callable, on_error: Callable): None

@@ -1,5 +1,15 @@
 @startuml
+!include ../../styles.puml
 'https://plantuml.com/sequence-diagram
+
+title Builder Design Pattern Documentation
+
+header
+    The Builder Pattern separates the construction of a complex object from its
+    representation so that the same construction process can create different
+    representations. It allows for step-by-step construction of complex objects
+    using a fluent interface.
+endheader
 
 class FormField {
     {field} name: str

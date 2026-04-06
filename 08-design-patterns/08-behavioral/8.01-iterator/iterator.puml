@@ -1,6 +1,15 @@
 @startuml
+!include ../../styles.puml
 'https://plantuml.com/class-diagram
 
+title Iterator Design Pattern Documentation
+
+header
+    The Iterator Pattern provides a way to access the elements of an aggregate
+    object sequentially without exposing its underlying representation. It allows
+    for traversing collections in a uniform way, regardless of the collection's
+    internal structure.
+endheader
 
 interface Iterator {
     __iter__()

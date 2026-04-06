@@ -1,0 +1,99 @@
+@startuml Interpreter Pattern
+!include ../../styles.puml
+
+title Interpreter Design Pattern Documentation
+
+header
+    The Interpreter Pattern is a behavioral design pattern that's used to define
+    a grammatical representation for a language and provides an interpreter to deal
+    with this grammar. In simpler terms, it's about creating a way to understand
+    and act upon a set of instructions written in a specific language.
+endheader
+
+abstract class Expression {
+    {abstract} + interpret(context: Context): int
+}
+
+note top of Expression
+    The Expression class is the abstract base class for all expressions in our grammar.
+    It defines the interpret method that all concrete expressions must implement.
+end note
+
+class Number {
+    - _value: any
+    + __init__(value)
+    + interpret(context: Context) -> int
+}
+
+class Variable {
+    - _name: str
+    + __init__(name: str)
+    + interpret(context: Context) -> int
+}
+
+class Add {
+    - _left: Expression
+    - _right: Expression
+    + __init__(left: Expression, right: Expression)
+    + interpret(context: Context) -> int
+}
+
+class Sub {
+    - _left: Expression
+    - _right: Expression
+    + __init__(left: Expression, right: Expression)
+    + interpret(context: Context) -> int
+}
+
+class Context {
+    - _variables: dict
+    + set_variable(name: str, value: any)
+    + get_variable(name: str) -> any
+}
+
+Expression <|-- Number
+Expression <|-- Variable
+Expression <|-- Add
+Expression <|-- Sub
+
+Add o-- Expression: contains (left, right)
+Sub o-- Expression: contains (left, right)
+
+Add ..> Context: uses in interpret()
+Sub ..> Context: uses in interpret()
+Variable ..> Context: uses in interpret()
+Number ..> Context: uses in interpret()
+
+note right of Expression
+    Abstract base class for all expressions
+    in our grammar
+end note
+
+note right of Context
+    Stores variables used during the
+    interpretation of expressions
+end note
+
+note right of Number
+    Terminal expression - represents
+    a specific number
+end note
+
+note right of Variable
+    Terminal expression - represents
+    a variable from context
+end note
+
+note right of Add
+    Non-terminal - represents
+    the addition operation
+end note
+
+note right of Sub
+    Non-terminal - represents
+    the subtraction operation
+end note
+
+@enduml
+
+

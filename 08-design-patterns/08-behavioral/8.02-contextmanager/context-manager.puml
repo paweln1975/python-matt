@@ -1,6 +1,14 @@
 @startuml
+!include ../../styles.puml
 'https://plantuml.com/class-diagram
 
+title Context Manager Design Pattern Documentation
+
+header
+    The Context Manager Pattern provides a way to allocate and release resources
+    precisely when you want to. It ensures that resources are properly managed
+    and cleaned up, even if exceptions occur, using the 'with' statement in Python.
+endheader
 
 interface ConextManager {
     __enter__(self): self

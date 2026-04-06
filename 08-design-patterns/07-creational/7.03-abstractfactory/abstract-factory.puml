@@ -1,5 +1,15 @@
 @startuml
+!include ../../styles.puml
 'https://plantuml.com/class-diagram
+
+title Abstract Factory Design Pattern Documentation
+
+header
+    The Abstract Factory Pattern provides an interface for creating families
+    of related or dependent objects without specifying their concrete classes.
+    It allows for creating objects that follow a common theme or interface
+    without coupling to specific implementations.
+endheader
 
 class Enum {}
 abstract class OSFactory {

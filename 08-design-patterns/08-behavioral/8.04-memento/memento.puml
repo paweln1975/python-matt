@@ -1,5 +1,15 @@
 @startuml
+!include ../../styles.puml
 'https://plantuml.com/class-diagram
+
+title Memento Design Pattern Documentation
+
+header
+    The Memento Pattern provides the ability to restore an object to its previous
+    state without revealing the details of its implementation. It captures and
+    externalizes an object's internal state so that the object can be restored
+    to this state later.
+endheader
 
 class State {
     timestamp: datetime

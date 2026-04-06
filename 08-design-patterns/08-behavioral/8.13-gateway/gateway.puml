@@ -1,6 +1,14 @@
-@startuml gateway_class_diagram
+@startuml
+!include ../../styles.puml
 
-title Gateway Pattern Class Diagram
+title Gateway Design Pattern Documentation
+
+header
+    The Gateway Pattern provides a single entry point for accessing external
+    systems or services. It encapsulates the complexity of communication with
+    external APIs, handles caching, authentication, and provides a unified
+    interface for client applications.
+endheader
 
 class APIGateway {
     - base_url: str

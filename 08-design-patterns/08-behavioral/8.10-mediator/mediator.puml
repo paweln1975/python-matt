@@ -1,5 +1,14 @@
 @startuml
+!include ../../styles.puml
 'https://plantuml.com/class-diagram
+
+title Mediator Design Pattern Documentation
+
+header
+    The Mediator Pattern defines how a set of objects interact with each other.
+    Instead of objects communicating directly, they communicate through a mediator,
+    reducing dependencies and promoting loose coupling between components.
+endheader
 
 class Component {
     - name: String

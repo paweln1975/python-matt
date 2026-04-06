@@ -1,5 +1,14 @@
 @startuml
+!include ../../styles.puml
 'https://plantuml.com/class-diagram
+
+title Strategy Design Pattern Documentation
+
+header
+    The Strategy Pattern defines a family of algorithms, encapsulates each one,
+    and makes them interchangeable. It lets the algorithm vary independently from
+    clients that use it, allowing for flexible and extensible code design.
+endheader
 
 abstract class ImageFileCompressor {
     + {abstract} compress(imagePath: String)

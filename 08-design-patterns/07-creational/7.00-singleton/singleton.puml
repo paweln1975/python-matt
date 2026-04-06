@@ -1,5 +1,15 @@
 @startuml
+!include ../../styles.puml
 'https://plantuml.com/class-diagram
+
+title Singleton Design Pattern Documentation
+
+header
+    The Singleton Pattern ensures that a class has only one instance and provides
+    a global point of access to that instance. It restricts the instantiation of
+    a class to one object, which can be useful for managing shared resources or
+    coordinating actions across a system.
+endheader
 
 class type {
 }

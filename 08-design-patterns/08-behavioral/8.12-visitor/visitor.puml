@@ -1,5 +1,15 @@
 @startuml
+!include ../../styles.puml
 'https://plantuml.com/class-diagram
+
+title Visitor Design Pattern Documentation
+
+header
+    The Visitor Pattern allows you to add new behaviors to existing class
+    hierarchies without altering any existing code. It works by creating a
+    separate visitor class that implements all the appropriate specializations
+    of a particular operation for all classes of an object structure.
+endheader
 
 abstract class Exporter {
     + {abstract} export_paragraph(paragraph): String
@@ -7,11 +17,6 @@ abstract class Exporter {
     + {abstract} export_heading(heading): String
 }
 
-note top of Exporter
-    The Visitor design pattern is a behavioral design pattern that allows you to add new behaviors to existing class
-    hierarchies without altering any existing code. It works by creating a separate visitor class that implements all
-    the appropriate specializations of a particular operation for all classes of an object structure.port formats.
-end note
 
 class HTMLExporter {
     + export_paragraph(paragraph): String

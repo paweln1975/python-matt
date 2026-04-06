@@ -1,0 +1,27 @@
+<style>
+header {
+  HorizontalAlignment center
+  FontSize 18
+  FontColor purple
+  BackgroundColor #f0f0f0
+  BorderColor purple
+}
+
+classDiagram {
+  BackgroundColor #ffffff
+  BorderColor #333333
+}
+
+class {
+  BackgroundColor #e1f5ff
+  BorderColor #0288d1
+  FontColor #01579b
+}
+
+note {
+  BackgroundColor #fff9c4
+  BorderColor #fbc02d
+  FontColor #f57f17
+}
+</style>
+

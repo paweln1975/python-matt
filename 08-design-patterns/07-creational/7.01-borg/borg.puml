@@ -1,5 +1,15 @@
 @startuml
+!include ../../styles.puml
 'https://plantuml.com/class-diagram
+
+title Borg Design Pattern Documentation
+
+header
+    The Borg Pattern is a variation of the Singleton Pattern that ensures all
+    instances of a class share the same state. Unlike Singleton, multiple instances
+    can exist, but they all share the same data, providing a shared state across
+    all instances of the class.
+endheader
 
 class type {
 }

@@ -1,5 +1,14 @@
 @startuml
+!include ../../styles.puml
 'https://plantuml.com/class-diagram
+
+title Observer Design Pattern Documentation
+
+header
+    The Observer Pattern defines a one-to-many dependency between objects so that
+    when one object changes state, all its dependents are notified and updated
+    automatically. It promotes loose coupling between the subject and its observers.
+endheader
 
 class ChatRoom {
     - participants: User[]

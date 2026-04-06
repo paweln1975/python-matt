@@ -1,5 +1,15 @@
 @startuml
+!include ../../styles.puml
 'https://plantuml.com/class-diagram
+
+title Prototype Design Pattern Documentation
+
+header
+    The Prototype Pattern specifies the kinds of objects to create using a
+    prototypical instance, and creates new objects by copying this prototype.
+    It allows for creating new instances by cloning existing ones, avoiding
+    the overhead of creating objects from scratch.
+endheader
 
 class User {
     {field} firstname: str

@@ -1,5 +1,14 @@
 @startuml
+!include ../../styles.puml
 'https://plantuml.com/class-diagram
+
+title State Design Pattern Documentation
+
+header
+    The State Pattern allows an object to alter its behavior when its internal
+    state changes. The object will appear to change its class, encapsulating state-specific
+    behavior in separate state classes and delegating to the current state object.
+endheader
 
 abstract class CheckoutState {
     {abstract}{method} add_item(): CheckoutState
