@@ -1,0 +1,39 @@
+@startuml
+!include ../../styles.puml
+
+title State Machine Pattern
+
+header
+The State Machine design pattern (also known as the State pattern) is a behavioral design pattern
+that allows an object to change its behavior dynamically based on its internal state.
+Instead of using conditional statements (like if-else or switch) to handle different states,
+the pattern encapsulates state-specific behavior into separate classes. This makes the code
+more modular, easier to maintain, and extensible (e.g., adding new states without modifying existing code).
+endheader
+
+class TrafficLight {
+    - _state: TrafficLightState
+    + __init__()
+    + set_state(state: TrafficLightState)
+    + change_state()
+}
+
+abstract class TrafficLightState {
+    + {abstract} handle(context: TrafficLight)
+}
+
+class RedLightState extends TrafficLightState {
+    + handle(context: TrafficLight)
+}
+
+class GreenLightState extends TrafficLightState {
+    + handle(context: TrafficLight)
+}
+
+class YellowLightState extends TrafficLightState {
+    + handle(context: TrafficLight)
+}
+
+TrafficLight --> TrafficLightState : _state
+
+@enduml
