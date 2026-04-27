@@ -1,0 +1,37 @@
+@startuml
+!include ../../styles.puml
+
+title Facade Pattern
+
+header
+The Facade design pattern is a structural design pattern that provides a simplified interface
+to a complex subsystem. It acts as a front-facing interface, masking more complex underlying
+code. The pattern involves a single wrapper class which contains a set of members which are
+required by the client. This wrapper "hides" the complexities of the subsystem and provides
+a simple interface for the client to interact with.
+endheader
+
+class Message {
+    + content: str
+}
+
+class AuthToken
+
+class NotificationClient {
+    - ip_address: str
+    + __init__(ip_address: str)
+    + {static} validate_ip(ip: str): bool
+    + connect(auth_token: AuthToken)
+    + authenticate(): AuthToken
+    + send(message: Message, target: str)
+}
+
+class NotificationSystem {
+    + send_message(message: str, target: str)
+}
+
+NotificationSystem ..> NotificationClient : creates
+NotificationClient --> Message : uses
+NotificationClient --> AuthToken : uses
+
+@enduml
