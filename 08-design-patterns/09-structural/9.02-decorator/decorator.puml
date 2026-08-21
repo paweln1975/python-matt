@@ -1,0 +1,56 @@
+@startuml
+!include ../../styles.puml
+'https://plantuml.com/class-diagram
+
+title Decorator Pattern Documentation
+
+header
+    The Decorator Pattern lets you add behavior to an object dynamically by
+    wrapping it in another object with the same interface. Each wrapper can
+    extend or transform the call before delegating to the wrapped object.
+endheader
+
+abstract class Stream {
+    + {abstract} write(data: str): None
+}
+
+note right of Stream
+    Base component interface used by the concrete stream and the decorators.
+end note
+
+class CloudStream {
+    + write(data: str): None
+}
+
+note right of CloudStream
+    Concrete component that stores the provided data.
+end note
+
+class EncryptedCloudStream {
+    - stream: Stream
+    + write(data: str): None
+    + encrypt(data: str): str
+}
+
+note right of EncryptedCloudStream
+    Decorator that encrypts data before forwarding it to the wrapped stream.
+end note
+
+class CompressedCloudStream {
+    - stream: Stream
+    + write(data: str): None
+    + compress(data: str): str
+}
+
+note right of CompressedCloudStream
+    Decorator that removes whitespace before forwarding data to the wrapped stream.
+end note
+
+Stream <|-- CloudStream
+Stream <|-- EncryptedCloudStream
+Stream <|-- CompressedCloudStream
+
+EncryptedCloudStream *-- Stream : wraps
+CompressedCloudStream *-- Stream : wraps
+
+@enduml
