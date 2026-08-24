@@ -1,0 +1,46 @@
+@startuml
+!include ../../styles.puml
+'https://plantuml.com/class-diagram
+
+title Adapter Pattern Documentation
+
+header
+    The Adapter Pattern allows objects with incompatible interfaces to work together.
+    It acts as a bridge between the two interfaces, translating requests from the client to the adaptee.
+    The Adapter pattern is pretty common in Python code. It’s very often used in systems based on some legacy code.
+    In such cases, Adapters make legacy code work with modern classes.
+endheader
+
+class Target {
+    + request(): str
+}
+
+note right of Target
+    The Target class defines the interface that the client expects.
+end note
+
+class Adaptee {
+    + specific_request(): str
+}
+
+note right of Adaptee
+    The Adaptee class has an existing interface that needs adapting.
+end note
+
+class Adapter {
+    + request(): str
+}
+
+note right of Adapter
+    The Adapter class implements the Target interface and translates requests to the Adaptee.
+    Adapter is recognizable by a constructor which takes an instance of a different abstract/interface type.
+    When the adapter receives a call to any of its methods, it translates parameters to the appropriate format
+    and then directs the call to one or several methods of the wrapped object.
+end note
+
+Target <|-- Adapter
+Adaptee <|-- Adapter
+
+
+
+@enduml
