@@ -1,0 +1,77 @@
+@startuml
+!include ../../styles.puml
+'https://plantuml.com/class-diagram
+
+title Proxy Pattern Documentation
+
+header
+    The Proxy Pattern provides a surrogate or placeholder for another object to control access to it.
+    It can add additional functionality, such as caching, logging, or access control, without modifying the original object.
+    The Proxy pattern is commonly used in Python to manage resource-intensive operations or to add security checks.
+    It usually keeps the same interface, but controls access rather than adding features.
+endheader
+
+class DatabaseQuery {
+    + execute(query: str): str
+}
+
+note right of DatabaseQuery
+    The DatabaseQuery class defines the interface that the client expects.
+end note
+
+class RealDatabaseQuery {
+    + specific_request(): str
+}
+
+note right of RealDatabaseQuery
+    The RealDatabaseQuery class has an existing interface that needs proxying.
+end note
+
+class CacheProxy {
+    + execute(query: str): str
+}
+
+note right of CacheProxy
+    The CacheProxy class implements the DatabaseQuery interface and adds caching functionality.
+    CacheProxy is recognizable by a constructor which takes an instance of DatabaseQuery.
+    When the proxy receives a call to execute, it checks the cache first and delegates to the real query if needed.
+end note
+
+DatabaseQuery <|-- RealDatabaseQuery
+DatabaseQuery <|-- CacheProxy
+
+note left of CacheProxy
+    The short version of differences:
+    • Adapter: “make this object fit the interface I already use.”
+    • Decorator: “add behavior around this object without changing its interface.”
+    • Proxy: “stand in for this object and control access to it.”
+    • Facade: “hide a whole subsystem behind one simple interface.”
+    In the examples:
+    • Adapter in adapter.py changes a weird API into the expected one:
+        ◦ Adaptee.specific_request()
+        ◦ Target.request()
+        ◦ Adapter.request() translates between them.
+        ◦ Purpose: compatibility.
+    • Decorator in decorator.py adds extra behavior around a stream:
+        ◦ EncryptedCloudStream writes encrypted data
+        ◦ CompressedCloudStream writes compressed data
+        ◦ Both still behave like a Stream.
+        ◦ Purpose: add responsibilities dynamically.
+    • Facade in notification_system.py hides many steps behind one method:
+        ◦ NotificationSystem.send_message(...)
+        ◦ Behind it: validate IP, auth, connect, create message, send.
+        ◦ Purpose: simplify subsystem usage.
+    • Proxy is conceptually closest to decorator, but its purpose is different:
+        ◦ A proxy might delay creation, perform auth checks, cache results, or remote-call a real object.
+        ◦ It usually keeps the same interface, but controls access rather than adding features.
+    Key differences:
+    • Adapter changes interface compatibility.
+        ◦ You have an object with the wrong API and you adapt it to the expected one.
+    • Decorator changes behavior while preserving the same interface.
+        ◦ You still call write(), send(), request(), etc., but it now does extra work.
+    • Proxy changes access behavior, not core behavior.
+        ◦ It stands in front of the real object and decides whether/how to allow interaction.
+    • Facade changes complexity, not individual object interfaces.
+        ◦ It gives you a simpler entry point to a complex system.
+end note
+@enduml
